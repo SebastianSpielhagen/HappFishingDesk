@@ -1,0 +1,120 @@
+.mitgliederverwaltung-main {  display: grid;
+    grid-template-columns: 13% auto;
+    grid-template-rows: 0.1fr 1.9fr;
+    grid-auto-columns: 1fr;
+    gap: 0px 0px;
+    grid-auto-flow: row;
+    grid-template-areas:
+    "sidetitle main"
+    "sidemenu main";
+    background-color: #00ac1b;
+}
+
+.main {
+    grid-area: main;
+}
+
+.sidetitle {
+    grid-area: sidetitle;
+    border-right: 1px solid black;
+    text-align: center;
+}
+
+.sidetitle-text {
+    position: relative;
+    top: 10px;
+    font-size: 20px;
+}
+
+.sidemenu {
+    grid-area: sidemenu;
+}
+
+.sidebuttons-text {
+    position: relative;
+    margin-bottom: 5px;
+}
+
+.mitglieder-form-anrede {
+    position: relative;
+    top: 40px;
+    left: 40px;
+}
+
+.mitglieder-form-vorname {
+    position: relative;
+    top: 50px;
+    left: 40px;
+}
+
+.mitglieder-form-nachname {
+    position: relative;
+    top: 55px;
+    left: 40px;
+}
+
+.mitglieder-form-strasse {
+    position: relative;
+    top: 70px;
+    left: 40px;
+}
+
+.mitglieder-form-plz {
+    position: relative;
+    top: 75px;
+    left: 40px;
+}
+
+.mitglieder-form-stadt {
+    position: relative;
+    top: 80px;
+    left: 40px;
+}
+
+.mitglieder-form-festnetz {
+    position: relative;
+    top: 95px;
+    left: 40px;
+}
+
+.mitglieder-form-handy {
+    position: relative;
+    top: 100px;
+    left: 40px;
+}
+
+.mitglieder-form-email {
+    position: relative;
+    top: 40px;
+    left: 40px;
+}
+
+.mitglieder-form-geburtsdatum {
+    position: relative;
+    top: 110px;
+    left: 40px;
+}
+
+.mitglieder-form-eintrittsdatum {
+    position: relative;
+    top: 40px;
+    left: 340px;
+}
+
+.mitglieder-form-austrittsdatum {
+    position: relative;
+    top: 40px;
+    left: 340px;
+}
+
+.mitglieder-form-status {
+    position: relative;
+    top: 40px;
+    left: 340px;
+}
+
+.mitglieder-form-bezahlt {
+    position: relative;
+    top: 40px;
+    left: 340px;
+}
