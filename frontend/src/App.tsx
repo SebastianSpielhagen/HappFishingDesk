@@ -12,6 +12,7 @@ import Nachrichten from './components/Nachrichten';
 import Fangberichte from './components/Fangberichte';
 import Mitgliederverwaltung from './components/Mitgliederverwaltung';
 import Mitgliedermenu from './components/Mitgliedermenu';
+import DatabaseStatus from './components/DatabaseStatus.tsx';
 
 
 const App: React.FC = () => {
@@ -30,6 +31,7 @@ const App: React.FC = () => {
                 <Route path="/nachrichten" element={<Nachrichten />} />
                 <Route path="/fangberichte" element={<Fangberichte />} />
                 <Route path="/mitgliedermenu" element={<Mitgliedermenu />} />
+                <Route path="/dbstatus" element={<DatabaseStatus />} />
             </Routes>
         </Router>
 

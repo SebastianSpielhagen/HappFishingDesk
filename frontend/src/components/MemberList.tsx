@@ -3,6 +3,23 @@ import axios from 'axios';
 
 interface Member {
     id: string;
+    anrede: string;
+    vorname: string;
+    nachname: string;
+    strasse: string;
+    plz: string;
+    stadt: string;
+    festnetz: string;
+    mobil: string;
+    email: string;
+    geburtsdatum: string;
+    eintrittsdatum: string;
+    austrittsdatum: string;
+    status: string;
+    bezahlt: boolean;
+    fischereischein: string;
+    ablaufdatum: string;
+
     // weitere Member Felder
 }
 

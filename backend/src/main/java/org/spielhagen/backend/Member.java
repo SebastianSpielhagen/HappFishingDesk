@@ -18,6 +18,7 @@ public class Member {
     private String stadt;
     private String festnetz;
     private String handy;
+    private String email;
     private LocalDate geburtsdatum;
     private LocalDate eintrittsdatum;
     private LocalDate austrittsdatum;
@@ -43,6 +44,7 @@ public class Member {
         this.stadt = stadt;
         this.festnetz = festnetz;
         this.handy = handy;
+        this.email = email;
         this.geburtsdatum = geburtsdatum;
         this.eintrittsdatum = eintrittsdatum;
         this.austrittsdatum = austrittsdatum;
@@ -125,6 +127,12 @@ public class Member {
     }
     public void setHandy(String handy) {
         this.handy = handy;
+    }
+    public String getEmail() {
+        return email;
+    }
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public LocalDate getGeburtsdatum() {

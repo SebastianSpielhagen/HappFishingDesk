@@ -45,6 +45,7 @@ public class MemberService {
         member.setStadt(memberDto.getStadt());
         member.setFestnetz(memberDto.getFestnetz());
         member.setHandy(memberDto.getHandy());
+        member.setEmail(memberDto.getEmail());
         member.setGeburtsdatum(memberDto.getGeburtsdatum());
         member.setEintrittsdatum(memberDto.getEintrittsdatum());
         member.setAustrittsdatum(memberDto.getAustrittsdatum());
@@ -67,6 +68,7 @@ public class MemberService {
                     existingMember.setStadt(member.getStadt());
                     existingMember.setFestnetz(member.getFestnetz());
                     existingMember.setHandy(member.getHandy());
+                    existingMember.setEmail(member.getEmail());
                     existingMember.setGeburtsdatum(member.getGeburtsdatum());
                     existingMember.setEintrittsdatum(member.getEintrittsdatum());
                     existingMember.setAustrittsdatum(member.getAustrittsdatum());

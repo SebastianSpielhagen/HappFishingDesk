@@ -14,6 +14,7 @@ type MemberFormState = {
     stadt: string;
     festnetz: string;
     handy: string;
+    email: string;
     geburtsdatum: string;
     eintrittsdatum: string;
     austrittsdatum: string;
@@ -34,6 +35,7 @@ const Mitgliederverwaltung: React.FC = () => {
         stadt: '',
         festnetz: '',
         handy: '',
+        email: '',
         geburtsdatum: '',
         eintrittsdatum: '',
         austrittsdatum: '',
@@ -226,6 +228,20 @@ const Mitgliederverwaltung: React.FC = () => {
                     placeholder="Handy"
                 />
                 </div>
+
+        {/* Email Eingabefeld */}
+        <div className="mitglieder-form-email">
+            <label htmlFor="email"></label>
+            <input
+                id="email"
+                type="text"
+                name="email"
+                value={member.email}
+                onChange={handleChange}
+                placeholder="eMail"
+            />
+        </div>
+
 
                 {/* Geburtsdatum Eingabefeld */}
                 <div className="mitglieder-form-geburtsdatum">

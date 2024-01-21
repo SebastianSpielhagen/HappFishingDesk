@@ -16,6 +16,7 @@ public class MemberDTO {
     private String festnetz;
     private String fischereischeinnummer;
     private String handy;
+    private String email;
     private Integer plz;
     private String stadt;
     private String status;
@@ -33,17 +34,18 @@ public class MemberDTO {
         this.anrede = anrede;
         this.vorname = vorname;
         this.nachname = nachname;
-        this.geburtsdatum = geburtsdatum;
-        this.austrittsdatum = austrittsdatum;
-        this.bezahlt = bezahlt;
-        this.eintrittsdatum = eintrittsdatum;
-        this.festnetz = festnetz;
-        this.fischereischeinnummer = fischereischeinnummer;
-        this.handy = handy;
+        this.strasse = strasse;
         this.plz = plz;
         this.stadt = stadt;
+        this.festnetz = festnetz;
+        this.handy = handy;
+        this.email = email;
+        this.geburtsdatum = geburtsdatum;
+        this.austrittsdatum = austrittsdatum;
+        this.eintrittsdatum = eintrittsdatum;
+        this.bezahlt = bezahlt;
+        this.fischereischeinnummer = fischereischeinnummer;
         this.status = status;
-        this.strasse = strasse;
         this.fischereischeinablaufdatum = fischereischeinablaufdatum;
     }
     // Getter und Setter
@@ -114,6 +116,13 @@ public class MemberDTO {
     }
     public void setHandy(String handy) {
         this.handy = handy;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public LocalDate getGeburtsdatum() {

@@ -37,62 +37,62 @@
 
 .mitglieder-form-anrede {
     position: relative;
-    top: 40px;
+    top: 75px;
     left: 40px;
 }
 
 .mitglieder-form-vorname {
     position: relative;
-    top: 50px;
+    top: 85px;
     left: 40px;
 }
 
 .mitglieder-form-nachname {
     position: relative;
-    top: 55px;
+    top: 90px;
     left: 40px;
 }
 
 .mitglieder-form-strasse {
     position: relative;
-    top: 70px;
-    left: 40px;
+    top: -10px;
+    left: 240px;
 }
 
 .mitglieder-form-plz {
     position: relative;
-    top: 75px;
-    left: 40px;
+    top: -5px;
+    left: 240px;
 }
 
 .mitglieder-form-stadt {
     position: relative;
-    top: 80px;
-    left: 40px;
+
+    left: 240px;
 }
 
 .mitglieder-form-festnetz {
     position: relative;
-    top: 95px;
+    top: 20px;
     left: 40px;
 }
 
 .mitglieder-form-handy {
     position: relative;
-    top: 100px;
-    left: 40px;
+    top: -10px;
+    left: 240px;
 }
 
 .mitglieder-form-email {
     position: relative;
-    top: 40px;
-    left: 40px;
+    top: -40px;
+    left: 440px;
 }
 
 .mitglieder-form-geburtsdatum {
     position: relative;
-    top: 110px;
-    left: 40px;
+    top: -190px;
+    left: 440px;
 }
 
 .mitglieder-form-eintrittsdatum {
