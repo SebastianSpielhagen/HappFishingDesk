@@ -5,47 +5,25 @@ import {CButton} from '@coreui/react';
 
 const Mitgliedermenu: React.FC = () => {
     return (
-        <div className="mitglieder-main">
-            <div className="sidetitle">
-                <div className="sidetitle-text">
-                    <h5>Mitgliederverwaltung</h5>
-                </div>
-                <hr/>
-                <div className="sidebuttons-text">
-                    <div className="d-grid gap-2 col-11 mx-auto">
-                        <CButton color="primary" href="/mitgliederverwaltung">Mitglied ' NEU '</CButton>
+        <div className="mitgliedermenu">
+            <div className="div">
+                <div className="homepage-img2"></div>
+                <div className="left-sidebar-title">
+                    <div className="left-sidebar-title-text">
+                        <p>Mitgliederverwaltung</p>
                     </div>
                 </div>
-                <div className="sidebuttons-text">
-                    <div className="d-grid gap-2 col-11 mx-auto">
-                        <CButton color="primary" href="/members">Mitglied ' SUCHEN '</CButton>
+
+                <div className="left-sidebar">
+                    <div className="left-sidebar-button">
+                        <div className="d-grid gap-2 col-11 mx-auto">
+                            <CButton color="primary" href="/mitgliederverwaltung">Mitglied ' NEU '</CButton>
+                            <CButton color="primary" href="/">Mitglied ' SUCHEN '</CButton>
+                            <CButton color="primary" href="/members">Mitglieder ' LISTE '</CButton>
+                        </div>
                     </div>
                 </div>
-                <div className="sidebuttons-text">
-                    <div className="d-grid gap-2 col-11 mx-auto">
-                        <CButton color="primary" href="/members">Mitglieder ' LISTE '</CButton>
-                    </div>
-                </div>
-                <div className="sidebuttons-text">
-                    <div className="d-grid gap-2 col-11 mx-auto">
-                        <CButton color="primary" href="/members">Mitgliederliste</CButton>
-                    </div>
-                </div>
-                <div className="sidebuttons-text">
-                    <div className="d-grid gap-2 col-11 mx-auto">
-                        <CButton color="primary" href="/members">Mitgliederliste</CButton>
-                    </div>
-                </div>
-                <div className="sidebuttons-text">
-                    <div className="d-grid gap-2 col-11 mx-auto">
-                        <CButton color="primary" href="/members">Mitgliederliste</CButton>
-                    </div>
-                </div>
-                <div className="sidebuttons-text">
-                    <div className="d-grid gap-2 col-11 mx-auto">
-                        <CButton color="primary" href="/members">Mitgliederliste</CButton>
-                    </div>
-                </div>
+
             </div>
         </div>
     );

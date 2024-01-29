@@ -1,27 +1,36 @@
-.homepage-main {
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: 600px;
-    grid-auto-columns: 1fr;
-    gap: 0px 0px;
-    grid-auto-flow: row;
-    grid-template-areas:
-    "main";
-    border-bottom: 2px solid black;
+.homepage-container {
     background-color: #00ac1b;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 100%;
+
+}
+
+.homepage-container .div {
+    background-color: #00ac1b;
+    height: 600px;
+    position: relative;
+    width: 1600px;
+
+}
+.homepage-container .homepage-img {
+    background-color: transparent;
     background-image: url("/src/assets/Logo_HF_Mobile.png");
     background-repeat: no-repeat;
     background-position: center;
     background-size: 60%;
     background-attachment: fixed;
-
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    opacity: 0.1;
 }
-
-.main {
-    grid-area: main;
-
+.homepage-container .homepage-text {
+    position: absolute;
+    top: 20px;
+    left: 10%;
+    font-size: 16px;
+    color: #ffffff;
 }
-
-
-
-

@@ -1,0 +1,222 @@
+.mitgliederliste {
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 100%;
+
+}
+
+.mitgliederliste .div {
+    background-color: #ffffff;
+    height: 600px;
+    position: relative;
+    width: 1600px;
+
+}
+
+.mitgliederliste .left-sidebar-title {
+    background-color: #00ac1b;
+    height: 40px;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 220px;
+    border-right: 1px solid black;
+    border-bottom: 1px solid black;
+    text-align: center;
+
+}
+.mitgliederliste .left-sidebar-title-text {
+    position: relative;
+    top: 4px;
+    font-size: 22px;
+}
+
+.mitgliederliste .right-sidebar-title {
+    background-color: #00ac1b;
+    height: 40px;
+    left: 1380px;
+    position: absolute;
+    top: 0;
+    width: 220px;
+    border-left: 1px solid black;
+    border-bottom: 1px solid black;
+    text-align: center;
+}
+.mitgliederliste .right-sidebar-title-text {
+    position: relative;
+    top: 4px;
+    font-size: 22px;
+}
+
+.mitgliederliste .main-list-title {
+    background-color: #00ac1b;
+    height: 40px;
+    left: 220px;
+    position: absolute;
+    top: 0;
+    width: 1160px;
+    border-bottom: 1px solid black;
+}
+
+.mitgliederliste .left-sidebar {
+    background-color: #00ac1b;
+    height: 560px;
+    left: 0;
+    position: absolute;
+    top: 40px;
+    width: 220px;
+    border-right: 1px solid black;
+}
+
+.mitgliederliste .left-sidebar-button {
+    position: absolute;
+    top: 20px;
+    width: 218px;
+    text-align: center;
+}
+
+.mitgliederliste .right-sidebar {
+    display: inline-grid;
+    background-color: #00ac1b;
+    height: 560px;
+    left: 1380px;
+    position: absolute;
+    top: 40px;
+    width: 220px;
+    border-left: 1px solid black;
+}
+
+.mitgliederliste .main-list {
+    display: flex;
+    overflow-x: scroll;
+    overflow-y: scroll;
+    max-width: 1160px;
+    max-height: 560px;
+    margin: auto;
+    position: relative;
+    top: 60px;
+
+}
+.print-button {
+    position: absolute;
+    top: 1px;
+    right: 230px;
+    background-color: #00ac1b;
+    color: white;
+    cursor: pointer;
+}
+
+.th-anrede {
+    width: auto; /* Lassen Sie die Tabelle die Breite basierend auf dem Inhalt entscheiden, bis zu einem gewissen Punkt */
+    min-width: 80px; /* Mindestbreite für jede Spalte */
+
+
+}
+
+.th-vorname {
+    width: auto; /* Lassen Sie die Tabelle die Breite basierend auf dem Inhalt entscheiden, bis zu einem gewissen Punkt */
+    min-width: 120px; /* Mindestbreite für jede Spalte */
+
+}
+
+.th-nachname {
+    width: auto; /* Lassen Sie die Tabelle die Breite basierend auf dem Inhalt entscheiden, bis zu einem gewissen Punkt */
+    min-width: 140px; /* Mindestbreite für jede Spalte */
+
+}
+.th-adresse {
+    width: auto;
+    min-width: 200px;
+}
+
+.th-strasse {
+    width: auto; /* Lassen Sie die Tabelle die Breite basierend auf dem Inhalt entscheiden, bis zu einem gewissen Punkt */
+    min-width: 190px; /* Mindestbreite für jede Spalte */
+}
+
+.th-plz {
+    width: auto; /* Lassen Sie die Tabelle die Breite basierend auf dem Inhalt entscheiden, bis zu einem gewissen Punkt */
+    min-width: 80px; /* Mindestbreite für jede Spalte */
+}
+
+.th-stadt {
+    width: auto; /* Lassen Sie die Tabelle die Breite basierend auf dem Inhalt entscheiden, bis zu einem gewissen Punkt */
+    min-width: 150px; /* Mindestbreite für jede Spalte */
+}
+
+.th-festnetz {
+    width: auto; /* Lassen Sie die Tabelle die Breite basierend auf dem Inhalt entscheiden, bis zu einem gewissen Punkt */
+    min-width: 150px; /* Mindestbreite für jede Spalte */
+}
+
+.th-handy {
+    width: auto; /* Lassen Sie die Tabelle die Breite basierend auf dem Inhalt entscheiden, bis zu einem gewissen Punkt */
+    min-width: 150px; /* Mindestbreite für jede Spalte */
+}
+
+.th-email {
+    width: auto; /* Lassen Sie die Tabelle die Breite basierend auf dem Inhalt entscheiden, bis zu einem gewissen Punkt */
+    min-width: 220px; /* Mindestbreite für jede Spalte */
+}
+
+.th-geburtsdatum {
+    width: auto;
+    min-width: 140px;
+}
+
+.th-eintrittsdatum {
+    width: auto;
+    min-width: 140px;
+}
+
+.th-austrittsdatum {
+    width: auto;
+    min-width: 140px;
+}
+
+.th-status {
+    width: auto;
+    min-width: 180px;
+}
+
+.th-bezahlt {
+    width: auto;
+    min-width: 110px;
+}
+
+.th-fischereischeinnummer {
+    width: auto;
+    min-width: 140px;
+}
+
+.th-fischereischeinablaufdatum {
+    width: auto;
+    min-width: 140px;
+}
+
+/* Optional: Styling für Scrollbars, falls gewünscht */
+::-webkit-scrollbar {
+    width: 12px; /* Breite der Scrollbar */
+}
+
+::-webkit-scrollbar-track {
+    background: rgb(255, 255, 255); /* Farbe des Scrollbar-Hintergrunds */
+}
+
+::-webkit-scrollbar-thumb {
+    background: #136cf9; /* Farbe des Scrollbar-Griffs */
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #6892e7; /* Farbe des Scrollbar-Griffs beim Hover */
+}
+/* Zebrastreifen-Stil für Tabellen */
+#members-table tr:nth-child(even) {
+    background-color: #f2f2f2; /* Farbe für gerade Zeilen */
+}
+
+#members-table tr:nth-child(odd) {
+    background-color: #ffffff; /* Farbe für ungerade Zeilen */
+}

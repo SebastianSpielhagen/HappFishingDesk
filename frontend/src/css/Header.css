@@ -8,72 +8,99 @@
     animation: blinker 1s linear infinite;
     color: red;
 }
-.header-container {  display: grid;
-    grid-template-columns: 1fr;
+.header-container {
+    display: grid;
+    grid-template-columns: 8% auto auto 20%;
     grid-template-rows: 1fr;
     grid-auto-columns: 1fr;
-    gap: 0px 0px;
     grid-auto-flow: row;
     grid-template-areas:
-    "header";
-    background-color: #00ac1b;
-
-}
-
-.header {  display: grid;
-    grid-template-columns: 10% auto 10%;
-    grid-template-rows: 100px auto 30px;
-    gap: 0px 0px;
-    grid-auto-flow: row;
-    grid-template-areas:
-    "logo nav infobar";
+    "logo titel nav infobar";
     grid-area: header;
     border-bottom: 1px solid black;
-
+    background-color: #00ac1b;
 }
-
-.infobar {
-    border: 1px solid black;
-    padding-bottom: 5px;
-    padding-top: 5px;
-    padding-left: 5px;
-    padding-right: 60px;
-    grid-area: infobar;
+.logo {
+    grid-area: logo;
+    margin: 5px;
     position: relative;
-    bottom: 90px;
-    left: 130px;
-    font-size: 13px;
+    left: 25px;
 }
-
-.logo { grid-area: logo; }
-
-.nav {  display: grid;
-    grid-template-columns: auto;
-    grid-template-rows: 50% 45%;
-    gap: 0px 0px;
-    grid-auto-flow: row;
-    grid-template-areas:
-    "titel"
-    "buttons";
-    grid-area: nav;
-
-}
-
 .titel {
     grid-area: titel;
     position: relative;
-    text-align: center;
-    left: 40px;
-    top: 10px;
+    text-align: left;
+    left: 185px;
+    top: 20px;
+    flex-wrap: wrap;
+    color: #ffffff;
+    text-shadow: 2px 2px 4px #000000;
 }
+.nav {
+    grid-area: nav;
+    position: absolute;
+    top: 90px;
+    left: 272px;
+    flex-wrap: wrap;
+     /* Oder 'flex-start' für keine Zwischenräume */
+     /* Zentriert die Buttons vertikal, falls sie unterschiedliche Höhen haben */
+     /* Ermöglicht das Umfließen auf die nächste Zeile, falls der Bildschirm zu schmal wird */
+}
+
+
+.infobar {
+    border-block: #007bff;
+    padding: 2px 2px 2px 2px;
+    grid-area: infobar;
+    position: relative;
+    flex-wrap: wrap;
+    right: 50px;
+
+}
+.appname {
+    font-size: 20px;
+    font-weight: bold;
+    color: #ffffff;
+    text-shadow: 2px 2px 4px #000000;
+
+}
+.dbstatus {
+    font-size: 15px;
+    font-weight: bold;
+    color: #ffffff;
+    text-shadow: 2px 2px 4px #000000;
+
+}
+.activeuser {
+    font-size: 15px;
+    font-weight: bold;
+    color: #ffffff;
+    text-shadow: 2px 2px 4px #000000;
+    margin-bottom: 2px;
+}
+.datetime {
+    font-size: 15px;
+    font-weight: bold;
+    color: #2963e8;
+    text-shadow: 2px 2px 4px #cccccc;
+    margin-bottom: 2px;
+}
+
+
+
+
+
+
 
 .buttons {
     grid-area: buttons;
     position: absolute;
-    top: 80px;
+    top: 105px;
 
 }
 
 .textarea { grid-area: textarea; }
 
-.footer { grid-area: footer; }
+.footer {
+    grid-area: footer;
+    border-top: 1px solid black;}

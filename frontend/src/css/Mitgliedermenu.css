@@ -1,42 +1,65 @@
-.mitglieder-main {  display: grid;
-    grid-template-columns: 13% auto;
-    grid-template-rows: 0.1fr 1.9fr;
-    grid-auto-columns: 1fr;
-    gap: 0px 0px;
-    grid-auto-flow: row;
-    grid-template-areas:
-    "sidetitle main"
-    "sidemenu main";
+.mitgliedermenu {
     background-color: #00ac1b;
-    background-image: url("/src/assets/Logo_HF_Mobile.png");
-    background-repeat: no-repeat;
-    background-position: top;
-    background-size: 60%;
-    background-attachment: scroll;
-}
-
-.main { grid-area: main;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 100%;
 
 }
 
-.sidetitle {
-    grid-area: sidetitle;
+.mitgliedermenu .div {
+    background-color: #00ac1b;
+    height: 600px;
+    position: relative;
+    width: 1600px;
+
+
+}
+
+.mitgliedermenu .left-sidebar-title {
+    background-color: #00ac1b;
+    height: 40px;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 220px;
     border-right: 1px solid black;
+    border-bottom: 1px solid black;
+    text-align: center;
+
+}
+.mitgliedermenu .left-sidebar-title-text {
+    position: relative;
+    top: 4px;
+    font-size: 22px;
+}
+.mitgliedermenu .left-sidebar {
+    background-color: #00ac1b;
+    height: 560px;
+    left: 0;
+    position: absolute;
+    top: 40px;
+    width: 220px;
+    border-right: 1px solid black;
+}
+
+.mitgliedermenu .left-sidebar-button {
+    position: absolute;
+    top: 20px;
+    width: 218px;
     text-align: center;
 }
-.sidetitle-text {
-    position: relative;
-    top: 10px;
-    font-size: 20px;
-
-}
-.sidemenu {
-    grid-area: sidemenu;
-
-}
-.sidebuttons-text {
-    position: relative;
-    margin-bottom: 5px;
-
+.homepage-img2 {
+    background-color: transparent;
+    background-image: url("/src/assets/Logo_HF_Mobile.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 60%;
+    background-attachment: fixed;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 100px;
+    opacity: 0.1;
 
 }

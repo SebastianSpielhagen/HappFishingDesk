@@ -1,0 +1,638 @@
+.mitgliederformular {
+    background-color: #00ac1b;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 100%;
+}
+.mitgliederformular .div {
+    background-color: #00ac1b;
+    height: 600px;
+    position: relative;
+    width: 1600px;
+}
+.mitgliederformular .homepage-img3 {
+    background-color: transparent;
+    background-image: url("/src/assets/Logo_HF_Mobile.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 60%;
+    background-attachment: fixed;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    opacity: 0.1;
+}
+.mitgliederformular .left-sidebar-title {
+    background-color: #00ac1b;
+    height: 40px;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 220px;
+    border-right: 1px solid black;
+    border-bottom: 1px solid black;
+    text-align: center;
+}
+.mitgliederformular .left-sidebar-title-text {
+    position: relative;
+    top: 4px;
+    font-size: 22px;
+}
+.mitgliederformular .right-sidebar-title {
+    background-color: #00ac1b;
+    height: 40px;
+    left: 1380px;
+    position: absolute;
+    top: 0;
+    width: 220px;
+    border-left: 1px solid black;
+    border-bottom: 1px solid black;
+    text-align: center;
+}
+.mitgliederformular .right-sidebar-title-text {
+    position: relative;
+    top: 4px;
+    font-size: 22px;
+}
+.mitgliederformular .main-list-title {
+    background-color: #00ac1b;
+    height: 40px;
+    left: 220px;
+    position: absolute;
+    top: 0;
+    width: 1160px;
+    border-bottom: 1px solid black;
+}
+.mitgliederformular .main-list-title-text {
+    position: relative;
+    top: 4px;
+    font-size: 22px;
+    text-align: center;
+}
+.mitgliederformular .left-sidebar {
+    background-color: #00ac1b;
+    height: 560px;
+    left: 0;
+    position: absolute;
+    top: 40px;
+    width: 220px;
+    border-right: 1px solid black;
+}
+.mitgliederformular .left-sidebar-button {
+    position: absolute;
+    top: 20px;
+    width: 218px;
+    text-align: center;
+}
+.mitgliederformular .right-sidebar {
+    display: inline-grid;
+    background-color: #00ac1b;
+    height: 560px;
+    left: 1380px;
+    position: absolute;
+    top: 40px;
+    width: 220px;
+    border-left: 1px solid black;
+}
+.mitgliederformular .main-list {
+    display: flex;
+    max-width: 1160px;
+    max-height: 560px;
+    margin: auto;
+    position: relative;
+    top: 60px;
+}
+.print-button {
+    position: absolute;
+    top: 1px;
+    right: 230px;
+    background-color: #00ac1b;
+    color: white;
+    cursor: pointer;
+}
+.mitglieder-form .form-row1 {
+    display: flex;
+    justify-content: flex-start; /* Elemente ausrichten */
+    gap: 15px; /* Abstand zwischen den Elementen */
+    margin-left: 30px;
+    margin-bottom: 20px;
+}
+/* Anrede Anfang */
+.mitglieder-form .form-field-anrede {
+    flex: 0 0 auto; /* Nicht wachsen oder schrumpfen, Basis ist auto */
+    width: 140px; /* Individuelle Breite festlegen */
+}
+.mitglieder-form .form-field-anrede label {
+    color: white;
+    font-size: 18px;
+    font-weight: 400;
+}
+.mitglieder-form .form-field-anrede select {
+    padding: 7px;
+    border: 1px solid #3558de;
+    border-radius: 4px;
+    background-color: #464545;
+    color: #ffffff;
+}
+/* Anrede Ende */
+/* Vorname Anfang */
+.mitglieder-form .form-field-vorname {
+    flex: 0 0 auto; /* Nicht wachsen oder schrumpfen, Basis ist auto */
+    width: 350px; /* Individuelle Breite festlegen */
+}
+.mitglieder-form .form-field-vorname label {
+    color: white;
+    font-size: 18px;
+    font-weight: 400;
+}
+.mitglieder-form .form-field-vorname input[type="text"] {
+    width: 350px;
+    padding: 5px;
+    border: 1px solid #3558de;
+    border-radius: 4px;
+    background-color: #464545;
+    color: white;
+}
+/* Vorname Ende */
+/* Nachname Anfang */
+.mitglieder-form .form-field-nachname {
+    flex: 0 0 auto; /* Nicht wachsen oder schrumpfen, Basis ist auto */
+    width: 350px; /* Individuelle Breite festlegen */
+    padding-left: 10px;
+}
+.mitglieder-form .form-field-nachname label {
+    color: white;
+    font-size: 18px;
+    font-weight: 400;
+}
+.mitglieder-form .form-field-nachname input[type="text"] {
+    width: 450px;
+    padding: 5px;
+    border: 1px solid #3558de;
+    border-radius: 4px;
+    background-color: #464545;
+    color: white;
+}
+/* Nachname Ende */
+/* Strasse Anfang */
+.mitglieder-form .form-row2 {
+    display: flex;
+    justify-content: flex-start;
+    gap: 15px;
+    margin-left: 30px;
+    margin-bottom: 20px;
+}
+.mitglieder-form .form-field-strasse {
+    flex: 0 0 auto;
+    width: 350px
+}
+.mitglieder-form .form-field-strasse label {
+    color: white;
+    font-size: 18px;
+    font-weight: 400;
+}
+.mitglieder-form .form-field-strasse input[type="text"] {
+    padding: 5px;
+    width: 400px;
+    border: 1px solid #3558de;
+    border-radius: 4px;
+    background-color: #464545; /* Hintergrundfarbe für Textfelder und Dropdowns */
+    color: white; /* Textfarbe */
+}
+/* Strasse Ende */
+/* PLZ Anfang */
+.mitglieder-form .form-field-plz {
+    flex: 0 0 auto;
+    width: 80px;
+    padding-left: 60px;
+}
+.mitglieder-form .form-field-plz label {
+    color: white;
+    font-size: 18px;
+    font-weight: 400;
+}
+.mitglieder-form .form-field-plz input[type="text"] {
+    padding: 5px;
+    width: 80px;
+    text-align: center;
+    border: 1px solid #3558de;
+    border-radius: 4px;
+    background-color: #464545; /* Hintergrundfarbe für Textfelder und Dropdowns */
+    color: white; /* Textfarbe */
+}
+/* PLZ Ende */
+/* Stadt Anfang */
+.mitglieder-form .form-field-stadt {
+    flex: 0 0 auto;
+    width: 350px;
+    padding-left: 70px;
+}
+.mitglieder-form .form-field-stadt label {
+    color: white;
+    font-size: 18px;
+    font-weight: 400;
+}
+.mitglieder-form .form-field-stadt input[type="text"] {
+    padding: 5px;
+    width: 450px;
+    border: 1px solid #3558de;
+    border-radius: 4px;
+    background-color: #464545; /* Hintergrundfarbe für Textfelder und Dropdowns */
+    color: white; /* Textfarbe */
+}
+/* Stadt Ende */
+.mitglieder-form .form-row3 {
+    display: flex;
+    justify-content: flex-start;
+    gap: 15px;
+    margin-left: 30px;
+}
+/* Geburtsdatum Anfang */
+.mitglieder-form .form-field-geburtsdatum {
+    flex: 0 0 auto;
+    width: 145px;
+}
+.mitglieder-form .form-field-geburtsdatum label {
+    color: white;
+    font-size: 18px;
+    font-weight: 400;
+}
+.mitglieder-form .form-field-geburtsdatum input[type="date"] {
+    padding: 5px;
+    width: 145px;
+    border: 1px solid #3558de;
+    border-radius: 4px;
+    background-color: #464545; /* Hintergrundfarbe für Textfelder und Dropdowns */
+    color: #ffffff; /* Textfarbe */
+}
+/* Geburtsdatum Ende */
+/* Festnetz Anfang */
+.mitglieder-form .form-field-festnetz {
+    flex: 0 0 auto;
+    width: 160px;
+    padding-left: 5px;
+}
+.mitglieder-form .form-field-festnetz label {
+    color: white;
+    font-size: 18px;
+    font-weight: 400;
+}
+.mitglieder-form .form-field-festnetz input[type="text"] {
+    padding: 5px;
+    width: 160px;
+    border: 1px solid #3558de;
+    border-radius: 4px;
+    background-color: #464545; /* Hintergrundfarbe für Textfelder und Dropdowns */
+    color: white; /* Textfarbe */
+}
+/* Festnetz Ende */
+/* Handy Anfang */
+.mitglieder-form .form-field-handy {
+    flex: 0 0 auto;
+    width: 160px;
+    padding-left: 10px;
+}
+.mitglieder-form .form-field-handy label {
+    color: white;
+    font-size: 18px;
+    font-weight: 400;
+}
+.mitglieder-form .form-field-handy input[type="text"] {
+    padding: 5px;
+    width: 160px;
+    border: 1px solid #3558de;
+    border-radius: 4px;
+    background-color: #464545; /* Hintergrundfarbe für Textfelder und Dropdowns */
+    color: #ffffff; /* Textfarbe */
+}
+/* Handy Ende */
+/* Email Anfang */
+.mitglieder-form .form-field-email {
+    flex: 0 0 auto;
+    width: 450px;
+    padding-left: 20px;
+}
+.mitglieder-form .form-field-email label {
+    color: white;
+    font-size: 18px;
+    font-weight: 400;
+}
+.mitglieder-form .form-field-email input[type="text"] {
+    padding: 5px;
+    width: 450px;
+    border: 1px solid #3558de;
+    border-radius: 4px;
+    background-color: #464545; /* Hintergrundfarbe für Textfelder und Dropdowns */
+    color: white; /* Textfarbe */
+}
+/* Email Ende */
+.mitglieder-form .form-row4 {
+    display: flex;
+    justify-content: flex-start;
+    gap: 15px;
+    margin-left: 30px;
+}
+/* Fischereischeinnummer Anfang */
+.mitglieder-form .form-field-fischereischeinnummer {
+    flex:  0 0 auto;
+    width: 200px;
+}
+.mitglieder-form .form-field-fischereischeinnummer label {
+    color: white;
+    font-size: 18px;
+    font-weight: 400;
+}
+.mitglieder-form .form-field-fischereischeinnummer input[type="text"] {
+    padding: 5px;
+    width: 200px;
+    border: 1px solid #3558de;
+    border-radius: 4px;
+    background-color: #464545; /* Hintergrundfarbe für Textfelder und Dropdowns */
+    color: white; /* Textfarbe */
+}
+/* Fischereischeinnummer Ende */
+/* Fischereischeiablaufdatum Anfang */
+.mitglieder-form .form-field-fischereischeinablaufdatum {
+    flex: 0 0 auto;
+    width: 150px;
+    padding-left: 10px;
+}
+.mitglieder-form .form-field-fischereischeinablaufdatum label {
+    color: white;
+    font-size: 18px;
+    font-weight: 400;
+}
+.mitglieder-form .form-field-fischereischeinablaufdatum input[type="date"] {
+    padding: 5px;
+    width: 150px;
+    border: 1px solid #3558de;
+    border-radius: 4px;
+    background-color: #464545; /* Hintergrundfarbe für Textfelder und Dropdowns */
+    color: white; /* Textfarbe */
+}
+/* Fischereischeinablaufdatum Ende */
+.mitglieder-form .form-row5 {
+    display: flex;
+    justify-content: flex-start;
+    gap: 15px;
+    margin-left: 30px;
+}
+/* Eintrittsdatum Anfang */
+.mitglieder-form .form-field-eintrittsdatum {
+    flex: 0 0 auto;
+    width: 150px;
+}
+.mitglieder-form .form-field-eintrittsdatum label {
+    color: white;
+    font-size: 18px;
+    font-weight: 400;
+}
+.mitglieder-form .form-field-eintrittsdatum input[type="date"] {
+    padding: 5px;
+    width: 150px;
+    border: 1px solid #3558de;
+    border-radius: 4px;
+    background-color: #464545; /* Hintergrundfarbe für Textfelder und Dropdowns */
+    color: white; /* Textfarbe */
+}
+/* Eintrittsdatum Ende */
+/* Austrittsdatum Anfang */
+.mitglieder-form .form-field-austrittsdatum {
+    flex: 0 0 auto;
+    width: 150px;
+    padding-left: 10px;
+}
+.mitglieder-form .form-field-austrittsdatum label {
+    color: white;
+    font-size: 18px;
+    font-weight: 400;
+}
+.mitglieder-form .form-field-austrittsdatum input[type="date"] {
+    padding: 5px;
+    width: 150px;
+    border: 1px solid #3558de;
+    border-radius: 4px;
+    background-color: #464545; /* Hintergrundfarbe für Textfelder und Dropdowns */
+    color: white; /* Textfarbe */
+}
+/* Austrittsdatum Ende */
+/* Status Anfang */
+.mitglieder-form .form-field-status {
+    flex: 0 0 auto;
+    width: 160px;
+    padding-left: 20px;
+}
+.mitglieder-form .form-field-status label {
+    color: white;
+    font-size: 18px;
+    font-weight: 400;
+}
+.mitglieder-form .form-field-status select {
+    padding: 7px;
+    width: 160px;
+    border: 1px solid #3558de;
+    border-radius: 4px;
+    background-color: #464545; /* Hintergrundfarbe für Textfelder und Dropdowns */
+    color: white; /* Textfarbe */
+}
+/* Status Ende */
+/* Bezahlt Anfang */
+.mitglieder-form .form-field-bezahlt {
+    flex: 0 0 auto;
+    width: 80px;
+    padding-left: 40px;
+}
+.mitglieder-form .form-field-bezahlt label {
+    color: white;
+    font-size: 18px;
+    font-weight: 400;
+}
+.mitglieder-form .form-field-bezahlt input[type="checkbox"] {
+    content: '✓'; /* Hier können Sie ein anderes Zeichen oder Symbol verwenden */
+    position: absolute;
+    line-height: 35px; /* Sollte der Höhe der Checkbox entsprechen */
+    text-align: center;
+    width: 35px; /* Sollte der Breite der Checkbox entsprechen */
+    font-size: 30px; /* Größe des Checkmarks */
+}
+.checkbox-custom {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    width: 35px; /* Setzt die Breite der Checkbox */
+    height: 35px; /* Setzt die Höhe der Checkbox */
+    cursor: pointer; /* Ändert den Cursor zu einem Zeiger, wenn der Benutzer darüber fährt */
+    border: 1px solid #2963e8; /* Rahmen der Checkbox */
+    border-radius: 4px; /* Abgerundete Ecken für die Checkbox */
+    background-color: #454545;
+    position: relative;
+}
+.checkbox-custom:checked {
+    background-color: blue; /* Farbe, wenn die Checkbox aktiviert ist */
+}
+.checkbox-custom:checked::after {
+    content: '✓'; /* Leeres content-Attribut für das nachfolgende Element */
+    position: absolute;
+    width: 0;
+    height: 0;
+    top: -2px;
+    right: 29px;
+    transform: translate(-50%, -50%);
+    background-color: white; /* Farbe des Häkchens */
+}
+/* Bezahlt Ende */
+/* Responsive Anpassungen */
+@media (max-width: 768px) {
+    .mitglieder-form .form-row {
+        flex-direction: column;
+    }
+    .mitglieder-form .form-field {
+        margin-right: 0;
+        margin-bottom: 15px;
+        flex-basis: auto; /* Lässt die Felder auf kleinen Bildschirmen die volle Breite einnehmen */
+    }
+}
+/* Linienstil */
+hr {
+    border: none; /* Entfernt Standard-Linienstil */
+    height: 1px; /* Höhe der Linie */
+    width: 1160px;
+    background-color: #0a0606; /* Graue Linie */
+    margin-top: 25px; /* Abstand nach oben */
+    margin-bottom: 15px; /* Abstand nach unten */
+}
+
+
+/* Spezifischer Stil für den 'Anlegen'-Button */
+.btn-primary-anlegen {
+    padding: 10px 20px; /* Innenabstand */
+    font-size: 16px; /* Schriftgröße */
+    border-radius: 5px; /* Abgerundete Ecken */
+    cursor: pointer; /* Cursor als Zeiger */
+    transition: all 0.3s ease; /* Weiche Übergänge für alle Änderungen */
+    display: inline-block; /* Ermöglicht die Positionierung */
+    margin: 5px; /* Standardabstand um den Button */
+    background-color: #007bff; /* Primäre Button-Farbe, blau */
+    color: white; /* Textfarbe */
+    border: none; /* Keine Ränder */
+}
+
+.btn-primary-anlegen:hover {
+    background-color: #0056b3; /* Dunklere Blaufarbe beim Hover */
+}
+
+.btn-primary-anlegen:active {
+    background-color: #004085; /* Noch dunklere Blaufarbe beim aktiven Klicken */
+}
+
+.btn-primary-anlegen:focus {
+    outline: none; /* Kein Outline bei Fokussierung */
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25); /* Fügt einen Schatten hinzu */
+}
+
+.btn-primary-anlegen:disabled {
+    opacity: 0.65; /* Macht den Button durchscheinend */
+    cursor: not-allowed; /* Ändert den Cursor zu einem "nicht erlaubt" Zeichen */
+}
+
+/* Individuelle Positionierung und Größe */
+.btn-custom-position-anlegen {
+    position: relative; /* Oder 'absolute', 'fixed', 'sticky' */
+    top: 0; /* Verschiebt den Button nach unten */
+    left: 840px; /* Verschiebt den Button nach rechts */
+    width: 150px; /* Individuelle Breite */
+    height: 50px; /* Individuelle Höhe */
+}
+/* Spezifischer Stil für den 'Anlegen'-Button */
+.btn-primary-reset {
+    padding: 13px 20px; /* Innenabstand */
+    font-size: 16px; /* Schriftgröße */
+    border-radius: 5px; /* Abgerundete Ecken */
+    cursor: pointer; /* Cursor als Zeiger */
+    transition: all 0.3s ease; /* Weiche Übergänge für alle Änderungen */
+    display: inline-block; /* Ermöglicht die Positionierung */
+    margin: 5px; /* Standardabstand um den Button */
+    background-color: #007bff; /* Primäre Button-Farbe, blau */
+    color: white; /* Textfarbe */
+    border: none; /* Keine Ränder */
+}
+
+.btn-primary-reset:hover {
+    background-color: #0056b3; /* Dunklere Blaufarbe beim Hover */
+}
+
+.btn-primary-reset:active {
+    background-color: #004085; /* Noch dunklere Blaufarbe beim aktiven Klicken */
+}
+
+.btn-primary-reset:focus {
+    outline: none; /* Kein Outline bei Fokussierung */
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25); /* Fügt einen Schatten hinzu */
+}
+
+.btn-primary-reset:disabled {
+    opacity: 0.65; /* Macht den Button durchscheinend */
+    cursor: not-allowed; /* Ändert den Cursor zu einem "nicht erlaubt" Zeichen */
+}
+.btn-custom-position-reset {
+    position: relative; /* Oder 'absolute', 'fixed', 'sticky' */
+    top: 0; /* Verschiebt den Button nach unten */
+    left: 820px; /* Verschiebt den Button nach rechts */
+    width: 150px; /* Individuelle Breite */
+    height: 50px; /* Individuelle Höhe */
+}
+/* Spezifischer Stil für den 'Anlegen'-Button */
+.btn-primary-popup {
+    padding: 13px 20px; /* Innenabstand */
+    font-size: 16px; /* Schriftgröße */
+    border-radius: 5px; /* Abgerundete Ecken */
+    cursor: pointer; /* Cursor als Zeiger */
+    transition: all 0.3s ease; /* Weiche Übergänge für alle Änderungen */
+    display: inline-block; /* Ermöglicht die Positionierung */
+    margin: 5px; /* Standardabstand um den Button */
+    background-color: #007bff; /* Primäre Button-Farbe, blau */
+    color: white; /* Textfarbe */
+    border: none; /* Keine Ränder */
+}
+
+.btn-primary-popup:hover {
+    background-color: #0056b3; /* Dunklere Blaufarbe beim Hover */
+}
+
+.btn-primary-popup:active {
+    background-color: #004085; /* Noch dunklere Blaufarbe beim aktiven Klicken */
+}
+
+.btn-primary-popup:focus {
+    outline: none; /* Kein Outline bei Fokussierung */
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25); /* Fügt einen Schatten hinzu */
+}
+
+.btn-primary-popup:disabled {
+    opacity: 0.65; /* Macht den Button durchscheinend */
+    cursor: not-allowed; /* Ändert den Cursor zu einem "nicht erlaubt" Zeichen */
+}
+.btn-custom-position-popup {
+    position: relative; /* Oder 'absolute', 'fixed', 'sticky' */
+    top: 10px; /* Verschiebt den Button nach unten */
+    left: 73px; /* Verschiebt den Button nach rechts */
+    width: 150px; /* Individuelle Breite */
+    height: 50px; /* Individuelle Höhe */
+}
+.popup {
+    position: fixed; /* oder 'absolute', je nach Bedarf */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #00ac1b;
+    text-align: left;
+    color: white;
+    font-weight: 600;
+    padding: 30px;
+    margin-left: 10px;
+    border: 2px solid #2963e8;
+    box-shadow: 0 4px 17px rgba(0, 0, 0, 0.8);
+    z-index: 1000; /* Stellen Sie sicher, dass es über anderen Elementen liegt */
+}

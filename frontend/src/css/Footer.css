@@ -1,9 +1,18 @@
-.footer {
+.footer-container {
     display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: 40px;
-    grid-auto-columns: 1fr;
-    gap: 0px 0px;
+    grid-template-columns: auto;
+    grid-template-rows: auto;
+    grid-auto-columns: auto;
     grid-auto-flow: row;
+    background-color: #00ac1b;
+    max-height: 20px;
+    grid-area: sidetitle;
+    border-top: 1px solid black;
+
+}
+.footer-text {
+    text-align: right;
+    font-size: 14px;
+    margin-right: 40px;
 
 }

@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCog, faSignInAlt } from "@fortawesome/free-solid-svg-icons";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '/src/css/Header.css';
+import {CButton} from "@coreui/react";
 
 const Header: React.FC = () => {
     // Funktion zur Formatierung des Datums und der Uhrzeit
@@ -50,43 +51,58 @@ const Header: React.FC = () => {
 
     return (
         <div className="header-container">
-            <div className="header">
-                <div className="logo">
-                     <a href="/"> <img src="/src/assets/header_logo_small.png"
-                         width="130" height="130"
-                         alt="Sportfischerverein Witten e.V. 1932"
-                          /></a>
-                </div>
-                <div className="nav">
-                    <div className="titel"><h1>SPORTFISCHERVEREIN WITTEN e.V. 1932</h1></div>
-                        <div className="buttons">
-                            <Button variant="contained" href="/mitgliedermenu">Mitgliederverwaltung</Button>{' '}
-                            <Button variant="contained" href="/formulare">Formulare</Button>{' '}
-                            <Button variant="contained" href="/kalender">Kalender</Button>{' '}
-                            <Button variant="contained" href="/nachrichten">Nachrichten</Button>{' '}
-                            <Button variant="contained" href="/fangberichte">Fangberichte</Button>{' '}
-                            <Button variant="contained" href="/statistiken">Statistiken</Button>
-                        </div>
-                    <div className="infobar">
-                        <div className="appname">Happy Fishing Desk v0.1</div>
-                        <div className="dbstatus">Datenbankstatus:
-                            <span className={dbStatusClass}> {dbStatus}</span></div>
-
-                        <div className="activeuser">Eingeloggt als: Admin</div>
-
-                        <div className="datetime">{currentDateTime}</div>
-                        <Button variant="contained" color="primary" href="/login">
-                            <FontAwesomeIcon icon={faSignInAlt}/>
-                        </Button>{' '}
-                        <Button variant="contained" color="primary" href="/settings">
-                            <FontAwesomeIcon icon={faCog}/>
-                        </Button>
-
+            <div className="logo">
+                <a href="/"> <img src="/src/assets/header_logo_small.png"
+                                  width="130" height="130"
+                                  alt="Sportfischerverein Witten e.V. 1932"/>
+                </a>
+            </div>
+            <div className="titel"><h1>SPORTFISCHERVEREIN WITTEN e.V. 1932</h1>
+            </div>
+            <div className="nav">
+                <div className="row">
+                    <div className="col">
+                <CButton color="primary" href="/mitgliedermenu">Mitgliederverwaltung</CButton>
+                    </div>
+                    <div className="col">
+                <CButton color="primary" href="/formulare">Formulare</CButton>
+                    </div>
+                    <div className="col">
+                <CButton color="primary" href="/kalender">Kalender</CButton>
+                    </div>
+                    <div className="col">
+                <CButton color="primary" href="/nachrichten">Nachrichten</CButton>
+                    </div>
+                    <div className="col">
+                <CButton color="primary" href="/fangberichte">Fangberichte</CButton>
+                    </div>
+                    <div className="col">
+                <CButton color="primary" href="/statistiken">Statistiken</CButton>
                     </div>
                 </div>
-
             </div>
-        </div>
+                <div className="infobar">
+                    <div className="appname">Happy Fishing Desk v0.1</div>
+                    <div className="dbstatus">Datenbankstatus:
+                        <span className={dbStatusClass}> {dbStatus}</span></div>
+
+                        <div className="activeuser">Eingeloggt als: Admin</div>
+                    <div className="datetime">{currentDateTime}</div>
+                    <div className="buttons">
+                    <Button variant="contained" color="error" href="/login">
+                        <FontAwesomeIcon icon={faSignInAlt}/>
+                    </Button>{' '}
+                    <Button variant="contained" color="error" href="/settings">
+                        <FontAwesomeIcon icon={faCog}/>
+                    </Button>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
 
 
     );
