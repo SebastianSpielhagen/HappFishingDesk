@@ -27,6 +27,7 @@
     text-align: center;
 
 }
+
 .mitgliederliste .left-sidebar-title-text {
     position: relative;
     top: 4px;
@@ -44,6 +45,7 @@
     border-bottom: 1px solid black;
     text-align: center;
 }
+
 .mitgliederliste .right-sidebar-title-text {
     position: relative;
     top: 4px;
@@ -59,6 +61,7 @@
     width: 1160px;
     border-bottom: 1px solid black;
 }
+
 .mitgliederliste .main-list-title-text {
     position: relative;
     top: 4px;
@@ -105,6 +108,7 @@
     top: 60px;
 
 }
+
 .print-button {
     position: absolute;
     top: 1px;
@@ -132,6 +136,7 @@
     min-width: 140px; /* Mindestbreite für jede Spalte */
 
 }
+
 .th-adresse {
     width: auto;
     min-width: 200px;
@@ -218,6 +223,7 @@
 ::-webkit-scrollbar-thumb:hover {
     background: #6892e7; /* Farbe des Scrollbar-Griffs beim Hover */
 }
+
 /* Zebrastreifen-Stil für Tabellen */
 #members-table tr:nth-child(even) {
     background-color: #f2f2f2; /* Farbe für gerade Zeilen */

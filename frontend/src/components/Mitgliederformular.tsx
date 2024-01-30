@@ -86,7 +86,7 @@ const Mitgliederformular: React.FC = () => {
             setError('');
 
             const response = await axios.get(`/api/members/search`, {
-                params: { searchTerm: search },
+                params: {searchTerm: search},
                 cancelToken: source.token
             });
             setSearchResults(response.data); // Angenommen, die Antwort ist ein Array von Mitgliedern
@@ -127,11 +127,28 @@ const Mitgliederformular: React.FC = () => {
             console.error('Fehler beim Suchen der Mitglieder:', error);
         }
     };
-    const handleMemberSelect = (mitglied: Member) => {
-        // Hier könnten Sie beispielsweise zu einer Detailansicht navigieren, indem Sie die Mitgliedsnummer verwenden
-        // oder Sie könnten eine Modal- oder Popup-Komponente öffnen, die die Details des Mitglieds anzeigt.
-        // Zum Beispiel: history.push(`/mitglieder/${mitglied.mitgliedsnummer}`);
-        console.log('Mitglied ausgewählt:', mitglied);
+    const handleMemberSelect = (member: Member) => {
+        // Aktualisieren Sie den State, um die Daten des ausgewählten Mitglieds zu beinhalten
+        setMember({
+            mitgliedsnummer: member.mitgliedsnummer,
+            anrede: member.anrede,
+            vorname: member.vorname,
+            nachname: member.nachname,
+            // ... und so weiter für alle Felder
+            strasse: member.strasse,
+            plz: member.plz,
+            stadt: member.stadt,
+            festnetz: member.festnetz,
+            handy: member.handy,
+            email: member.email,
+            geburtsdatum: member.geburtsdatum,
+            eintrittsdatum: member.eintrittsdatum,
+            austrittsdatum: member.austrittsdatum,
+            status: member.status,
+            bezahlt: member.bezahlt,
+            fischereischeinnummer: member.fischereischeinnummer,
+            fischereischeinablaufdatum: member.fischereischeinablaufdatum,
+        });
     };
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -192,11 +209,9 @@ const Mitgliederformular: React.FC = () => {
 
                     {!isSearching && searchResults.length > 0 && (
                         <ul className="suchergebnisse-liste">
-                            {searchResults.map(member => (
-                                <li key={member.mitgliedsnummer} onClick={() => handleMemberSelect(member)}
-                                    style={{cursor: 'pointer'}}>
+                            {searchResults.map((member) => (
+                                <li key={member.mitgliedsnummer} onClick={() => handleMemberSelect(member)}>
                                     {member.vorname} {member.nachname}
-                                    {/* Weitere Mitgliederdaten hier anzeigen */}
                                 </li>
                             ))}
                         </ul>
@@ -205,7 +220,7 @@ const Mitgliederformular: React.FC = () => {
 
                 <div className="main-list-title">
                     <div className="main-list-title-text">
-                    - Neues Mitglied anlegen -
+                        - Neues Mitglied anlegen -
                     </div>
                 </div>
                 <div className="left-sidebar">
@@ -221,7 +236,8 @@ const Mitgliederformular: React.FC = () => {
                 {showSuccessPopup && (
                     <div className="popup">
                         <p>Mitglied wurde erfolgreich hinzugefügt!!</p>
-                        <CButton onClick={closeSuccessPopup} className="btn btn-primary-reset btn-custom-position-popup">OK</CButton>
+                        <CButton onClick={closeSuccessPopup}
+                                 className="btn btn-primary-reset btn-custom-position-popup">OK</CButton>
                     </div>
                 )}
                 <div className="main-list">
@@ -267,7 +283,7 @@ const Mitgliederformular: React.FC = () => {
                                         type="text"
                                         name="vorname"
                                         value={member.vorname}
-                                        onChange={handleChange}
+                                        onChange={(e) => setMember({...member, vorname: e.target.value})}
                                         required
                                         placeholder="Vorname"
                                     />

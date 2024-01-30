@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, {useEffect, useState} from "react";
 import axios from 'axios';
-import { Button } from "@mui/material";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCog, faSignInAlt } from "@fortawesome/free-solid-svg-icons";
+import {Button} from "@mui/material";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faCog, faSignInAlt} from "@fortawesome/free-solid-svg-icons";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '/src/css/Header.css';
 import {CButton} from "@coreui/react";
@@ -62,47 +62,42 @@ const Header: React.FC = () => {
             <div className="nav">
                 <div className="row">
                     <div className="col">
-                <CButton color="primary" href="/mitgliedermenu">Mitgliederverwaltung</CButton>
+                        <CButton color="primary" href="/mitgliedermenu">Mitgliederverwaltung</CButton>
                     </div>
                     <div className="col">
-                <CButton color="primary" href="/formulare">Formulare</CButton>
+                        <CButton color="primary" href="/formulare">Formulare</CButton>
                     </div>
                     <div className="col">
-                <CButton color="primary" href="/kalender">Kalender</CButton>
+                        <CButton color="primary" href="/kalender">Kalender</CButton>
                     </div>
                     <div className="col">
-                <CButton color="primary" href="/nachrichten">Nachrichten</CButton>
+                        <CButton color="primary" href="/nachrichten">Nachrichten</CButton>
                     </div>
                     <div className="col">
-                <CButton color="primary" href="/fangberichte">Fangberichte</CButton>
+                        <CButton color="primary" href="/fangberichte">Fangberichte</CButton>
                     </div>
                     <div className="col">
-                <CButton color="primary" href="/statistiken">Statistiken</CButton>
+                        <CButton color="primary" href="/statistiken">Statistiken</CButton>
                     </div>
                 </div>
             </div>
-                <div className="infobar">
-                    <div className="appname">Happy Fishing Desk v0.1</div>
-                    <div className="dbstatus">Datenbankstatus:
-                        <span className={dbStatusClass}> {dbStatus}</span></div>
+            <div className="infobar">
+                <div className="appname">Happy Fishing Desk v0.1</div>
+                <div className="dbstatus">Datenbankstatus:
+                    <span className={dbStatusClass}> {dbStatus}</span></div>
 
-                        <div className="activeuser">Eingeloggt als: Admin</div>
-                    <div className="datetime">{currentDateTime}</div>
-                    <div className="buttons">
+                <div className="activeuser">Eingeloggt als: Admin</div>
+                <div className="datetime">{currentDateTime}</div>
+                <div className="buttons">
                     <Button variant="contained" color="error" href="/login">
                         <FontAwesomeIcon icon={faSignInAlt}/>
                     </Button>{' '}
                     <Button variant="contained" color="error" href="/settings">
                         <FontAwesomeIcon icon={faCog}/>
                     </Button>
-                    </div>
                 </div>
             </div>
-
-
-
-
-
+        </div>
 
 
     );

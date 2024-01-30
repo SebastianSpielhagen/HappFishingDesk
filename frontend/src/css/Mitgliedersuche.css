@@ -5,12 +5,14 @@
     justify-content: center;
     width: 100%;
 }
+
 .mitgliedersuche .div {
     background-color: #00ac1b;
     height: 600px;
     position: relative;
     width: 1600px;
 }
+
 .mitgliedersuche .homepage-img3 {
     background-color: transparent;
     background-image: url("/src/assets/Logo_HF_Mobile.png");
@@ -24,6 +26,7 @@
     left: 0;
     opacity: 0.1;
 }
+
 .mitgliedersuche .left-sidebar-title {
     background-color: #00ac1b;
     height: 40px;
@@ -35,11 +38,13 @@
     border-bottom: 1px solid black;
     text-align: center;
 }
+
 .mitgliedersuche .left-sidebar-title-text {
     position: relative;
     top: 4px;
     font-size: 22px;
 }
+
 .mitgliedersuche .right-sidebar-title {
     background-color: #00ac1b;
     height: 40px;
@@ -51,11 +56,13 @@
     border-bottom: 1px solid black;
     text-align: center;
 }
+
 .mitgliedersuche .right-sidebar-title-text {
     position: relative;
     top: 4px;
     font-size: 22px;
 }
+
 .mitgliedersuche .main-list-title {
     background-color: #00ac1b;
     height: 40px;
@@ -65,12 +72,14 @@
     width: 1160px;
     border-bottom: 1px solid black;
 }
+
 .mitgliedersuche .main-list-title-text {
     position: relative;
     top: 4px;
     font-size: 22px;
     text-align: center;
 }
+
 .mitgliedersuche .left-sidebar {
     background-color: #00ac1b;
     height: 560px;
@@ -80,12 +89,14 @@
     width: 220px;
     border-right: 1px solid black;
 }
+
 .mitgliedersuche .left-sidebar-button {
     position: absolute;
     top: 20px;
     width: 218px;
     text-align: center;
 }
+
 .mitgliedersuche .right-sidebar {
     display: inline-grid;
     background-color: #00ac1b;
@@ -96,6 +107,7 @@
     width: 220px;
     border-left: 1px solid black;
 }
+
 .mitgliedersuche .right-sidebar .suchergebnisse-liste {
     position: relative;
     top: 10px;
@@ -103,11 +115,13 @@
     font-size: 18px;
     font-weight: 500;
 }
+
 .mitgliedersuche .overlap-group {
     display: flex;
     justify-content: flex-start;
     gap: 15px;
 }
+
 .mitgliedersuche .main-list {
     display: flex;
     max-width: 1160px;
@@ -117,10 +131,12 @@
     top: 50px;
     left: 30px;
 }
+
 .mitgliedersuche .main-list .mitgliedersuche-formular {
     position: relative;
     top: 4px;
 }
+
 .mitgliedersuche .form-control {
     position: relative; /* Oder 'absolute', 'fixed', 'sticky' */
     top: 470px; /* Verschiebt den Button nach unten */
@@ -128,6 +144,7 @@
     width: 250px; /* Individuelle Breite */
     height: 40px; /* Individuelle Höhe */
 }
+
 .mitgliedersuche .volltextsuche {
     position: relative; /* Oder 'absolute', 'fixed', 'sticky' */
     top: 470px; /* Verschiebt den Button nach unten */
@@ -139,11 +156,13 @@
     font-size: 18px;
     font-weight: 500;
 }
+
 .mitgliedersuche .main-list-show {
     height: 180px;
     margin-left: 220px;
     border-bottom: 1px solid black
 }
+
 /* Individuelle Positionierung und Größe */
 .btn-custom-position-suchen {
     position: relative; /* Oder 'absolute', 'fixed', 'sticky' */
@@ -154,6 +173,7 @@
     vertical-align: baseline;
     text-align: center;
 }
+
 /* Spezifischer Stil für den 'Anlegen'-Button */
 .btn-primary-suchen {
 

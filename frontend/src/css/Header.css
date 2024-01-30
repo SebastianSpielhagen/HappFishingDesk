@@ -8,6 +8,7 @@
     animation: blinker 1s linear infinite;
     color: red;
 }
+
 .header-container {
     display: grid;
     grid-template-columns: 8% auto auto 20%;
@@ -20,12 +21,14 @@
     border-bottom: 1px solid black;
     background-color: #00ac1b;
 }
+
 .logo {
     grid-area: logo;
     margin: 5px;
     position: relative;
     left: 25px;
 }
+
 .titel {
     grid-area: titel;
     position: relative;
@@ -36,15 +39,16 @@
     color: #ffffff;
     text-shadow: 2px 2px 4px #000000;
 }
+
 .nav {
     grid-area: nav;
     position: absolute;
     top: 90px;
     left: 272px;
     flex-wrap: wrap;
-     /* Oder 'flex-start' für keine Zwischenräume */
-     /* Zentriert die Buttons vertikal, falls sie unterschiedliche Höhen haben */
-     /* Ermöglicht das Umfließen auf die nächste Zeile, falls der Bildschirm zu schmal wird */
+    /* Oder 'flex-start' für keine Zwischenräume */
+    /* Zentriert die Buttons vertikal, falls sie unterschiedliche Höhen haben */
+    /* Ermöglicht das Umfließen auf die nächste Zeile, falls der Bildschirm zu schmal wird */
 }
 
 
@@ -57,6 +61,7 @@
     right: 50px;
 
 }
+
 .appname {
     font-size: 20px;
     font-weight: bold;
@@ -64,6 +69,7 @@
     text-shadow: 2px 2px 4px #000000;
 
 }
+
 .dbstatus {
     font-size: 15px;
     font-weight: bold;
@@ -71,6 +77,7 @@
     text-shadow: 2px 2px 4px #000000;
 
 }
+
 .activeuser {
     font-size: 15px;
     font-weight: bold;
@@ -78,6 +85,7 @@
     text-shadow: 2px 2px 4px #000000;
     margin-bottom: 2px;
 }
+
 .datetime {
     font-size: 15px;
     font-weight: bold;
@@ -87,11 +95,6 @@
 }
 
 
-
-
-
-
-
 .buttons {
     grid-area: buttons;
     position: absolute;
@@ -99,8 +102,11 @@
 
 }
 
-.textarea { grid-area: textarea; }
+.textarea {
+    grid-area: textarea;
+}
 
 .footer {
     grid-area: footer;
-    border-top: 1px solid black;}
+    border-top: 1px solid black;
+}

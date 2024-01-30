@@ -2,6 +2,7 @@ package org.spielhagen.backend;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+
 import java.time.LocalDate;
 
 @Document
@@ -9,7 +10,7 @@ public class Member {
 
     @Id
     private String id;
-    private Integer mitgliedsnummer;
+    private Long mitgliedsnummer;
     private String anrede;
     private String vorname;
     private String nachname;
@@ -27,7 +28,7 @@ public class Member {
     private String fischereischeinnummer;
     private LocalDate fischereischeinablaufdatum;
 
-
+    public static final String SEQUENCE_NAME = "members_sequence";
 
     // Konstruktor
     public Member(String id, String anrede, String vorname, String nachname, LocalDate geburtsdatum) {
@@ -68,12 +69,14 @@ public class Member {
         this.id = id;
     }
 
-    public Integer getMitgliedsnummer() {
+    public Long getMitgliedsnummer() {
         return mitgliedsnummer;
     }
-    public void setMitgliedsnummer(Integer mitgliedsnummer) {
+
+    public void setMitgliedsnummer(Long mitgliedsnummer) {
         this.mitgliedsnummer = mitgliedsnummer;
     }
+
     public String getAnrede() {
         return anrede;
     }
@@ -101,36 +104,47 @@ public class Member {
     public String getStrasse() {
         return strasse;
     }
+
     public void setStrasse(String strasse) {
         this.strasse = strasse;
     }
+
     public Integer getPlz() {
         return plz;
     }
+
     public void setPlz(Integer plz) {
         this.plz = plz;
     }
+
     public String getStadt() {
         return stadt;
     }
+
     public void setStadt(String stadt) {
         this.stadt = stadt;
     }
+
     public String getFestnetz() {
         return festnetz;
     }
+
     public void setFestnetz(String festnetz) {
         this.festnetz = festnetz;
     }
+
     public String getHandy() {
         return handy;
     }
+
     public void setHandy(String handy) {
         this.handy = handy;
     }
+
     public String getEmail() {
         return email;
     }
+
     public void setEmail(String email) {
         this.email = email;
     }
@@ -142,6 +156,7 @@ public class Member {
     public void setGeburtsdatum(LocalDate geburtsdatum) {
         this.geburtsdatum = geburtsdatum;
     }
+
     public LocalDate getEintrittsdatum() {
         return eintrittsdatum;
     }
@@ -149,33 +164,43 @@ public class Member {
     public void setEintrittsdatum(LocalDate eintrittsdatum) {
         this.eintrittsdatum = eintrittsdatum;
     }
+
     public LocalDate getAustrittsdatum() {
         return austrittsdatum;
     }
+
     public void setAustrittsdatum(LocalDate austrittsdatum) {
         this.austrittsdatum = austrittsdatum;
     }
+
     public String getStatus() {
         return status;
     }
+
     public void setStatus(String status) {
         this.status = status;
     }
+
     public Boolean getBezahlt() {
         return bezahlt;
     }
+
     public void setBezahlt(Boolean bezahlt) {
         this.bezahlt = bezahlt;
     }
+
     public String getFischereischeinnummer() {
         return fischereischeinnummer;
     }
+
     public void setFischereischeinnummer(String fischereischeinnummer) {
         this.fischereischeinnummer = fischereischeinnummer;
     }
+
     public LocalDate getFischereischeinablaufdatum() {
         return fischereischeinablaufdatum;
     }
+
     public void setFischereischeinablaufdatum(LocalDate fischereischeinablaufdatum) {
         this.fischereischeinablaufdatum = fischereischeinablaufdatum;
     }

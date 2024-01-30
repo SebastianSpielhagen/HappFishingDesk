@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import axios from 'axios';
 import '/src/css/Mitgliederliste.css';
 import {CButton} from "@coreui/react";
@@ -23,6 +23,7 @@ interface Member {
     fischereischeinablaufdatum: string;
     // weitere Member Felder
 }
+
 type VisibleColumnsKey = {
     [Property in keyof Omit<Member, 'id'>]: boolean;
 };
@@ -88,14 +89,14 @@ const Mitgliederliste: React.FC = () => {
             printWindow.document.write('</head><body>');
             // Einfügen der Mitgliedertabelle in das Druckfenster
             const table = document.getElementById('members-table');
-            if(table) {
+            if (table) {
                 printWindow.document.write(table.outerHTML);
             }
             printWindow.document.write('</body></html>');
             printWindow.document.close(); // Wichtig, um das Laden des Inhalts abzuschließen
             printWindow.focus(); // Fokus auf das neue Fenster, um den Druckdialog zu aktivieren
             // Verzögern des Druckvorgangs, bis das Dokument vollständig geladen ist
-            printWindow.onload = function() {
+            printWindow.onload = function () {
                 printWindow.print(); // Druckdialog öffnen
                 printWindow.close(); // Fenster schließen, sobald gedruckt wurde
             };
@@ -178,93 +179,94 @@ const Mitgliederliste: React.FC = () => {
                         </div>
                     </div>
                     <div className="main-list-title">
-                    <div className="main-list-title-text">
-                        - Komplette Mitgliederliste -
+                        <div className="main-list-title-text">
+                            - Komplette Mitgliederliste -
+                        </div>
+
+                        {
+                            sortField && <p>Sortiert nach: {sortField}, Richtung: {sortDirection}</p>
+                        }
                     </div>
 
-                    {
-                        sortField && <p>Sortiert nach: {sortField}, Richtung: {sortDirection}</p>
-                    }
-                </div>
-
-                <div className="print-button">
-                    <CButton onClick={printMembers}>Drucken</CButton>
+                    <div className="print-button">
+                        <CButton onClick={printMembers}>Drucken</CButton>
                     </div>
 
                     <div className="left-sidebar">
                         <div className="left-sidebar-button">
                             <div className="d-grid gap-2 col-11 mx-auto">
-                    <CButton color="primary" href="/mitgliederverwaltung">Mitglied ' NEU '</CButton>
-                    <CButton color="primary" href="/mitgliedersuche">Mitglied ' SUCHEN '</CButton>
-                    <CButton color="primary" href="/members">Mitglieder ' LISTE '</CButton>
+                                <CButton color="primary" href="/mitgliederverwaltung">Mitglied ' NEU '</CButton>
+                                <CButton color="primary" href="/mitgliedersuche">Mitglied ' SUCHEN '</CButton>
+                                <CButton color="primary" href="/members">Mitglieder ' LISTE '</CButton>
                             </div>
                         </div>
                     </div>
 
                     <div className="main-list">
                         <table id="members-table">
-                        <thead>
-                        <tr>
-                            {visibleColumns.anrede &&
-                                <th className="th-anrede" onClick={() => requestSort('anrede')}>Anrede</th>}
-                            {visibleColumns.vorname &&
-                                <th className="th-vorname" onClick={() => requestSort('vorname')}>Vorname</th>}
-                            {visibleColumns.nachname &&
-                                <th className="th-nachname" onClick={() => requestSort('nachname')}>Nachname</th>}
-                            {(visibleColumns.strasse || (visibleColumns.plz && visibleColumns.stadt)) && (
-                                <th className="th-adresse">Adresse</th>
-                            )}
-                            {visibleColumns.festnetz &&
-                                <th className="th-festnetz" onClick={() => requestSort('festnetz')}>Festnetz</th>}
-                            {visibleColumns.handy && <th className="th-handy">Handy</th>}
-                            {visibleColumns.email &&
-                                <th className="th-email" onClick={() => requestSort('email')}>Email</th>}
-                            {visibleColumns.geburtsdatum && <th className="th-geburtsdatum"
-                                                                onClick={() => requestSort('geburtsdatum')}>Geburtsdatum</th>}
-                            {visibleColumns.eintrittsdatum && <th className="th-eintrittsdatum">Eintrittsdatum</th>}
-                            {visibleColumns.austrittsdatum && <th className="th-austrittsdatum">Austrittsdatum</th>}
-                            {visibleColumns.status &&
-                                <th className="th-status" onClick={() => requestSort('status')}>Status</th>}
-                            {visibleColumns.bezahlt &&
-                                <th className="th-bezahlt" onClick={() => requestSort('bezahlt')}>Bezahlt?</th>}
-                            {visibleColumns.fischereischeinnummer &&
-                                <th className="th-fischereischeinnummer">FS-Nr.</th>}
-                            {visibleColumns.fischereischeinablaufdatum &&
-                                <th className="th-fischereischeinablaufdatum">Ablaufdatum</th>}
-
-                            {/* Weitere Th */}
-                        </tr>
-                        </thead>
-                        <tbody>
-                        {sortedMembers.map((member) => (
-                            <tr key={member.id}>
-                                {visibleColumns.anrede && <td>{member.anrede}</td>}
-                                {visibleColumns.vorname && <td>{member.vorname}</td>}
-                                {visibleColumns.nachname && <td>{member.nachname}</td>}
+                            <thead>
+                            <tr>
+                                {visibleColumns.anrede &&
+                                    <th className="th-anrede" onClick={() => requestSort('anrede')}>Anrede</th>}
+                                {visibleColumns.vorname &&
+                                    <th className="th-vorname" onClick={() => requestSort('vorname')}>Vorname</th>}
+                                {visibleColumns.nachname &&
+                                    <th className="th-nachname" onClick={() => requestSort('nachname')}>Nachname</th>}
                                 {(visibleColumns.strasse || (visibleColumns.plz && visibleColumns.stadt)) && (
-                                    <td className="td-adresse">
-                                        {visibleColumns.strasse ? <div>{member.strasse}</div> : null}
-                                        {visibleColumns.plz && visibleColumns.stadt ? (
-                                            <div>{member.plz} {member.stadt}</div>
-                                        ) : null}
-                                    </td>
+                                    <th className="th-adresse">Adresse</th>
                                 )}
-                                {visibleColumns.festnetz && <td>{member.festnetz}</td>}
-                                {visibleColumns.handy && <td>{member.handy}</td>}
-                                {visibleColumns.email && <td>{member.email}</td>}
-                                {visibleColumns.geburtsdatum && <td>{formatDate(member.geburtsdatum)}</td>}
-                                {visibleColumns.eintrittsdatum && <td>{formatDate(member.eintrittsdatum)}</td>}
-                                {visibleColumns.austrittsdatum && <td>{formatDate(member.austrittsdatum)}</td>}
-                                {visibleColumns.status && <td>{member.status}</td>}
-                                {visibleColumns.bezahlt && <td>{member.bezahlt ? 'Ja' : 'Nein'}</td>}
-                                {visibleColumns.fischereischeinnummer && <td>{member.fischereischeinnummer}</td>}
+                                {visibleColumns.festnetz &&
+                                    <th className="th-festnetz" onClick={() => requestSort('festnetz')}>Festnetz</th>}
+                                {visibleColumns.handy && <th className="th-handy">Handy</th>}
+                                {visibleColumns.email &&
+                                    <th className="th-email" onClick={() => requestSort('email')}>Email</th>}
+                                {visibleColumns.geburtsdatum && <th className="th-geburtsdatum"
+                                                                    onClick={() => requestSort('geburtsdatum')}>Geburtsdatum</th>}
+                                {visibleColumns.eintrittsdatum && <th className="th-eintrittsdatum">Eintrittsdatum</th>}
+                                {visibleColumns.austrittsdatum && <th className="th-austrittsdatum">Austrittsdatum</th>}
+                                {visibleColumns.status &&
+                                    <th className="th-status" onClick={() => requestSort('status')}>Status</th>}
+                                {visibleColumns.bezahlt &&
+                                    <th className="th-bezahlt" onClick={() => requestSort('bezahlt')}>Bezahlt?</th>}
+                                {visibleColumns.fischereischeinnummer &&
+                                    <th className="th-fischereischeinnummer">FS-Nr.</th>}
                                 {visibleColumns.fischereischeinablaufdatum &&
-                                    <td>{formatDate(member.fischereischeinablaufdatum)}</td>}
-                                {/* ... Weitere Td, die entsprechend von visibleColumns gesteuert werden ... */}
+                                    <th className="th-fischereischeinablaufdatum">Ablaufdatum</th>}
+
+                                {/* Weitere Th */}
                             </tr>
-                        ))}
-                        </tbody>
-                    </table></div>
+                            </thead>
+                            <tbody>
+                            {sortedMembers.map((member) => (
+                                <tr key={member.id}>
+                                    {visibleColumns.anrede && <td>{member.anrede}</td>}
+                                    {visibleColumns.vorname && <td>{member.vorname}</td>}
+                                    {visibleColumns.nachname && <td>{member.nachname}</td>}
+                                    {(visibleColumns.strasse || (visibleColumns.plz && visibleColumns.stadt)) && (
+                                        <td className="td-adresse">
+                                            {visibleColumns.strasse ? <div>{member.strasse}</div> : null}
+                                            {visibleColumns.plz && visibleColumns.stadt ? (
+                                                <div>{member.plz} {member.stadt}</div>
+                                            ) : null}
+                                        </td>
+                                    )}
+                                    {visibleColumns.festnetz && <td>{member.festnetz}</td>}
+                                    {visibleColumns.handy && <td>{member.handy}</td>}
+                                    {visibleColumns.email && <td>{member.email}</td>}
+                                    {visibleColumns.geburtsdatum && <td>{formatDate(member.geburtsdatum)}</td>}
+                                    {visibleColumns.eintrittsdatum && <td>{formatDate(member.eintrittsdatum)}</td>}
+                                    {visibleColumns.austrittsdatum && <td>{formatDate(member.austrittsdatum)}</td>}
+                                    {visibleColumns.status && <td>{member.status}</td>}
+                                    {visibleColumns.bezahlt && <td>{member.bezahlt ? 'Ja' : 'Nein'}</td>}
+                                    {visibleColumns.fischereischeinnummer && <td>{member.fischereischeinnummer}</td>}
+                                    {visibleColumns.fischereischeinablaufdatum &&
+                                        <td>{formatDate(member.fischereischeinablaufdatum)}</td>}
+                                    {/* ... Weitere Td, die entsprechend von visibleColumns gesteuert werden ... */}
+                                </tr>
+                            ))}
+                            </tbody>
+                        </table>
+                    </div>
 
 
                     <div className="right-sidebar">
@@ -282,7 +284,7 @@ const Mitgliederliste: React.FC = () => {
                 </div>
             </div>
 
-    </>
+        </>
     );
 };
 

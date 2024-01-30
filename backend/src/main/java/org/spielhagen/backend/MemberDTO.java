@@ -5,7 +5,7 @@ import java.time.LocalDate;
 public class MemberDTO {
 
     private String id; // MongoDB ObjectId wird als String dargestellt
-    private Integer mitgliedsnummer;
+    private Long mitgliedsnummer;
     private String anrede;
     private String vorname;
     private String nachname;
@@ -28,7 +28,7 @@ public class MemberDTO {
     }
 
     // Konstruktor mit allen Feldern
-    public MemberDTO(String id, Integer mitgliedsnummer, String anrede, String vorname, String nachname, LocalDate geburtsdatum, LocalDate austrittsdatum, Boolean bezahlt, LocalDate eintrittsdatum, String festnetz, String fischereischeinnummer, String handy, Integer plz, String stadt, String status, String strasse, LocalDate fischereischeinablaufdatum) {
+    public MemberDTO(String id, Long mitgliedsnummer, String anrede, String vorname, String nachname, LocalDate geburtsdatum, LocalDate austrittsdatum, Boolean bezahlt, LocalDate eintrittsdatum, String festnetz, String fischereischeinnummer, String handy, Integer plz, String stadt, String status, String strasse, LocalDate fischereischeinablaufdatum) {
         this.id = id;
         this.mitgliedsnummer = mitgliedsnummer;
         this.anrede = anrede;
@@ -48,6 +48,7 @@ public class MemberDTO {
         this.status = status;
         this.fischereischeinablaufdatum = fischereischeinablaufdatum;
     }
+
     // Getter und Setter
     public String getId() {
         return id;
@@ -57,12 +58,14 @@ public class MemberDTO {
         this.id = id;
     }
 
-    public Integer getMitgliedsnummer() {
+    public Long getMitgliedsnummer() {
         return mitgliedsnummer;
     }
-    public void setMitgliedsnummer(Integer mitgliedsnummer) {
+
+    public void setMitgliedsnummer(Long mitgliedsnummer) {
         this.mitgliedsnummer = mitgliedsnummer;
     }
+
     public String getAnrede() {
         return anrede;
     }
@@ -90,30 +93,39 @@ public class MemberDTO {
     public String getStrasse() {
         return strasse;
     }
+
     public void setStrasse(String strasse) {
         this.strasse = strasse;
     }
+
     public Integer getPlz() {
         return plz;
     }
+
     public void setPlz(Integer plz) {
         this.plz = plz;
     }
+
     public String getStadt() {
         return stadt;
     }
+
     public void setStadt(String stadt) {
         this.stadt = stadt;
     }
+
     public String getFestnetz() {
         return festnetz;
     }
+
     public void setFestnetz(String festnetz) {
         this.festnetz = festnetz;
     }
+
     public String getHandy() {
         return handy;
     }
+
     public void setHandy(String handy) {
         this.handy = handy;
     }
@@ -121,6 +133,7 @@ public class MemberDTO {
     public String getEmail() {
         return email;
     }
+
     public void setEmail(String email) {
         this.email = email;
     }
@@ -132,6 +145,7 @@ public class MemberDTO {
     public void setGeburtsdatum(LocalDate geburtsdatum) {
         this.geburtsdatum = geburtsdatum;
     }
+
     public LocalDate getEintrittsdatum() {
         return eintrittsdatum;
     }
@@ -139,33 +153,43 @@ public class MemberDTO {
     public void setEintrittsdatum(LocalDate eintrittsdatum) {
         this.eintrittsdatum = eintrittsdatum;
     }
+
     public LocalDate getAustrittsdatum() {
         return austrittsdatum;
     }
+
     public void setAustrittsdatum(LocalDate austrittsdatum) {
         this.austrittsdatum = austrittsdatum;
     }
+
     public String getStatus() {
         return status;
     }
+
     public void setStatus(String status) {
         this.status = status;
     }
+
     public Boolean getBezahlt() {
         return bezahlt;
     }
+
     public void setBezahlt(Boolean bezahlt) {
         this.bezahlt = bezahlt;
     }
+
     public String getFischereischeinnummer() {
         return fischereischeinnummer;
     }
+
     public void setFischereischeinnummer(String fischereischeinnummer) {
         this.fischereischeinnummer = fischereischeinnummer;
     }
+
     public LocalDate getFischereischeinablaufdatum() {
         return fischereischeinablaufdatum;
     }
+
     public void setFischereischeinablaufdatum(LocalDate fischereischeinablaufdatum) {
         this.fischereischeinablaufdatum = fischereischeinablaufdatum;
     }

@@ -10,42 +10,53 @@ import java.util.Optional;
 @Service
 public class MemberService {
     private final MemberRepository memberRepository;
+    private final SequenceGeneratorService sequenceGeneratorService;
+
     @Autowired
-    public MemberService(MemberRepository memberRepository) {
+    public MemberService(MemberRepository memberRepository, SequenceGeneratorService sequenceGeneratorService) {
         this.memberRepository = memberRepository;
+        this.sequenceGeneratorService = sequenceGeneratorService;
     }
+
+
     public List<Member> getAllMembers() {
         return memberRepository.findAll();
     }
+
     public List<Member> searchByVorname(String vorname) {
-      return memberRepository.findByVornameContainingIgnoreCase(vorname);
+        return memberRepository.findByVornameContainingIgnoreCase(vorname);
     }
+
     public List<Member> searchByNachname(String nachname) {
         return memberRepository.findByNachnameContainingIgnoreCase(nachname);
     }
+
     public List<Member> searchByTerms(String searchTerm) {
         return memberRepository.searchByTerms(searchTerm);
     }
+
     public Optional<Member> getMemberById(String id) {
         return memberRepository.findById(id);
     }
-    public Optional<Member> getMemberByMitgliedsnummer(Integer mitgliedsnummer) {
+
+    public Optional<Member> getMemberByMitgliedsnummer(Long mitgliedsnummer) {
         return memberRepository.findByMitgliedsnummer(mitgliedsnummer);
     }
+
+
+    public Long generateSequence(String seqName) {
+        return sequenceGeneratorService.generateSequence(seqName);
+    }
+
     @Transactional
     public Member createMember(Member member) {
-        // Validierungen für 'member' sollten hier durchgeführt werden, bevor es gespeichert wird.
-        Integer neueMitgliedsnummer = memberRepository.findTopByOrderByMitgliedsnummerDesc()
-                .map(m -> m.getMitgliedsnummer() + 1)
-                .orElse(1); // Fall back auf 1, wenn keine Mitglieder vorhanden sind
-
-        member.setMitgliedsnummer(neueMitgliedsnummer);
+        member.setMitgliedsnummer(generateSequence(Member.SEQUENCE_NAME));
         return memberRepository.insert(member);
     }
+
     public Member createMember(MemberDTO memberDto) {
-        // Hier würden Sie memberDto in ein Entity umwandeln und speichern
         Member member = new Member();
-        member.setMitgliedsnummer(memberDto.getMitgliedsnummer());
+        member.setMitgliedsnummer(generateSequence(Member.SEQUENCE_NAME));
         member.setAnrede(memberDto.getAnrede());
         member.setVorname(memberDto.getVorname());
         member.setNachname(memberDto.getNachname());
@@ -64,6 +75,7 @@ public class MemberService {
         member.setFischereischeinablaufdatum(memberDto.getFischereischeinablaufdatum());
         return memberRepository.save(member);
     }
+
     @Transactional
     public Member updateMember(String id, Member member) {
         // Validierungen für 'member' sollten hier durchgeführt werden, bevor es aktualisiert wird.
@@ -90,5 +102,6 @@ public class MemberService {
                 })
                 .orElseThrow(() -> new RuntimeException("Mitglied mit ID " + id + " nicht gefunden"));
     }
+
 
 }

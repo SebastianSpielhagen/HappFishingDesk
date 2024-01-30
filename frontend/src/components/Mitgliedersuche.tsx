@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import axios, { CancelTokenSource } from 'axios';
+import React, {useState} from 'react';
+import axios, {CancelTokenSource} from 'axios';
 import '/src/css/Mitgliedersuche.css';
 import {CButton} from "@coreui/react";
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -35,7 +35,7 @@ const Mitgliedersuche: React.FC = () => {
             setError('');
 
             const response = await axios.get(`/api/members/search`, {
-                params: { searchTerm: search },
+                params: {searchTerm: search},
                 cancelToken: source.token
             });
             setSearchResults(response.data); // Angenommen, die Antwort ist ein Array von Mitgliedern

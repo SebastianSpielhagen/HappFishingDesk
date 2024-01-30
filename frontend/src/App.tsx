@@ -1,6 +1,6 @@
 import './App.css';
 import React from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 import Header from './components/Header';
 import HomePage from './pages/HomePage';
 import MemberList from './components/Mitgliederliste.tsx';
@@ -16,27 +16,26 @@ import Footer from './components/Footer';
 import Mitgliedersuche from './components/Mitgliedersuche';
 
 
-
 const App: React.FC = () => {
     return (
         <Router>
-            <Header />
+            <Header/>
 
 
             <Routes>
-                <Route path="/" element={<HomePage />} />
-                <Route path="/mitgliederverwaltung" element={<Mitgliederverwaltung />} />
-                <Route path="/members" element={<MemberList />} />
-                <Route path="/formulare" element={<Formulare />} />
-                <Route path="/kalender" element={<Kalender />} />
-                <Route path="/statistiken" element={<Statistiken />} />
-                <Route path="/nachrichten" element={<Nachrichten />} />
-                <Route path="/fangberichte" element={<Fangberichte />} />
-                <Route path="/mitgliedermenu" element={<Mitgliedermenu />} />
-                <Route path="/mitgliedersuche" element={<Mitgliedersuche />} />
+                <Route path="/" element={<HomePage/>}/>
+                <Route path="/mitgliederverwaltung" element={<Mitgliederverwaltung/>}/>
+                <Route path="/members" element={<MemberList/>}/>
+                <Route path="/formulare" element={<Formulare/>}/>
+                <Route path="/kalender" element={<Kalender/>}/>
+                <Route path="/statistiken" element={<Statistiken/>}/>
+                <Route path="/nachrichten" element={<Nachrichten/>}/>
+                <Route path="/fangberichte" element={<Fangberichte/>}/>
+                <Route path="/mitgliedermenu" element={<Mitgliedermenu/>}/>
+                <Route path="/mitgliedersuche" element={<Mitgliedersuche/>}/>
 
             </Routes>
-            <Footer />
+            <Footer/>
         </Router>
 
     );
