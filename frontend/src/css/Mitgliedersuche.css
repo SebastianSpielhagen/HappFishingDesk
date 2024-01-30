@@ -1,0 +1,106 @@
+.mitgliedersuche {
+    background-color: #00ac1b;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 100%;
+}
+.mitgliedersuche .div {
+    background-color: #00ac1b;
+    height: 600px;
+    position: relative;
+    width: 1600px;
+}
+.mitgliedersuche .homepage-img3 {
+    background-color: transparent;
+    background-image: url("/src/assets/Logo_HF_Mobile.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 60%;
+    background-attachment: fixed;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    opacity: 0.1;
+}
+.mitgliedersuche .left-sidebar-title {
+    background-color: #00ac1b;
+    height: 40px;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 220px;
+    border-right: 1px solid black;
+    border-bottom: 1px solid black;
+    text-align: center;
+}
+.mitgliedersuche .left-sidebar-title-text {
+    position: relative;
+    top: 4px;
+    font-size: 22px;
+}
+.mitgliedersuche .right-sidebar-title {
+    background-color: #00ac1b;
+    height: 40px;
+    left: 1380px;
+    position: absolute;
+    top: 0;
+    width: 220px;
+    border-left: 1px solid black;
+    border-bottom: 1px solid black;
+    text-align: center;
+}
+.mitgliedersuche .right-sidebar-title-text {
+    position: relative;
+    top: 4px;
+    font-size: 22px;
+}
+.mitgliedersuche .main-list-title {
+    background-color: #00ac1b;
+    height: 40px;
+    left: 220px;
+    position: absolute;
+    top: 0;
+    width: 1160px;
+    border-bottom: 1px solid black;
+}
+.mitgliedersuche .main-list-title-text {
+    position: relative;
+    top: 4px;
+    font-size: 22px;
+    text-align: center;
+}
+.mitgliedersuche .left-sidebar {
+    background-color: #00ac1b;
+    height: 560px;
+    left: 0;
+    position: absolute;
+    top: 40px;
+    width: 220px;
+    border-right: 1px solid black;
+}
+.mitgliedersuche .left-sidebar-button {
+    position: absolute;
+    top: 20px;
+    width: 218px;
+    text-align: center;
+}
+.mitgliedersuche .right-sidebar {
+    display: inline-grid;
+    background-color: #00ac1b;
+    height: 560px;
+    left: 1380px;
+    position: absolute;
+    top: 40px;
+    width: 220px;
+    border-left: 1px solid black;
+}
+.mitgliedersuche .main-list {
+    display: flex;
+    max-width: 1160px;
+    max-height: 560px;
+    margin: auto;
+    position: relative;
+    top: 60px;
+}

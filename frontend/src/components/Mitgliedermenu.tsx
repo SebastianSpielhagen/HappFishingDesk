@@ -18,7 +18,7 @@ const Mitgliedermenu: React.FC = () => {
                     <div className="left-sidebar-button">
                         <div className="d-grid gap-2 col-11 mx-auto">
                             <CButton color="primary" href="/mitgliederverwaltung">Mitglied ' NEU '</CButton>
-                            <CButton color="primary" href="/">Mitglied ' SUCHEN '</CButton>
+                            <CButton color="primary" href="/mitgliedersuche">Mitglied ' SUCHEN '</CButton>
                             <CButton color="primary" href="/members">Mitglieder ' LISTE '</CButton>
                         </div>
                     </div>

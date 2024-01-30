@@ -13,6 +13,7 @@ import Fangberichte from './components/Fangberichte';
 import Mitgliederverwaltung from './components/Mitgliederformular.tsx';
 import Mitgliedermenu from './components/Mitgliedermenu';
 import Footer from './components/Footer';
+import Mitgliedersuche from './components/Mitgliedersuche';
 
 
 
@@ -32,6 +33,7 @@ const App: React.FC = () => {
                 <Route path="/nachrichten" element={<Nachrichten />} />
                 <Route path="/fangberichte" element={<Fangberichte />} />
                 <Route path="/mitgliedermenu" element={<Mitgliedermenu />} />
+                <Route path="/mitgliedersuche" element={<Mitgliedersuche />} />
 
             </Routes>
             <Footer />

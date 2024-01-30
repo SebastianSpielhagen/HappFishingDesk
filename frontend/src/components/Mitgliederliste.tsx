@@ -167,34 +167,35 @@ const Mitgliederliste: React.FC = () => {
             <div className="mitgliederliste">
                 <div className="div">
                     <div className="left-sidebar-title">
-                    <div className="left-sidebar-title-text">
-                       <p>Mitgliederverwaltung</p>
-                    </div>
+                        <div className="left-sidebar-title-text">
+                            <p>Mitgliederverwaltung</p>
+                        </div>
                     </div>
 
                     <div className="right-sidebar-title">
-                    <div className="right-sidebar-title-text">
-                        <p>Spaltenauswahl</p>
+                        <div className="right-sidebar-title-text">
+                            <p>Spaltenauswahl</p>
+                        </div>
                     </div>
-                    </div>
-
                     <div className="main-list-title">
-                    <p>Mitgliederliste</p>
-
-                        {
-                            sortField && <p>Sortiert nach: {sortField}, Richtung: {sortDirection}</p>
-                        }
+                    <div className="main-list-title-text">
+                        - Komplette Mitgliederliste -
                     </div>
 
-                    <div className="print-button">
-                        <CButton onClick={printMembers}>Drucken</CButton>
+                    {
+                        sortField && <p>Sortiert nach: {sortField}, Richtung: {sortDirection}</p>
+                    }
+                </div>
+
+                <div className="print-button">
+                    <CButton onClick={printMembers}>Drucken</CButton>
                     </div>
 
                     <div className="left-sidebar">
                         <div className="left-sidebar-button">
                             <div className="d-grid gap-2 col-11 mx-auto">
                     <CButton color="primary" href="/mitgliederverwaltung">Mitglied ' NEU '</CButton>
-                    <CButton color="primary" href="/">Mitglied ' SUCHEN '</CButton>
+                    <CButton color="primary" href="/mitgliedersuche">Mitglied ' SUCHEN '</CButton>
                     <CButton color="primary" href="/members">Mitglieder ' LISTE '</CButton>
                             </div>
                         </div>

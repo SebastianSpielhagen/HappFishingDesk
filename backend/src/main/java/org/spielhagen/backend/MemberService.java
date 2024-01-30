@@ -17,6 +17,15 @@ public class MemberService {
     public List<Member> getAllMembers() {
         return memberRepository.findAll();
     }
+    public List<Member> searchByVorname(String vorname) {
+      return memberRepository.findByVornameContainingIgnoreCase(vorname);
+    }
+    public List<Member> searchByNachname(String nachname) {
+        return memberRepository.findByNachnameContainingIgnoreCase(nachname);
+    }
+    public List<Member> searchByTerms(String searchTerm) {
+        return memberRepository.searchByTerms(searchTerm);
+    }
     public Optional<Member> getMemberById(String id) {
         return memberRepository.findById(id);
     }
@@ -81,4 +90,5 @@ public class MemberService {
                 })
                 .orElseThrow(() -> new RuntimeException("Mitglied mit ID " + id + " nicht gefunden"));
     }
+
 }

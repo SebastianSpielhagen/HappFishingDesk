@@ -36,6 +36,30 @@ public class MemberController {
                 .orElseThrow(() -> new ResponseStatusException(
                         HttpStatus.NOT_FOUND, "Mitgliedsnummer existiert nicht: " + mitgliedsnummer));
     }
+    @GetMapping("/vorname/{vorname}")
+    public ResponseEntity<List<Member>> searchMembersByVorname(@RequestParam String vorname) {
+        List<Member> members = memberService.searchByVorname(vorname);
+        if (members.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(members, HttpStatus.OK);
+    }
+    @GetMapping("/nachname/{nachname}")
+    public ResponseEntity<List<Member>> searchMembersByNachname(@RequestParam String nachname) {
+        List<Member> members = memberService.searchByNachname(nachname);
+        if (members.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(members, HttpStatus.OK);
+    }
+    @GetMapping("/search")
+    public ResponseEntity<List<Member>> searchMembers(@RequestParam String searchTerm) {
+        List<Member> searchResults = memberService.searchByTerms(searchTerm);
+        if (searchResults.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(searchResults, HttpStatus.OK);
+    }
     @PostMapping
     public ResponseEntity<Member> createMember(@RequestBody MemberDTO memberDto) {
         Member newMember = memberService.createMember(memberDto);

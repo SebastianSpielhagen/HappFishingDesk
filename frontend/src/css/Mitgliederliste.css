@@ -59,6 +59,12 @@
     width: 1160px;
     border-bottom: 1px solid black;
 }
+.mitgliederliste .main-list-title-text {
+    position: relative;
+    top: 4px;
+    font-size: 22px;
+    text-align: center;
+}
 
 .mitgliederliste .left-sidebar {
     background-color: #00ac1b;
