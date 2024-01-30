@@ -1,6 +1,6 @@
 package org.spielhagen.backend;
 
-
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.FindAndModifyOptions;
 import org.springframework.data.mongodb.core.MongoOperations;
 import org.springframework.data.mongodb.core.query.Criteria;
@@ -8,17 +8,14 @@ import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Service;
 
-
-
 import java.util.Objects;
 
 @Service
 public class SequenceGeneratorService {
 
-    // ... (andere Felder)
-
     private final MongoOperations mongoOperations;
 
+    @Autowired
     public SequenceGeneratorService(MongoOperations mongoOperations) {
         this.mongoOperations = mongoOperations;
     }
@@ -30,8 +27,7 @@ public class SequenceGeneratorService {
                 FindAndModifyOptions.options().returnNew(true).upsert(true),
                 DatabaseSequence.class
         );
+
         return !Objects.isNull(counter) ? counter.getSeq() : 1L;
     }
-
-    // ... (andere Methoden)
 }

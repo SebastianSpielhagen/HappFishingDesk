@@ -5,6 +5,7 @@ import {CButton} from "@coreui/react";
 
 interface Member {
     id: string;
+    mitgliedsnummer: string;
     anrede: string;
     vorname: string;
     nachname: string;
@@ -47,6 +48,7 @@ const Mitgliederliste: React.FC = () => {
     const [error, setError] = useState('');
     // Zustandsvariable für die Sichtbarkeit der Spalten
     const [visibleColumns, setVisibleColumns] = useState<VisibleColumnsKey>({
+        mitgliedsnummer: true,
         anrede: false,
         vorname: true,
         nachname: true,
@@ -123,6 +125,7 @@ const Mitgliederliste: React.FC = () => {
             return 0;
         }));
     };
+
     useEffect(() => {
         const source = axios.CancelToken.source();
 
@@ -149,7 +152,6 @@ const Mitgliederliste: React.FC = () => {
         };
     }, []);
 
-
     const sortedMembers = sortField
         ? members.sort((a, b) => {
             if (a[sortField] < b[sortField]) {
@@ -161,6 +163,7 @@ const Mitgliederliste: React.FC = () => {
             return 0;
         })
         : members;
+
 
     return (
         <>
@@ -206,6 +209,8 @@ const Mitgliederliste: React.FC = () => {
                         <table id="members-table">
                             <thead>
                             <tr>
+                                {visibleColumns.mitgliedsnummer &&
+                                    <th className="th-mitgliedsnummer">Mi.Nr.</th>}
                                 {visibleColumns.anrede &&
                                     <th className="th-anrede" onClick={() => requestSort('anrede')}>Anrede</th>}
                                 {visibleColumns.vorname &&
@@ -239,6 +244,7 @@ const Mitgliederliste: React.FC = () => {
                             <tbody>
                             {sortedMembers.map((member) => (
                                 <tr key={member.id}>
+                                    {visibleColumns.mitgliedsnummer && <td>{member.mitgliedsnummer}</td>}
                                     {visibleColumns.anrede && <td>{member.anrede}</td>}
                                     {visibleColumns.vorname && <td>{member.vorname}</td>}
                                     {visibleColumns.nachname && <td>{member.nachname}</td>}

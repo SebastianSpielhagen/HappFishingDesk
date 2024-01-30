@@ -70,7 +70,7 @@ public class MemberController {
 
     @PostMapping
     public ResponseEntity<Member> createMember(@RequestBody MemberDTO memberDto) {
-        memberDto.setMitgliedsnummer(memberService.generateSequence(Member.SEQUENCE_NAME)); // Neue Zeile
+        // Die Generierung der Mitgliedsnummer wird im Service Layer gehandhabt.
         Member newMember = memberService.createMember(memberDto);
         URI location = ServletUriComponentsBuilder
                 .fromCurrentRequest()

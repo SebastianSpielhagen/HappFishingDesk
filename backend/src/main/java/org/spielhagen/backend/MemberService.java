@@ -18,7 +18,6 @@ public class MemberService {
         this.sequenceGeneratorService = sequenceGeneratorService;
     }
 
-
     public List<Member> getAllMembers() {
         return memberRepository.findAll();
     }
@@ -43,20 +42,16 @@ public class MemberService {
         return memberRepository.findByMitgliedsnummer(mitgliedsnummer);
     }
 
-
-    public Long generateSequence(String seqName) {
-        return sequenceGeneratorService.generateSequence(seqName);
-    }
-
     @Transactional
     public Member createMember(Member member) {
-        member.setMitgliedsnummer(generateSequence(Member.SEQUENCE_NAME));
+        member.setMitgliedsnummer(sequenceGeneratorService.generateSequence(Member.SEQUENCE_NAME));
         return memberRepository.insert(member);
     }
 
+    @Transactional
     public Member createMember(MemberDTO memberDto) {
         Member member = new Member();
-        member.setMitgliedsnummer(generateSequence(Member.SEQUENCE_NAME));
+        member.setMitgliedsnummer(sequenceGeneratorService.generateSequence(Member.SEQUENCE_NAME));
         member.setAnrede(memberDto.getAnrede());
         member.setVorname(memberDto.getVorname());
         member.setNachname(memberDto.getNachname());
@@ -81,6 +76,9 @@ public class MemberService {
         // Validierungen für 'member' sollten hier durchgeführt werden, bevor es aktualisiert wird.
         return memberRepository.findById(id)
                 .map(existingMember -> {
+                    // Die Mitgliedsnummer sollte bei einem Update nicht geändert werden,
+                    // daher wird diese Zeile entfernt:
+                    // existingMember.setMitgliedsnummer(member.getMitgliedsnummer());
                     existingMember.setAnrede(member.getAnrede());
                     existingMember.setVorname(member.getVorname());
                     existingMember.setNachname(member.getNachname());
@@ -97,11 +95,8 @@ public class MemberService {
                     existingMember.setBezahlt(member.getBezahlt());
                     existingMember.setFischereischeinnummer(member.getFischereischeinnummer());
                     existingMember.setFischereischeinablaufdatum(member.getFischereischeinablaufdatum());
-                    // Weitere Felder, die aktualisiert werden sollen, können hier hinzugefügt werden.
                     return memberRepository.save(existingMember);
                 })
                 .orElseThrow(() -> new RuntimeException("Mitglied mit ID " + id + " nicht gefunden"));
     }
-
-
 }
