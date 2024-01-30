@@ -10,7 +10,7 @@ import Kalender from './components/Kalender';
 import Statistiken from './components/Statistiken';
 import Nachrichten from './components/Nachrichten';
 import Fangberichte from './components/Fangberichte';
-import Mitgliederverwaltung from './components/Mitgliederformular.tsx';
+import Mitgliederverwaltung from './components/Mitgliederformular';
 import Mitgliedermenu from './components/Mitgliedermenu';
 import Footer from './components/Footer';
 import Mitgliedersuche from './components/Mitgliedersuche';

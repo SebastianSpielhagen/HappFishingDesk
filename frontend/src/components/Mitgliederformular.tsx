@@ -1,10 +1,29 @@
-import React, { useState } from 'react';
-import axios from 'axios';
+import React, {useEffect, useState} from 'react';
+import axios, {CancelTokenSource} from 'axios';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '/src/css/Mitgliederformular.css';
 import {CButton} from "@coreui/react";
 
 type MemberFormState = {
+    mitgliedsnummer: number;
+    anrede: string;
+    vorname: string;
+    nachname: string;
+    strasse: string;
+    plz: number;
+    stadt: string;
+    festnetz: string;
+    handy: string;
+    email: string;
+    geburtsdatum: string;
+    eintrittsdatum: string;
+    austrittsdatum: string;
+    status: string;
+    bezahlt: boolean;
+    fischereischeinnummer: string;
+    fischereischeinablaufdatum: string;
+};
+type Member = {
     mitgliedsnummer: number;
     anrede: string;
     vorname: string;
@@ -44,6 +63,11 @@ const Mitgliederformular: React.FC = () => {
         fischereischeinnummer: '',
         fischereischeinablaufdatum: '',
     });
+    const [searchTerm, setSearchTerm] = useState('');
+    const [searchResults, setSearchResults] = useState<Member[]>([]);
+    const [isSearching, setIsSearching] = useState(false);
+    const [error, setError] = useState('');
+
     // Zustand für die Popup-Anzeige hinzufügen
     const [showSuccessPopup, setShowSuccessPopup] = useState(false);
     const handleChange = (
@@ -55,6 +79,59 @@ const Mitgliederformular: React.FC = () => {
             ...member,
             [target.name]: value,
         });
+    };
+    const searchMembers = async (search: string, source: CancelTokenSource) => {
+        try {
+            setIsSearching(true);
+            setError('');
+
+            const response = await axios.get(`/api/members/search`, {
+                params: { searchTerm: search },
+                cancelToken: source.token
+            });
+            setSearchResults(response.data); // Angenommen, die Antwort ist ein Array von Mitgliedern
+        } catch (error) {
+            if (axios.isCancel(error)) {
+                console.log('Suchabfrage wurde abgebrochen');
+            } else {
+                setError("Keine Mitglieder gefunden.");
+                console.error("Keine Mitglieder gefunden", error);
+            }
+            setSearchResults([]);
+        } finally {
+            setIsSearching(false);
+        }
+    };
+    useEffect(() => {
+        // Erstellen Sie einen CancelToken, wenn die Komponente gemountet wird
+        const source = axios.CancelToken.source();
+
+        // Cleanup-Funktion, die aufgerufen wird, wenn die Komponente ungemountet wird
+        return () => {
+            // Abbrechen aller laufenden Anfragen
+            source.cancel("Komponente wird nicht mehr angezeigt");
+        };
+    }, []); // [] bedeutet, dass dieser Effekt nur beim Mounten und Unmounten läuft
+    const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setSearchTerm(event.target.value);
+    };
+
+    const handleSearch = async (event: React.FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
+        const source = axios.CancelToken.source();
+
+        try {
+            await searchMembers(searchTerm, source); // Verwenden Sie 'await' hier
+        } catch (error) {
+
+            console.error('Fehler beim Suchen der Mitglieder:', error);
+        }
+    };
+    const handleMemberSelect = (mitglied: Member) => {
+        // Hier könnten Sie beispielsweise zu einer Detailansicht navigieren, indem Sie die Mitgliedsnummer verwenden
+        // oder Sie könnten eine Modal- oder Popup-Komponente öffnen, die die Details des Mitglieds anzeigt.
+        // Zum Beispiel: history.push(`/mitglieder/${mitglied.mitgliedsnummer}`);
+        console.log('Mitglied ausgewählt:', mitglied);
     };
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -106,10 +183,25 @@ const Mitgliederformular: React.FC = () => {
 
                 <div className="right-sidebar-title">
                     <div className="right-sidebar-title-text">
-                        <p>Hilfe/FAQ</p>
+                        <p>Suchergebnis</p>
                     </div>
                 </div>
-                <div className="right-sidebar"></div>
+                <div className="right-sidebar">
+                    {isSearching && <div>Suche...</div>}
+                    {error && <div>{error}</div>}
+
+                    {!isSearching && searchResults.length > 0 && (
+                        <ul className="suchergebnisse-liste">
+                            {searchResults.map(member => (
+                                <li key={member.mitgliedsnummer} onClick={() => handleMemberSelect(member)}
+                                    style={{cursor: 'pointer'}}>
+                                    {member.vorname} {member.nachname}
+                                    {/* Weitere Mitgliederdaten hier anzeigen */}
+                                </li>
+                            ))}
+                        </ul>
+                    )}
+                </div>
 
                 <div className="main-list-title">
                     <div className="main-list-title-text">
@@ -133,6 +225,19 @@ const Mitgliederformular: React.FC = () => {
                     </div>
                 )}
                 <div className="main-list">
+                    <form onSubmit={handleSearch} className="mitgliedersuche-formular">
+                        <label className="volltextsuche">Volltextsuche:</label>
+                        <input
+                            type="text"
+                            value={searchTerm}
+                            onChange={handleSearchChange}
+                            placeholder="Mitglieder suchen..."
+                            className="form-control"
+                        />
+
+                        <CButton type="submit"
+                                 className="btn btn-primary-suchen btn-custom-position-suchen">Suchen</CButton>
+                    </form>
                     <form onSubmit={handleSubmit}>
                         <div className="mitglieder-form">
                             {/* Erste Zeile: Anrede, Vorname, Nachname */}
@@ -200,90 +305,90 @@ const Mitgliederformular: React.FC = () => {
                                 </div>
 
                                 {/* PLZ Eingabefeld */}
-                                    <div className="form-field-plz">
-                                        <label htmlFor="plz">*PLZ</label>
-                                        <input
-                                            id="plz"
-                                            type="text"
-                                            name="plz"
-                                            value={member.plz}
-                                            onChange={handleChange}
-                                            required
-                                            placeholder="12345"
-                                        />
-                                    </div>
+                                <div className="form-field-plz">
+                                    <label htmlFor="plz">*PLZ</label>
+                                    <input
+                                        id="plz"
+                                        type="text"
+                                        name="plz"
+                                        value={member.plz}
+                                        onChange={handleChange}
+                                        required
+                                        placeholder="12345"
+                                    />
+                                </div>
 
 
                                 {/* Stadt Eingabefeld */}
-                                    <div className="form-field-stadt">
-                                        <label htmlFor="stadt">*Stadt</label>
-                                        <input
-                                            id="stadt"
-                                            type="text"
-                                            name="stadt"
-                                            value={member.stadt}
-                                            onChange={handleChange}
-                                            required
-                                            placeholder="Stadt"
-                                        />
-                                    </div>
+                                <div className="form-field-stadt">
+                                    <label htmlFor="stadt">*Stadt</label>
+                                    <input
+                                        id="stadt"
+                                        type="text"
+                                        name="stadt"
+                                        value={member.stadt}
+                                        onChange={handleChange}
+                                        required
+                                        placeholder="Stadt"
+                                    />
+                                </div>
                             </div>
 
 
-                             {/* Dritte Zeile: Geburtsdatum, Telefon, Handy, E-Mail */}
+                            {/* Dritte Zeile: Geburtsdatum, Telefon, Handy, E-Mail */}
                             <div className="form-row3">
-                                    {/* Geburtsdatum Eingabefeld */}
-                                    <div className="form-field-geburtsdatum">
-                                        <label htmlFor="geburtsdatum">*Geburtsdatum</label>
-                                        <input
-                                            id="geburtsdatum"
-                                            type="date"
-                                            name="geburtsdatum"
-                                            value={member.geburtsdatum}
-                                            onChange={handleChange}
-                                            required
-                                            placeholder="Geburtsdatum"
-                                        />
-                                    </div>
+                                {/* Geburtsdatum Eingabefeld */}
+                                <div className="form-field-geburtsdatum">
+                                    <label htmlFor="geburtsdatum">*Geburtsdatum</label>
+                                    <input
+                                        id="geburtsdatum"
+                                        type="date"
+                                        name="geburtsdatum"
+                                        value={member.geburtsdatum}
+                                        onChange={handleChange}
+                                        required
+                                        placeholder="Geburtsdatum"
+                                    />
+                                </div>
 
-                                    {/* Telefon Eingabefeld */}
-                                    <div className="form-field-festnetz">
-                                        <label htmlFor="festnetz">Telefon</label>
-                                        <input
-                                            id="festnetz"
-                                            type="text"
-                                            name="festnetz"
-                                            value={member.festnetz}
-                                            onChange={handleChange}
-                                            placeholder="Festnetz"
-                                        />
-                                    </div>
+                                {/* Telefon Eingabefeld */}
+                                <div className="form-field-festnetz">
+                                    <label htmlFor="festnetz">Telefon</label>
+                                    <input
+                                        id="festnetz"
+                                        type="text"
+                                        name="festnetz"
+                                        value={member.festnetz}
+                                        onChange={handleChange}
+                                        placeholder="Festnetz"
+                                    />
+                                </div>
 
-                                    {/* Handy Eingabefeld */}
-                                    <div className="form-field-handy">
-                                        <label htmlFor="handy">Handy</label>
-                                        <input
-                                            id="handy"
-                                            type="text"
-                                            name="handy"
-                                            value={member.handy}
-                                            onChange={handleChange}
-                                            placeholder="Handy"
-                                        />
-                                    </div>
+                                {/* Handy Eingabefeld */}
+                                <div className="form-field-handy">
+                                    <label htmlFor="handy">Handy</label>
+                                    <input
+                                        id="handy"
+                                        type="text"
+                                        name="handy"
+                                        value={member.handy}
+                                        onChange={handleChange}
+                                        placeholder="Handy"
+                                    />
+                                </div>
 
-                                    {/* E-Mail Eingabefeld */}
-                                    <div className="form-field-email">
-                                        <label htmlFor="email">E-Mail</label>
-                                        <input
-                                            id="email"
-                                            type="text"
-                                            name="email"
-                                            value={member.email}
-                                            onChange={handleChange}
-                                            placeholder="E-Mail"
-                                        />
-                                    </div>
+                                {/* E-Mail Eingabefeld */}
+                                <div className="form-field-email">
+                                    <label htmlFor="email">E-Mail</label>
+                                    <input
+                                        id="email"
+                                        type="text"
+                                        name="email"
+                                        value={member.email}
+                                        onChange={handleChange}
+                                        placeholder="E-Mail"
+                                    />
+                                </div>
                             </div>
 
 
@@ -388,19 +493,21 @@ const Mitgliederformular: React.FC = () => {
                                 <hr/>
 
 
-                                <CButton className="btn btn-primary-reset btn-custom-position-reset" href="/mitgliederverwaltung">Formular Reset</CButton>
+                                <CButton className="btn btn-primary-reset btn-custom-position-reset"
+                                         href="/mitgliederverwaltung">Reset</CButton>
 
-                                <CButton type="submit" className="btn btn-primary-anlegen btn-custom-position-anlegen">Anlegen</CButton>
+                                <CButton type="submit"
+                                         className="btn btn-primary-anlegen btn-custom-position-anlegen">Anlegen</CButton>
 
                             </div>
 
                         </div>
-                        </form>
-                    </div>
+                    </form>
                 </div>
             </div>
+        </div>
 
-                );
-                };
+    );
+};
 
-                export default Mitgliederformular;
+export default Mitgliederformular;

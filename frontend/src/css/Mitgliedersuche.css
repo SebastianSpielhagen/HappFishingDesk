@@ -96,11 +96,92 @@
     width: 220px;
     border-left: 1px solid black;
 }
+.mitgliedersuche .right-sidebar .suchergebnisse-liste {
+    position: relative;
+    top: 10px;
+    color: white;
+    font-size: 18px;
+    font-weight: 500;
+}
+.mitgliedersuche .overlap-group {
+    display: flex;
+    justify-content: flex-start;
+    gap: 15px;
+}
 .mitgliedersuche .main-list {
     display: flex;
     max-width: 1160px;
-    max-height: 560px;
+    max-height: 180px;
     margin: auto;
     position: relative;
-    top: 60px;
+    top: 50px;
+    left: 30px;
+}
+.mitgliedersuche .main-list .mitgliedersuche-formular {
+    position: relative;
+    top: 4px;
+}
+.mitgliedersuche .form-control {
+    position: relative; /* Oder 'absolute', 'fixed', 'sticky' */
+    top: 470px; /* Verschiebt den Button nach unten */
+    left: 240px; /* Verschiebt den Button nach rechts */
+    width: 250px; /* Individuelle Breite */
+    height: 40px; /* Individuelle Höhe */
+}
+.mitgliedersuche .volltextsuche {
+    position: relative; /* Oder 'absolute', 'fixed', 'sticky' */
+    top: 470px; /* Verschiebt den Button nach unten */
+    left: 240px; /* Verschiebt den Button nach rechts */
+    width: 250px; /* Individuelle Breite */
+    height: 30px; /* Individuelle Höhe */
+    text-align: left;
+    color: white;
+    font-size: 18px;
+    font-weight: 500;
+}
+.mitgliedersuche .main-list-show {
+    height: 180px;
+    margin-left: 220px;
+    border-bottom: 1px solid black
+}
+/* Individuelle Positionierung und Größe */
+.btn-custom-position-suchen {
+    position: relative; /* Oder 'absolute', 'fixed', 'sticky' */
+    top: 425px; /* Verschiebt den Button nach unten */
+    left: 500px; /* Verschiebt den Button nach rechts */
+    width: 150px; /* Individuelle Breite */
+    height: 40px; /* Individuelle Höhe */
+    vertical-align: baseline;
+    text-align: center;
+}
+/* Spezifischer Stil für den 'Anlegen'-Button */
+.btn-primary-suchen {
+
+    font-size: 16px; /* Schriftgröße */
+    border-radius: 5px; /* Abgerundete Ecken */
+    cursor: pointer; /* Cursor als Zeiger */
+    transition: all 0.3s ease; /* Weiche Übergänge für alle Änderungen */
+    display: inline-block; /* Ermöglicht die Positionierung */
+    margin: 5px; /* Standardabstand um den Button */
+    background-color: #007bff; /* Primäre Button-Farbe, blau */
+    color: white; /* Textfarbe */
+    border: none; /* Keine Ränder */
+}
+
+.btn-primary-suchen:hover {
+    background-color: #0056b3; /* Dunklere Blaufarbe beim Hover */
+}
+
+.btn-primary-suchen:active {
+    background-color: #004085; /* Noch dunklere Blaufarbe beim aktiven Klicken */
+}
+
+.btn-primary-suchen:focus {
+    outline: none; /* Kein Outline bei Fokussierung */
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25); /* Fügt einen Schatten hinzu */
+}
+
+.btn-primary-suchen:disabled {
+    opacity: 0.65; /* Macht den Button durchscheinend */
+    cursor: not-allowed; /* Ändert den Cursor zu einem "nicht erlaubt" Zeichen */
 }

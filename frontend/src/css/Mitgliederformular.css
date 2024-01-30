@@ -96,6 +96,13 @@
     width: 220px;
     border-left: 1px solid black;
 }
+.mitgliederformular .right-sidebar .suchergebnisse-liste {
+    position: relative;
+    top: 10px;
+    color: white;
+    font-size: 18px;
+    font-weight: 500;
+}
 .mitgliederformular .main-list {
     display: flex;
     max-width: 1160px;
@@ -103,6 +110,38 @@
     margin: auto;
     position: relative;
     top: 60px;
+}
+.mitgliederformular .main-list .mitgliedersuche-formular {
+    position: absolute;
+    top: 4px;
+}
+.mitgliederformular .form-control {
+    position: absolute; /* Oder 'absolute', 'fixed', 'sticky' */
+    top: 490px; /* Verschiebt den Button nach unten */
+    left: 520px; /* Verschiebt den Button nach rechts */
+    width: 250px; /* Individuelle Breite */
+    height: 35px; /* Individuelle Höhe */
+}
+.mitgliederformular .volltextsuche {
+    position: absolute; /* Oder 'absolute', 'fixed', 'sticky' */
+    top: 465px; /* Verschiebt den Button nach unten */
+    left: 520px; /* Verschiebt den Button nach rechts */
+    width: 250px; /* Individuelle Breite */
+    height: 30px; /* Individuelle Höhe */
+    text-align: left;
+    color: white;
+    font-size: 18px;
+    font-weight: 500;
+}
+/* Individuelle Positionierung und Größe */
+.mitgliederformular .btn-custom-position-suchen {
+    position: absolute; /* Oder 'absolute', 'fixed', 'sticky' */
+    top: 485px; /* Verschiebt den Button nach unten */
+    left: 770px; /* Verschiebt den Button nach rechts */
+    width: 150px; /* Individuelle Breite */
+    height: 35px; /* Individuelle Höhe */
+    vertical-align: baseline;
+    text-align: center;
 }
 .print-button {
     position: absolute;
@@ -507,7 +546,7 @@ hr {
 
 /* Spezifischer Stil für den 'Anlegen'-Button */
 .btn-primary-anlegen {
-    padding: 10px 20px; /* Innenabstand */
+
     font-size: 16px; /* Schriftgröße */
     border-radius: 5px; /* Abgerundete Ecken */
     cursor: pointer; /* Cursor als Zeiger */
@@ -540,14 +579,14 @@ hr {
 /* Individuelle Positionierung und Größe */
 .btn-custom-position-anlegen {
     position: relative; /* Oder 'absolute', 'fixed', 'sticky' */
-    top: 0; /* Verschiebt den Button nach unten */
-    left: 840px; /* Verschiebt den Button nach rechts */
-    width: 150px; /* Individuelle Breite */
-    height: 50px; /* Individuelle Höhe */
+    top: 10px; /* Verschiebt den Button nach unten */
+    left: 930px; /* Verschiebt den Button nach rechts */
+    width: 100px; /* Individuelle Breite */
+    height: 35px; /* Individuelle Höhe */
 }
 /* Spezifischer Stil für den 'Anlegen'-Button */
 .btn-primary-reset {
-    padding: 13px 20px; /* Innenabstand */
+
     font-size: 16px; /* Schriftgröße */
     border-radius: 5px; /* Abgerundete Ecken */
     cursor: pointer; /* Cursor als Zeiger */
@@ -578,10 +617,10 @@ hr {
 }
 .btn-custom-position-reset {
     position: relative; /* Oder 'absolute', 'fixed', 'sticky' */
-    top: 0; /* Verschiebt den Button nach unten */
-    left: 820px; /* Verschiebt den Button nach rechts */
-    width: 150px; /* Individuelle Breite */
-    height: 50px; /* Individuelle Höhe */
+    top: 10px; /* Verschiebt den Button nach unten */
+    left: 930px; /* Verschiebt den Button nach rechts */
+    width: 100px; /* Individuelle Breite */
+    height: 35px; /* Individuelle Höhe */
 }
 /* Spezifischer Stil für den 'Anlegen'-Button */
 .btn-primary-popup {

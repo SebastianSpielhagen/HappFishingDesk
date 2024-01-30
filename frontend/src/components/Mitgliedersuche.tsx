@@ -70,6 +70,7 @@ const Mitgliedersuche: React.FC = () => {
     };
 
     return (
+
         <div className="mitgliedersuche">
             <div className="div">
                 <div className="left-sidebar-title">
@@ -80,38 +81,10 @@ const Mitgliedersuche: React.FC = () => {
 
                 <div className="right-sidebar-title">
                     <div className="right-sidebar-title-text">
-                        <p>Filter</p>
+                        <p>Suchergebnis</p>
                     </div>
                 </div>
-                <div className="right-sidebar"></div>
-                <div className="main-list-title">
-                    <div className="main-list-title-text">
-                        - Mitglied suchen -
-                    </div>
-                </div>
-                <div className="left-sidebar">
-                    <div className="left-sidebar-button">
-                        <div className="d-grid gap-2 col-11 mx-auto">
-                            <CButton color="primary" href="/mitgliederverwaltung">Mitglied ' NEU '</CButton>
-                            <CButton color="primary" href="/mitgliedersuche">Mitglied ' SUCHEN '</CButton>
-                            <CButton color="primary" href="/members">Mitglieder ' LISTE '</CButton>
-                        </div>
-                    </div>
-                </div>
-                <div className="main-list">
-                    <form onSubmit={handleSearch} className="mitgliedersuche-formular">
-                        <input
-                            type="text"
-                            value={searchTerm}
-                            onChange={handleSearchChange}
-                            placeholder="Mitglieder suchen..."
-                            className="form-control"
-                        />
-                        <CButton color="primary" type="submit" disabled={isSearching}>
-                            Suchen
-                        </CButton>
-                    </form>
-
+                <div className="right-sidebar">
                     {isSearching && <div>Suche...</div>}
                     {error && <div>{error}</div>}
 
@@ -127,9 +100,45 @@ const Mitgliedersuche: React.FC = () => {
                         </ul>
                     )}
                 </div>
+                <div className="main-list-title">
+                    <div className="main-list-title-text">
+                        - Mitglied suchen -
+                    </div>
+                </div>
+                <div className="left-sidebar">
+                    <div className="left-sidebar-button">
+                        <div className="d-grid gap-2 col-11 mx-auto">
+                            <CButton color="primary" href="/mitgliederverwaltung">Mitglied ' NEU '</CButton>
+                            <CButton color="primary" href="/mitgliedersuche">Mitglied ' SUCHEN '</CButton>
+                            <CButton color="primary" href="/members">Mitglieder ' LISTE '</CButton>
+                        </div>
+                    </div>
+                </div>
+                <div className="overlap-group">
+                    <div className="main-list">
+
+                        <form onSubmit={handleSearch} className="mitgliedersuche-formular">
+                            <label className="volltextsuche">Volltextsuche:</label>
+                            <input
+                                type="text"
+                                value={searchTerm}
+                                onChange={handleSearchChange}
+                                placeholder="Mitglieder suchen..."
+                                className="form-control"
+                            />
+
+                            <CButton type="submit"
+                                     className="btn btn-primary-suchen btn-custom-position-suchen">Suchen</CButton>
+                        </form>
+                    </div>
+
+                </div>
+
             </div>
 
         </div>
+
+
     );
 };
 
