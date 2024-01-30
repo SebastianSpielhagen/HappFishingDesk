@@ -8,13 +8,9 @@ public class DatabaseSequence {
 
     @Id
     private String id;
+    private long seq;
 
-    private Long seq;
-
-    // Standardkonstruktor, Getter und Setter
-    public DatabaseSequence() {
-    }
-
+    // Standard-Getter und Setter
     public String getId() {
         return id;
     }
@@ -23,11 +19,11 @@ public class DatabaseSequence {
         this.id = id;
     }
 
-    public Long getSeq() {
+    public long getSeq() {
         return seq;
     }
 
-    public void setSeq(Long seq) {
+    public void setSeq(long seq) {
         this.seq = seq;
     }
 }
