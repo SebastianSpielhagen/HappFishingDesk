@@ -44,7 +44,7 @@
     grid-area: nav;
     position: absolute;
     top: 90px;
-    left: 272px;
+    left: 315px;
     flex-wrap: wrap;
     /* Oder 'flex-start' für keine Zwischenräume */
     /* Zentriert die Buttons vertikal, falls sie unterschiedliche Höhen haben */
@@ -58,7 +58,7 @@
     grid-area: infobar;
     position: relative;
     flex-wrap: wrap;
-    right: 50px;
+    right: 35px;
 
 }
 

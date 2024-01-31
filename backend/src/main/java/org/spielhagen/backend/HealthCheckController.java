@@ -21,7 +21,7 @@ public class HealthCheckController {
     @GetMapping("/healthcheck")
     public ResponseEntity<String> checkDbConnection() {
         try {
-            mongoTemplate.getDb().getName(); // Versuch, den DB-Namen zu erhalten, um die Verbindung zu testen
+            mongoTemplate.getDb().getName();
             return ResponseEntity.ok("Connected to MongoDB.");
         } catch (Exception e) {
             return ResponseEntity.status(500).body("Failed to connect to MongoDB.");
