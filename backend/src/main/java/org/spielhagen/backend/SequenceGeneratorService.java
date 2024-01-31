@@ -20,7 +20,7 @@ public class SequenceGeneratorService {
         this.mongoOperations = mongoOperations;
     }
 
-    public Long generateSequence(String seqName) {
+    public String generateSequence(String seqName) {
         DatabaseSequence counter = mongoOperations.findAndModify(
                 Query.query(Criteria.where("_id").is(seqName)),
                 new Update().inc("seq", 1),
@@ -28,6 +28,6 @@ public class SequenceGeneratorService {
                 DatabaseSequence.class
         );
 
-        return !Objects.isNull(counter) ? counter.getSeq() : 1L;
+        return !Objects.isNull(counter) ? String.valueOf(counter.getSeq()) : "1";
     }
 }

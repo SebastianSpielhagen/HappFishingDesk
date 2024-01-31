@@ -35,7 +35,7 @@ public class MemberController {
     }
 
     @GetMapping("/byMitgliedsnummer/{mitgliedsnummer}")
-    public Member getMemberByMitgliedsnummer(@PathVariable Long mitgliedsnummer) {
+    public Member getMemberByMitgliedsnummer(@PathVariable String mitgliedsnummer) {
         return memberService.getMemberByMitgliedsnummer(mitgliedsnummer)
                 .orElseThrow(() -> new ResponseStatusException(
                         HttpStatus.NOT_FOUND, "Mitgliedsnummer existiert nicht: " + mitgliedsnummer));
@@ -78,5 +78,15 @@ public class MemberController {
                 .buildAndExpand(newMember.getId())
                 .toUri();
         return ResponseEntity.created(location).body(newMember);
+    }
+    @PutMapping("/{mitgliedsnummer}")
+    public ResponseEntity<Member> updateMember(@PathVariable String mitgliedsnummer, @RequestBody Member member) {
+        Member updatedMember = memberService.updateMember(mitgliedsnummer, member);
+        return ResponseEntity.ok(updatedMember);
+    }
+    @DeleteMapping("/{mitgliedsnummer}")
+    public ResponseEntity<Void> deleteMember(@PathVariable String mitgliedsnummer) {
+        memberService.deleteMember(mitgliedsnummer);
+        return ResponseEntity.noContent().build();
     }
 }

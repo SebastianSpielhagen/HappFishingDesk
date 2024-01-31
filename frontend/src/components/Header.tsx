@@ -62,7 +62,7 @@ const Header: React.FC = () => {
             <div className="nav">
                 <div className="row">
                     <div className="col">
-                        <CButton color="primary" href="/mitgliedermenu">Mitgliederverwaltung</CButton>
+                        <CButton color="primary" href="/mitgliedermenu">Mitglieder</CButton>
                     </div>
                     <div className="col">
                         <CButton color="primary" href="/formulare">Formulare</CButton>
