@@ -84,7 +84,7 @@ const Header: React.FC = () => {
             <div className="infobar">
                 <div className="appname">Happy Fishing Desk v0.1</div>
                 <div className="dbstatus">Datenbankstatus:
-                    <span className={dbStatusClass}> {dbStatus}</span></div>
+                    <span className={dbStatusClass}>{dbStatus}</span></div>
 
                 <div className="activeuser">Eingeloggt als: Admin</div>
                 <div className="datetime">{currentDateTime}</div>
