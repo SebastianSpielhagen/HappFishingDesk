@@ -11,7 +11,7 @@ import java.util.Optional;
 public interface MemberRepository extends MongoRepository<Member, String> {
     Optional<Member> findTopByOrderByMitgliedsnummerDesc();
 
-    Optional<Member> findByMitgliedsnummer(Long mitgliedsnummer);
+    Optional<Member> findByMitgliedsnummer(String mitgliedsnummer);
 
     // In Ihrem MemberRepository
     List<Member> findByVornameContainingIgnoreCase(String vorname);

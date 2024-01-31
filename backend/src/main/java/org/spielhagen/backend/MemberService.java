@@ -1,8 +1,10 @@
 package org.spielhagen.backend;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 import java.util.Optional;
@@ -38,14 +40,8 @@ public class MemberService {
         return memberRepository.findById(id);
     }
 
-    public Optional<Member> getMemberByMitgliedsnummer(Long mitgliedsnummer) {
+    public Optional<Member> getMemberByMitgliedsnummer(String mitgliedsnummer) {
         return memberRepository.findByMitgliedsnummer(mitgliedsnummer);
-    }
-
-    @Transactional
-    public Member createMember(Member member) {
-        member.setMitgliedsnummer(sequenceGeneratorService.generateSequence(Member.SEQUENCE_NAME));
-        return memberRepository.insert(member);
     }
 
     @Transactional
@@ -73,12 +69,9 @@ public class MemberService {
 
     @Transactional
     public Member updateMember(String id, Member member) {
-        // Validierungen für 'member' sollten hier durchgeführt werden, bevor es aktualisiert wird.
-        return memberRepository.findById(id)
+
+        return memberRepository.findByMitgliedsnummer(id)
                 .map(existingMember -> {
-                    // Die Mitgliedsnummer sollte bei einem Update nicht geändert werden,
-                    // daher wird diese Zeile entfernt:
-                    // existingMember.setMitgliedsnummer(member.getMitgliedsnummer());
                     existingMember.setAnrede(member.getAnrede());
                     existingMember.setVorname(member.getVorname());
                     existingMember.setNachname(member.getNachname());
@@ -98,5 +91,15 @@ public class MemberService {
                     return memberRepository.save(existingMember);
                 })
                 .orElseThrow(() -> new RuntimeException("Mitglied mit ID " + id + " nicht gefunden"));
+    }
+    public void deleteMember(String mitgliedsnummer) {
+        Optional<Member> memberOptional = memberRepository.findByMitgliedsnummer(mitgliedsnummer);
+        if (memberOptional.isPresent()) {
+            memberRepository.delete(memberOptional.get());
+        } else {
+            throw new ResponseStatusException(
+                    HttpStatus.NOT_FOUND, "Mitglied mit Mitgliedsnummer " + mitgliedsnummer + " nicht gefunden"
+            );
+        }
     }
 }

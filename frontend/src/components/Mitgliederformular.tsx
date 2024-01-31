@@ -5,12 +5,12 @@ import '/src/css/Mitgliederformular.css';
 import {CButton} from "@coreui/react";
 
 type MemberFormState = {
-    mitgliedsnummer: number;
+    mitgliedsnummer: string;
     anrede: string;
     vorname: string;
     nachname: string;
     strasse: string;
-    plz: number;
+    plz: string;
     stadt: string;
     festnetz: string;
     handy: string;
@@ -24,12 +24,12 @@ type MemberFormState = {
     fischereischeinablaufdatum: string;
 };
 type Member = {
-    mitgliedsnummer: number;
+    mitgliedsnummer: string;
     anrede: string;
     vorname: string;
     nachname: string;
     strasse: string;
-    plz: number;
+    plz: string;
     stadt: string;
     festnetz: string;
     handy: string;
@@ -44,13 +44,13 @@ type Member = {
 };
 
 const Mitgliederformular: React.FC = () => {
-    const [member, setMember] = useState<MemberFormState>({
-        mitgliedsnummer: 0,
+    const initialMemberState: MemberFormState = {
+        mitgliedsnummer: '',
         anrede: '',
         vorname: '',
         nachname: '',
         strasse: '',
-        plz: 0,
+        plz: '',
         stadt: '',
         festnetz: '',
         handy: '',
@@ -62,14 +62,33 @@ const Mitgliederformular: React.FC = () => {
         bezahlt: false,
         fischereischeinnummer: '',
         fischereischeinablaufdatum: '',
-    });
+    };
     const [searchTerm, setSearchTerm] = useState('');
     const [searchResults, setSearchResults] = useState<Member[]>([]);
     const [isSearching, setIsSearching] = useState(false);
     const [error, setError] = useState('');
-
-    // Zustand für die Popup-Anzeige hinzufügen
+    const [showConfirmPopup, setShowConfirmPopup] = useState(false);
     const [showSuccessPopup, setShowSuccessPopup] = useState(false);
+    const [member, setMember] = useState<MemberFormState>(initialMemberState);
+    // Funktion zum Schließen des Bestätigungspopups
+    const closeConfirmationPopup = () => {
+        setShowConfirmPopup(false);
+    };
+
+    // Funktion zum Schließen des Erfolgspopups
+    const closeSuccessPopup = () => {
+        setShowSuccessPopup(false);
+        setMember(initialMemberState); // Setzt den member State zurück auf den Anfangszustand
+    };
+
+
+    // Funktion zum Aktualisieren des Mitglieds nach Bestätigung
+    const confirmAndUpdateMember = async () => {
+        closeConfirmationPopup(); // Schließen des Bestätigungspopups
+        // Hier die Logik zum Speichern der Daten einfügen, z.B.:
+        await handleUpdate(); // Nutzen Sie Ihre bestehende Update-Funktion
+        setShowSuccessPopup(true); // Erfolgspopup anzeigen
+    };
     const handleChange = (
         e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>
     ) => {
@@ -80,6 +99,27 @@ const Mitgliederformular: React.FC = () => {
             [target.name]: value,
         });
     };
+    // Update-Funktion
+    const handleUpdate = async () => {
+        if (member.mitgliedsnummer) {
+            try {
+                // PUT-Anfrage an die API senden
+                const response = await axios.put(`/api/members/${member.mitgliedsnummer}`, member);
+                console.log(response.data);
+                setShowSuccessPopup(true); // Erfolgspopup anzeigen
+                setShowConfirmPopup(false); // Warnpopup schließen
+            } catch (error) {
+                console.error('Fehler beim Aktualisieren der Daten:', error);
+            }
+        } else {
+            console.error('Die Mitgliedsnummer fehlt oder ist ungültig.');
+        }
+    };
+    // Funktion zum Anzeigen des Warnpopups vor dem Update
+    const confirmUpdate = () => {
+        setShowConfirmPopup(true);
+    };
+
     const searchMembers = async (search: string, source: CancelTokenSource) => {
         try {
             setIsSearching(true);
@@ -115,6 +155,40 @@ const Mitgliederformular: React.FC = () => {
     const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setSearchTerm(event.target.value);
     };
+    const handleDelete = async () => {
+        if (window.confirm("Sind Sie sicher, dass Sie diesen Datensatz löschen möchten?")) {
+            try {
+                if (member.mitgliedsnummer) {
+                    const response = await axios.delete(`/api/members/${member.mitgliedsnummer}`);
+                    console.log(response.data);
+                    // Hier könnten Sie den Zustand aktualisieren oder eine Benachrichtigung anzeigen
+                    // Setzen Sie beispielsweise den Member-Zustand zurück
+                    setMember({
+                        mitgliedsnummer: '',
+                        anrede: '',
+                        vorname: '',
+                        nachname: '',
+                        strasse: '',
+                        plz: '',
+                        stadt: '',
+                        festnetz: '',
+                        handy: '',
+                        email: '',
+                        geburtsdatum: '',
+                        eintrittsdatum: '',
+                        austrittsdatum: '',
+                        status: '',
+                        bezahlt: false,
+                        fischereischeinnummer: '',
+                        fischereischeinablaufdatum: '',
+                    });
+
+                }
+            } catch (error) {
+                console.error('Fehler beim Löschen des Datensatzes:', error);
+            }
+        }
+    };
 
     const handleSearch = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
@@ -134,7 +208,6 @@ const Mitgliederformular: React.FC = () => {
             anrede: member.anrede,
             vorname: member.vorname,
             nachname: member.nachname,
-            // ... und so weiter für alle Felder
             strasse: member.strasse,
             plz: member.plz,
             stadt: member.stadt,
@@ -160,12 +233,12 @@ const Mitgliederformular: React.FC = () => {
             // Popup anzeigen und das Formular zurücksetzen
             setShowSuccessPopup(true);
             setMember({
-                mitgliedsnummer: 0,
+                mitgliedsnummer: '',
                 anrede: '',
                 vorname: '',
                 nachname: '',
                 strasse: '',
-                plz: 0,
+                plz: '',
                 stadt: '',
                 festnetz: '',
                 handy: '',
@@ -183,10 +256,6 @@ const Mitgliederformular: React.FC = () => {
             console.error('Es gab einen Fehler beim Senden der Daten:', error);
         }
     };
-    // Methode zum Schließen des Popups
-    const closeSuccessPopup = () => {
-        setShowSuccessPopup(false);
-    };
 
     return (
         <div className="mitgliederformular">
@@ -194,13 +263,13 @@ const Mitgliederformular: React.FC = () => {
 
                 <div className="left-sidebar-title">
                     <div className="left-sidebar-title-text">
-                        <p>Mitgliederverwaltung</p>
+                        <p>- Menü -</p>
                     </div>
                 </div>
 
                 <div className="right-sidebar-title">
                     <div className="right-sidebar-title-text">
-                        <p>Suchergebnis</p>
+                        <p>- Suchergebnis -</p>
                     </div>
                 </div>
                 <div className="right-sidebar">
@@ -220,24 +289,31 @@ const Mitgliederformular: React.FC = () => {
 
                 <div className="main-list-title">
                     <div className="main-list-title-text">
-                        - Neues Mitglied anlegen -
+                        - Mitgliederverwaltung -
                     </div>
                 </div>
                 <div className="left-sidebar">
                     <div className="left-sidebar-button">
                         <div className="d-grid gap-2 col-11 mx-auto">
-                            <CButton color="primary" href="/mitgliederverwaltung">Mitglied ' NEU '</CButton>
-                            <CButton color="primary" href="/mitgliedersuche">Mitglied ' SUCHEN '</CButton>
-                            <CButton color="primary" href="/members">Mitglieder ' LISTE '</CButton>
+                            <CButton color="primary" href="/mitgliederverwaltung">Mitgliederverwaltung</CButton>
+                            <CButton color="primary" href="/members">Alle Mitglieder als Liste</CButton>
                         </div>
                     </div>
                 </div>
-                {/* Popup-Element */}
+                {/* Bestätigungspopup */}
+                {showConfirmPopup && (
+                    <div className="confirm-popup">
+                        <p>Sind Sie sicher, dass Sie die Änderungen speichern möchten?</p>
+                        <CButton onClick={confirmAndUpdateMember} className="btn-primary-confirm-popup">Ja</CButton>
+                        <CButton onClick={closeConfirmationPopup} className="btn-primary-cancel-popup">Nein</CButton>
+                    </div>
+                )}
+
+                {/* Erfolgspopup */}
                 {showSuccessPopup && (
                     <div className="popup">
-                        <p>Mitglied wurde erfolgreich hinzugefügt!!</p>
-                        <CButton onClick={closeSuccessPopup}
-                                 className="btn btn-primary-reset btn-custom-position-popup">OK</CButton>
+                        <p>Die Änderungen wurden erfolgreich gespeichert!!</p>
+                        <CButton onClick={closeSuccessPopup} className="btn btn-primary-reset btn-custom-position-popup">OK</CButton>
                     </div>
                 )}
                 <div className="main-list">
@@ -253,6 +329,7 @@ const Mitgliederformular: React.FC = () => {
 
                         <CButton type="submit"
                                  className="btn btn-primary-suchen btn-custom-position-suchen">Suchen</CButton>
+
                     </form>
                     <form onSubmit={handleSubmit}>
                         <div className="mitglieder-form">
@@ -282,8 +359,8 @@ const Mitgliederformular: React.FC = () => {
                                         id="vorname"
                                         type="text"
                                         name="vorname"
-                                        value={member.vorname}
-                                        onChange={(e) => setMember({...member, vorname: e.target.value})}
+                                        value={member.vorname || ''}
+                                        onChange={handleChange}
                                         required
                                         placeholder="Vorname"
                                     />
@@ -296,7 +373,7 @@ const Mitgliederformular: React.FC = () => {
                                         id="nachname"
                                         type="text"
                                         name="nachname"
-                                        value={member.nachname}
+                                        value={member.nachname || ''}
                                         onChange={handleChange}
                                         required
                                         placeholder="Nachname"
@@ -313,7 +390,7 @@ const Mitgliederformular: React.FC = () => {
                                         id="strasse"
                                         type="text"
                                         name="strasse"
-                                        value={member.strasse}
+                                        value={member.strasse || ''}
                                         onChange={handleChange}
                                         required
                                         placeholder="Straße"
@@ -327,7 +404,7 @@ const Mitgliederformular: React.FC = () => {
                                         id="plz"
                                         type="text"
                                         name="plz"
-                                        value={member.plz}
+                                        value={member.plz || ''}
                                         onChange={handleChange}
                                         required
                                         placeholder="12345"
@@ -342,7 +419,7 @@ const Mitgliederformular: React.FC = () => {
                                         id="stadt"
                                         type="text"
                                         name="stadt"
-                                        value={member.stadt}
+                                        value={member.stadt || ''}
                                         onChange={handleChange}
                                         required
                                         placeholder="Stadt"
@@ -374,7 +451,7 @@ const Mitgliederformular: React.FC = () => {
                                         id="festnetz"
                                         type="text"
                                         name="festnetz"
-                                        value={member.festnetz}
+                                        value={member.festnetz || ''}
                                         onChange={handleChange}
                                         placeholder="Festnetz"
                                     />
@@ -387,7 +464,7 @@ const Mitgliederformular: React.FC = () => {
                                         id="handy"
                                         type="text"
                                         name="handy"
-                                        value={member.handy}
+                                        value={member.handy || ''}
                                         onChange={handleChange}
                                         placeholder="Handy"
                                     />
@@ -400,7 +477,7 @@ const Mitgliederformular: React.FC = () => {
                                         id="email"
                                         type="text"
                                         name="email"
-                                        value={member.email}
+                                        value={member.email || ''}
                                         onChange={handleChange}
                                         placeholder="E-Mail"
                                     />
@@ -421,7 +498,7 @@ const Mitgliederformular: React.FC = () => {
                                             id="fischereischeinnummer"
                                             type="text"
                                             name="fischereischeinnummer"
-                                            value={member.fischereischeinnummer}
+                                            value={member.fischereischeinnummer || ''}
                                             onChange={handleChange}
                                             placeholder="Fischereischeinnummer"
                                         />
@@ -434,7 +511,7 @@ const Mitgliederformular: React.FC = () => {
                                             id="fischereischeinablaufdatum"
                                             type="date"
                                             name="fischereischeinablaufdatum"
-                                            value={member.fischereischeinablaufdatum}
+                                            value={member.fischereischeinablaufdatum || ''}
                                             onChange={handleChange}
                                             placeholder="fischereischeinablaufdatum"
                                         />
@@ -507,13 +584,31 @@ const Mitgliederformular: React.FC = () => {
                                     </div>
                                 </div>
                                 <hr/>
-
+                                <CButton
+                                    className="btn btn-danger btn-custom-position-delete"
+                                    onClick={handleDelete}
+                                    disabled={!member.mitgliedsnummer}
+                                >
+                                    Löschen
+                                </CButton>
+                                <CButton
+                                    className="btn btn-primary-update btn-custom-position-update"
+                                    onClick={confirmUpdate}
+                                    disabled={!member.mitgliedsnummer} // Deaktiviere den Button,
+                                    // wenn keine Mitgliedsnummer vorhanden ist
+                                >
+                                    Update
+                                </CButton>
 
                                 <CButton className="btn btn-primary-reset btn-custom-position-reset"
                                          href="/mitgliederverwaltung">Reset</CButton>
 
                                 <CButton type="submit"
-                                         className="btn btn-primary-anlegen btn-custom-position-anlegen">Anlegen</CButton>
+                                         className="btn btn-primary-anlegen btn-custom-position-anlegen"
+                                         disabled={member.mitgliedsnummer.length > 0}
+                                    >
+                                    Anlegen
+                                </CButton>
 
                             </div>
 

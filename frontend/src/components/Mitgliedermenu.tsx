@@ -10,16 +10,15 @@ const Mitgliedermenu: React.FC = () => {
                 <div className="homepage-img2"></div>
                 <div className="left-sidebar-title">
                     <div className="left-sidebar-title-text">
-                        <p>Mitgliederverwaltung</p>
+                        <p>- Menü -</p>
                     </div>
                 </div>
 
                 <div className="left-sidebar">
                     <div className="left-sidebar-button">
                         <div className="d-grid gap-2 col-11 mx-auto">
-                            <CButton color="primary" href="/mitgliederverwaltung">Mitglied ' NEU '</CButton>
-                            <CButton color="primary" href="/mitgliedersuche">Mitglied ' SUCHEN '</CButton>
-                            <CButton color="primary" href="/members">Mitglieder ' LISTE '</CButton>
+                            <CButton color="primary" href="/mitgliederverwaltung">Mitgliederverwaltung</CButton>
+                            <CButton color="primary" href="/members">Alle Mitglieder als Liste</CButton>
                         </div>
                     </div>
                 </div>

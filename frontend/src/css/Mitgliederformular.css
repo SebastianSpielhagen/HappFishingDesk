@@ -122,43 +122,7 @@
     max-height: 560px;
     margin: auto;
     position: relative;
-    top: 60px;
-}
-
-.mitgliederformular .main-list .mitgliedersuche-formular {
-    position: absolute;
-    top: 4px;
-}
-
-.mitgliederformular .form-control {
-    position: absolute; /* Oder 'absolute', 'fixed', 'sticky' */
-    top: 490px; /* Verschiebt den Button nach unten */
-    left: 520px; /* Verschiebt den Button nach rechts */
-    width: 250px; /* Individuelle Breite */
-    height: 35px; /* Individuelle Höhe */
-}
-
-.mitgliederformular .volltextsuche {
-    position: absolute; /* Oder 'absolute', 'fixed', 'sticky' */
-    top: 465px; /* Verschiebt den Button nach unten */
-    left: 520px; /* Verschiebt den Button nach rechts */
-    width: 250px; /* Individuelle Breite */
-    height: 30px; /* Individuelle Höhe */
-    text-align: left;
-    color: white;
-    font-size: 18px;
-    font-weight: 500;
-}
-
-/* Individuelle Positionierung und Größe */
-.mitgliederformular .btn-custom-position-suchen {
-    position: absolute; /* Oder 'absolute', 'fixed', 'sticky' */
-    top: 485px; /* Verschiebt den Button nach unten */
-    left: 770px; /* Verschiebt den Button nach rechts */
-    width: 150px; /* Individuelle Breite */
-    height: 35px; /* Individuelle Höhe */
-    vertical-align: baseline;
-    text-align: center;
+    top: 50px;
 }
 
 .print-button {
@@ -656,13 +620,13 @@ hr {
 /* Individuelle Positionierung und Größe */
 .btn-custom-position-anlegen {
     position: relative; /* Oder 'absolute', 'fixed', 'sticky' */
-    top: 10px; /* Verschiebt den Button nach unten */
-    left: 930px; /* Verschiebt den Button nach rechts */
+    top: 11px; /* Verschiebt den Button nach unten */
+    left: 710px; /* Verschiebt den Button nach rechts */
     width: 100px; /* Individuelle Breite */
     height: 35px; /* Individuelle Höhe */
 }
 
-/* Spezifischer Stil für den 'Anlegen'-Button */
+/* Spezifischer Stil für den 'Reset'-Button */
 .btn-primary-reset {
 
     font-size: 16px; /* Schriftgröße */
@@ -696,13 +660,13 @@ hr {
 
 .btn-custom-position-reset {
     position: relative; /* Oder 'absolute', 'fixed', 'sticky' */
-    top: 10px; /* Verschiebt den Button nach unten */
-    left: 930px; /* Verschiebt den Button nach rechts */
+    top: 11px; /* Verschiebt den Button nach unten */
+    left: 705px; /* Verschiebt den Button nach rechts */
     width: 100px; /* Individuelle Breite */
     height: 35px; /* Individuelle Höhe */
 }
 
-/* Spezifischer Stil für den 'Anlegen'-Button */
+/* Spezifischer Stil für den 'Popup'-Button */
 .btn-primary-popup {
     padding: 13px 20px; /* Innenabstand */
     font-size: 16px; /* Schriftgröße */
@@ -753,7 +717,222 @@ hr {
     font-weight: 600;
     padding: 30px;
     margin-left: 10px;
-    border: 2px solid #2963e8;
+    border: 4px solid #2963e8;
+    box-shadow: 0 4px 17px rgba(0, 0, 0, 0.8);
+    z-index: 1000; /* Stellen Sie sicher, dass es über anderen Elementen liegt */
+}
+.confirm-popup {
+    position: fixed; /* oder 'absolute', je nach Bedarf */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #00ac1b;
+    text-align: left;
+    color: white;
+    font-weight: 600;
+    padding: 30px;
+    margin-left: 10px;
+    border: 4px solid #e5fd01;
+    box-shadow: 0 4px 17px rgba(0, 0, 0, 0.8);
+    z-index: 1000; /* Stellen Sie sicher, dass es über anderen Elementen liegt */
+}
+.btn-primary-confirm-popup {
+    padding: 13px 28px; /* Innenabstand */
+    font-size: 16px; /* Schriftgröße */
+    border-radius: 5px; /* Abgerundete Ecken */
+    cursor: pointer; /* Cursor als Zeiger */
+    transition: all 0.3s ease; /* Weiche Übergänge für alle Änderungen */
+    display: inline-block; /* Ermöglicht die Positionierung */
+    margin: 5px; /* Standardabstand um den Button */
+    background-color: #007bff; /* Primäre Button-Farbe, blau */
+    color: white; /* Textfarbe */
+    border: none; /* Keine Ränder */
+    position: relative;
+    left: 300px;
+    top: 15px;
+}
+.btn-primary-cancel-popup {
+    padding: 13px 20px; /* Innenabstand */
+    font-size: 16px; /* Schriftgröße */
+    border-radius: 5px; /* Abgerundete Ecken */
+    cursor: pointer; /* Cursor als Zeiger */
+    transition: all 0.3s ease; /* Weiche Übergänge für alle Änderungen */
+    display: inline-block; /* Ermöglicht die Positionierung */
+    margin: 5px; /* Standardabstand um den Button */
+    background-color: #007bff; /* Primäre Button-Farbe, blau */
+    color: white; /* Textfarbe */
+    border: none; /* Keine Ränder */
+    position: relative;
+    left: 10px;
+    top: 15px;
+}
+.btn-primary-confirm-popup:hover {
+    background-color: #0056b3; /* Dunklere Blaufarbe beim Hover */
+}
+.btn-primary-cancel-popup:hover {
+    background-color: #0056b3; /* Dunklere Blaufarbe beim Hover */
+}
+
+.btn-primary-confirm-popup:active {
+    background-color: #004085; /* Noch dunklere Blaufarbe beim aktiven Klicken */
+}
+.btn-primary-cancel-popup:active {
+    background-color: #004085; /* Noch dunklere Blaufarbe beim aktiven Klicken */
+}
+.btn-primary-confirm-popup:focus {
+    outline: none; /* Kein Outline bei Fokussierung */
+    box-shadow: 0 0 0 0.2rem rgb(229, 253, 1); /* Fügt einen Schatten hinzu */
+}
+.btn-primary-cancel-popup:focus {
+    outline: none; /* Kein Outline bei Fokussierung */
+    box-shadow: 0 0 0 0.2rem rgb(229, 253, 1); /* Fügt einen Schatten hinzu */
+}
+.btn-primary-confirm-popup:disabled {
+    opacity: 0.65; /* Macht den Button durchscheinend */
+    cursor: not-allowed; /* Ändert den Cursor zu einem "nicht erlaubt" Zeichen */
+}
+.btn-primary-cancel-popup:disabled {
+    opacity: 0.65; /* Macht den Button durchscheinend */
+    cursor: not-allowed; /* Ändert den Cursor zu einem "nicht erlaubt" Zeichen */
+}
+
+.btn-custom-position-popup {
+    position: relative; /* Oder 'absolute', 'fixed', 'sticky' */
+    top: 10px; /* Verschiebt den Button nach unten */
+    left: 105px; /* Verschiebt den Button nach rechts */
+    width: 150px; /* Individuelle Breite */
+    height: 50px; /* Individuelle Höhe */
+}
+.btn-primary-update {
+    font-size: 16px; /* Schriftgröße */
+    border-radius: 5px; /* Abgerundete Ecken */
+    cursor: pointer; /* Cursor als Zeiger */
+    transition: all 0.3s ease; /* Weiche Übergänge für alle Änderungen */
+    display: inline-block; /* Ermöglicht die Positionierung */
+    margin: 5px; /* Standardabstand um den Button */
+    background-color: #faee00; /* Primäre Button-Farbe, blau */
+    color: #2963e8; /* Textfarbe */
+    border: none; /* Keine Ränder */
+}
+
+.btn-primary-update:hover {
+    background-color: #c4bd00; /* Dunklere Blaufarbe beim Hover */
+    color: #0056b3;
+}
+
+.btn-primary-update:active {
+    background-color: #faee00; /* Noch dunklere Blaufarbe beim aktiven Klicken */
+}
+
+.btn-primary-update:focus {
+    outline: none; /* Kein Outline bei Fokussierung */
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25); /* Fügt einen Schatten hinzu */
+}
+
+.btn-primary-update:disabled {
+    opacity: 0.65; /* Macht den Button durchscheinend */
+    cursor: not-allowed; /* Ändert den Cursor zu einem "nicht erlaubt" Zeichen */
+    background-color: #41413f; /* Noch dunklere Blaufarbe beim aktiven Klicken */
+}
+.btn-primary-anlegen:disabled {
+    opacity: 0.65; /* Macht den Button durchscheinend */
+    cursor: not-allowed; /* Ändert den Cursor zu einem "nicht erlaubt" Zeichen */
+    background-color: #41413f; /* Noch dunklere Blaufarbe beim aktiven Klicken */
+}
+
+.btn-custom-position-update {
+    position: relative; /* Oder 'absolute', 'fixed', 'sticky' */
+    top: 11px; /* Verschiebt den Button nach unten */
+    left: 70px; /* Verschiebt den Button nach rechts */
+    width: 100px; /* Individuelle Breite */
+    height: 35px; /* Individuelle Höhe */
+}
+.btn-primary-delete {
+    font-size: 16px; /* Schriftgröße */
+    border-radius: 5px; /* Abgerundete Ecken */
+    cursor: pointer; /* Cursor als Zeiger */
+    transition: all 0.3s ease; /* Weiche Übergänge für alle Änderungen */
+    display: inline-block; /* Ermöglicht die Positionierung */
+    margin: 5px; /* Standardabstand um den Button */
+    background-color: rgba(227, 29, 29, 0.87); /* Primäre Button-Farbe, blau */
+    color: #2963e8; /* Textfarbe */
+    border: none; /* Keine Ränder */
+}
+
+.btn-primary-delete:hover {
+    background-color: #ff6d00; /* Dunklere Blaufarbe beim Hover */
+    color: #ffffff;
+    font-weight: 700;
+}
+
+.btn-primary-delete:active {
+    background-color: #faee00; /* Noch dunklere Blaufarbe beim aktiven Klicken */
+}
+
+.btn-primary-delete:focus {
+    outline: none; /* Kein Outline bei Fokussierung */
+    box-shadow: 0 0 0 0.2rem rgba(255, 255, 255, 0.25); /* Fügt einen Schatten hinzu */
+}
+
+.btn-primary-delete:disabled {
+    opacity: 0.65; /* Macht den Button durchscheinend */
+    cursor: not-allowed; /* Ändert den Cursor zu einem "nicht erlaubt" Zeichen */
+    background-color: #ffff06; /* Noch dunklere Blaufarbe beim aktiven Klicken */
+}
+.btn-custom-position-delete {
+    position: relative; /* Oder 'absolute', 'fixed', 'sticky' */
+    top: 11px; /* Verschiebt den Button nach unten */
+    left: 30px; /* Verschiebt den Button nach rechts */
+    width: 100px; /* Individuelle Breite */
+    height: 35px; /* Individuelle Höhe */
+}
+.mitgliederformular .main-list .mitgliedersuche-formular {
+    position: absolute;
+    top: 4px;
+}
+
+.mitgliederformular .form-control {
+    position: absolute; /* Oder 'absolute', 'fixed', 'sticky' */
+    top: 490px; /* Verschiebt den Button nach unten */
+    left: 380px; /* Verschiebt den Button nach rechts */
+    width: 350px; /* Individuelle Breite */
+    height: 35px; /* Individuelle Höhe */
+}
+
+.mitgliederformular .volltextsuche {
+    position: absolute; /* Oder 'absolute', 'fixed', 'sticky' */
+    top: 465px; /* Verschiebt den Button nach unten */
+    left: 380px; /* Verschiebt den Button nach rechts */
+    width: 250px; /* Individuelle Breite */
+    height: 30px; /* Individuelle Höhe */
+    text-align: left;
+    color: white;
+    font-size: 18px;
+    font-weight: 500;
+}
+
+/* Individuelle Positionierung und Größe */
+.mitgliederformular .btn-custom-position-suchen {
+    position: absolute; /* Oder 'absolute', 'fixed', 'sticky' */
+    top: 490px; /* Verschiebt den Button nach unten */
+    left: 735px; /* Verschiebt den Button nach rechts */
+    width: 100px; /* Individuelle Breite */
+    height: 35px; /* Individuelle Höhe */
+    vertical-align: baseline;
+    text-align: center;
+}
+.confirm-popup {
+    position: fixed; /* oder 'absolute', je nach Bedarf */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #00ac1b;
+    text-align: left;
+    color: white;
+    font-weight: 600;
+    padding: 30px;
+    margin-left: 10px;
+    border: 4px solid #e5fd01;
     box-shadow: 0 4px 17px rgba(0, 0, 0, 0.8);
     z-index: 1000; /* Stellen Sie sicher, dass es über anderen Elementen liegt */
 }
