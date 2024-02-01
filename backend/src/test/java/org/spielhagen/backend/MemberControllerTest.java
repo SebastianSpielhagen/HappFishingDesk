@@ -129,7 +129,7 @@ class MemberControllerTest {
     }
 
     @Test
-    public void testCreateMember() {
+    void testCreateMember() {
         // Mock-Service und Controller einrichten
         MemberService memberService = mock(MemberService.class);
         MemberController memberController = new MemberController(memberService);
