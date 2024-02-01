@@ -1,8 +1,6 @@
 package org.spielhagen.backend;
 
 import org.junit.jupiter.api.Test;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
@@ -99,5 +97,5 @@ public class MemberControllerTest {
         assertEquals(204, memberController.deleteMember("12345").getStatusCodeValue());
     }
 
-    // Weitere Tests für die restlichen Methoden des Controllers
+
 }
