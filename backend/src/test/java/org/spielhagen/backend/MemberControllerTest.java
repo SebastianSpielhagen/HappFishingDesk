@@ -9,10 +9,10 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
-public class MemberControllerTest {
+class MemberControllerTest {
 
     @Test
-    public void testGetAllMembers() {
+    void testGetAllMembers() {
         MemberService memberService = mock(MemberService.class);
         MemberController memberController = new MemberController(memberService);
 
@@ -23,7 +23,7 @@ public class MemberControllerTest {
     }
 
     @Test
-    public void testGetMemberById() {
+    void testGetMemberById() {
         MemberService memberService = mock(MemberService.class);
         MemberController memberController = new MemberController(memberService);
 
@@ -34,7 +34,7 @@ public class MemberControllerTest {
     }
 
     @Test
-    public void testGetMemberByMitgliedsnummer() {
+    void testGetMemberByMitgliedsnummer() {
         MemberService memberService = mock(MemberService.class);
         MemberController memberController = new MemberController(memberService);
 
@@ -44,7 +44,7 @@ public class MemberControllerTest {
         assertEquals(member, memberController.getMemberByMitgliedsnummer("12345"));
     }
     @Test
-    public void testSearchMembersByVorname() {
+    void testSearchMembersByVorname() {
         MemberService memberService = mock(MemberService.class);
         MemberController memberController = new MemberController(memberService);
 
@@ -55,7 +55,7 @@ public class MemberControllerTest {
     }
 
     @Test
-    public void testSearchMembersByNachname() {
+    void testSearchMembersByNachname() {
         MemberService memberService = mock(MemberService.class);
         MemberController memberController = new MemberController(memberService);
 
@@ -66,7 +66,7 @@ public class MemberControllerTest {
     }
 
     @Test
-    public void testSearchMembers() {
+    void testSearchMembers() {
         MemberService memberService = mock(MemberService.class);
         MemberController memberController = new MemberController(memberService);
 
@@ -79,7 +79,7 @@ public class MemberControllerTest {
 
 
     @Test
-    public void testUpdateMember() {
+    void testUpdateMember() {
         MemberService memberService = mock(MemberService.class);
         MemberController memberController = new MemberController(memberService);
 
@@ -90,7 +90,7 @@ public class MemberControllerTest {
     }
 
     @Test
-    public void testDeleteMember() {
+    void testDeleteMember() {
         MemberService memberService = mock(MemberService.class);
         MemberController memberController = new MemberController(memberService);
 

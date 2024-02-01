@@ -38,7 +38,7 @@ class MemberControllerMockMvcTest {
     private Member member;
 
     @BeforeEach
-    public void setUp() {
+    void setUp() {
         member = new Member();
         member.setId("1002");
         // Setzen Sie hier die benötigten Eigenschaften des Mitglieds

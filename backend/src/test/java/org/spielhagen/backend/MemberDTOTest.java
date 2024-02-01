@@ -4,16 +4,16 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 import java.time.LocalDate;
 
-public class MemberDTOTest {
+class MemberDTOTest {
 
     @Test
-    public void testMemberDTOConstructor() {
+    void testMemberDTOConstructor() {
         MemberDTO memberDTO = new MemberDTO();
         assertNotNull(memberDTO);
     }
 
     @Test
-    public void testGetterAndSetter() {
+    void testGetterAndSetter() {
         MemberDTO memberDTO = new MemberDTO();
         memberDTO.setId("1");
         memberDTO.setMitgliedsnummer("12345");

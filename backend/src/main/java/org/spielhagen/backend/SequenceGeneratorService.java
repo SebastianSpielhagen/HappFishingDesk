@@ -28,6 +28,6 @@ public class SequenceGeneratorService {
                 DatabaseSequence.class
         );
 
-        return !Objects.isNull(counter) ? String.valueOf(counter.getSeq()) : "1";
+        return !Objects.isNull(counter) ? counter.getSeq() : "1";
     }
 }
