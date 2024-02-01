@@ -85,7 +85,7 @@ const Mitgliederformular: React.FC = () => {
     // Funktion zum Aktualisieren des Mitglieds nach Bestätigung
     const confirmAndUpdateMember = async () => {
         closeConfirmationPopup(); // Schließen des Bestätigungspopups
-        // Hier die Logik zum Speichern der Daten einfügen, z.B.:
+        // Logik zum Speichern der Daten.
         await handleUpdate(); // Nutzen Sie Ihre bestehende Update-Funktion
         setShowSuccessPopup(true); // Erfolgspopup anzeigen
     };
@@ -226,7 +226,6 @@ const Mitgliederformular: React.FC = () => {
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        // Hier würden Sie die Logik hinzufügen, um die Daten an Ihren Server zu senden
         try {
             const response = await axios.post('/api/members', member);
             console.log(response.data);
@@ -313,7 +312,8 @@ const Mitgliederformular: React.FC = () => {
                 {showSuccessPopup && (
                     <div className="popup">
                         <p>Die Änderungen wurden erfolgreich gespeichert!!</p>
-                        <CButton onClick={closeSuccessPopup} className="btn btn-primary-reset btn-custom-position-popup">OK</CButton>
+                        <CButton onClick={closeSuccessPopup}
+                                 className="btn btn-primary-reset btn-custom-position-popup">OK</CButton>
                     </div>
                 )}
                 <div className="main-list">
@@ -385,7 +385,7 @@ const Mitgliederformular: React.FC = () => {
                             <div className="form-row2">
                                 {/* Straße Eingabefeld */}
                                 <div className="form-field-strasse">
-                                    <label htmlFor="strasse">*Strasse inkl. Hausnummer</label>
+                                    <label htmlFor="strasse">*Strasse und Hausnummer</label>
                                     <input
                                         id="strasse"
                                         type="text"
