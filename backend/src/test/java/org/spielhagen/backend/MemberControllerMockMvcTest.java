@@ -60,7 +60,7 @@ class MemberControllerMockMvcTest {
     }
     @Test
     void getMemberById_ShouldReturnMember() throws Exception {
-        when(memberService.getMemberById(eq("1002"))).thenReturn(Optional.of(member));
+        when(memberService.getMemberById(("1002"))).thenReturn(Optional.of(member));
 
         mockMvc.perform(get("/api/members/{id}", "1002"))
                 .andExpect(status().isOk())

@@ -14,6 +14,28 @@ class MemberDTOTest {
 
     @Test
     void testGetterAndSetter() {
+        MemberDTO memberDTO = getMemberDTO();
+        assertEquals("1", memberDTO.getId());
+        assertEquals("12345", memberDTO.getMitgliedsnummer());
+        assertEquals("Herr", memberDTO.getAnrede());
+        assertEquals("Max", memberDTO.getVorname());
+        assertEquals("Mustermann", memberDTO.getNachname());
+        assertEquals(LocalDate.of(1990, 1, 1), memberDTO.getGeburtsdatum());
+        assertEquals(LocalDate.of(2022, 12, 31), memberDTO.getAustrittsdatum());
+        assertTrue(memberDTO.getBezahlt());
+        assertEquals(LocalDate.of(2020, 1, 1), memberDTO.getEintrittsdatum());
+        assertEquals("0123456789", memberDTO.getFestnetz());
+        assertEquals("FS12345", memberDTO.getFischereischeinnummer());
+        assertEquals("9876543210", memberDTO.getHandy());
+        assertEquals("max.mustermann@example.com", memberDTO.getEmail());
+        assertEquals("12345", memberDTO.getPlz());
+        assertEquals("Musterstadt", memberDTO.getStadt());
+        assertEquals("Aktiv", memberDTO.getStatus());
+        assertEquals("Musterstraße 123", memberDTO.getStrasse());
+        assertEquals(LocalDate.of(2025, 12, 31), memberDTO.getFischereischeinablaufdatum());
+    }
+
+    private static MemberDTO getMemberDTO() {
         MemberDTO memberDTO = new MemberDTO();
         memberDTO.setId("1");
         memberDTO.setMitgliedsnummer("12345");
@@ -33,24 +55,6 @@ class MemberDTOTest {
         memberDTO.setStatus("Aktiv");
         memberDTO.setStrasse("Musterstraße 123");
         memberDTO.setFischereischeinablaufdatum(LocalDate.of(2025, 12, 31));
-
-        assertEquals("1", memberDTO.getId());
-        assertEquals("12345", memberDTO.getMitgliedsnummer());
-        assertEquals("Herr", memberDTO.getAnrede());
-        assertEquals("Max", memberDTO.getVorname());
-        assertEquals("Mustermann", memberDTO.getNachname());
-        assertEquals(LocalDate.of(1990, 1, 1), memberDTO.getGeburtsdatum());
-        assertEquals(LocalDate.of(2022, 12, 31), memberDTO.getAustrittsdatum());
-        assertTrue(memberDTO.getBezahlt());
-        assertEquals(LocalDate.of(2020, 1, 1), memberDTO.getEintrittsdatum());
-        assertEquals("0123456789", memberDTO.getFestnetz());
-        assertEquals("FS12345", memberDTO.getFischereischeinnummer());
-        assertEquals("9876543210", memberDTO.getHandy());
-        assertEquals("max.mustermann@example.com", memberDTO.getEmail());
-        assertEquals("12345", memberDTO.getPlz());
-        assertEquals("Musterstadt", memberDTO.getStadt());
-        assertEquals("Aktiv", memberDTO.getStatus());
-        assertEquals("Musterstraße 123", memberDTO.getStrasse());
-        assertEquals(LocalDate.of(2025, 12, 31), memberDTO.getFischereischeinablaufdatum());
+        return memberDTO;
     }
 }

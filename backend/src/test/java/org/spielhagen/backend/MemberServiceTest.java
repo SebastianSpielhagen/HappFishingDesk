@@ -7,8 +7,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.spielhagen.backend.*;
-import org.springframework.http.HttpStatus;
+
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.Collections;
@@ -24,14 +23,10 @@ class MemberServiceTest {
     @Mock
     private MemberRepository memberRepository;
 
-    @Mock
-    private SequenceGeneratorService sequenceGeneratorService;
-
     @InjectMocks
     private MemberService memberService;
 
     private Member member;
-    private MemberDTO memberDto;
 
     @BeforeEach
     void setUp() {
@@ -41,7 +36,6 @@ class MemberServiceTest {
         member.setMitgliedsnummer("10001");
         // ... Setzen Sie die weiteren Eigenschaften des Members
 
-        memberDto = new MemberDTO();
         // ... Setzen Sie die Eigenschaften des MemberDTO
     }
 
@@ -54,7 +48,8 @@ class MemberServiceTest {
 
         assertFalse(members.isEmpty(), "Die Liste der Mitglieder sollte nicht leer sein");
         assertEquals(1, members.size(), "Die Liste sollte genau ein Mitglied enthalten");
-        assertEquals(member, members.get(0), "Das abgerufene Mitglied sollte dem erwarteten Mitglied entsprechen");
+        assertEquals(member, members.getFirst(), "Das abgerufene Mitglied sollte dem " +
+                "erwarteten Mitglied entsprechen");
     }
 
     @Test
@@ -65,7 +60,8 @@ class MemberServiceTest {
         Optional<Member> resultMember = memberService.getMemberById("1");
 
         assertTrue(resultMember.isPresent(), "Das Mitglied sollte vorhanden sein");
-        assertEquals(member, resultMember.get(), "Das gefundene Mitglied sollte dem erwarteten Mitglied entsprechen");
+        assertEquals(member, resultMember.get(), "Das gefundene Mitglied" +
+                " sollte dem erwarteten Mitglied entsprechen");
     }
 
     @Test
@@ -74,7 +70,8 @@ class MemberServiceTest {
         when(memberRepository.findByMitgliedsnummer(anyString())).thenReturn(Optional.of(member));
         doNothing().when(memberRepository).delete(any(Member.class));
 
-        assertDoesNotThrow(() -> memberService.deleteMember("10001"), "Das Löschen eines existierenden Mitglieds sollte keine Exception werfen");
+        assertDoesNotThrow(() -> memberService.deleteMember("10001"), "Das Löschen" +
+                " eines existierenden Mitglieds sollte keine Exception werfen");
 
         verify(memberRepository, times(1)).findByMitgliedsnummer("10001");
         verify(memberRepository, times(1)).delete(member);
@@ -85,7 +82,8 @@ class MemberServiceTest {
     void deleteMember_ShouldThrowWhenDoesNotExist() {
         when(memberRepository.findByMitgliedsnummer(anyString())).thenReturn(Optional.empty());
 
-        assertThrows(ResponseStatusException.class, () -> memberService.deleteMember("10001"), "Das Löschen eines nicht existierenden Mitglieds sollte eine ResponseStatusException werfen");
+        assertThrows(ResponseStatusException.class, () -> memberService.deleteMember("10001"),
+                "Das Löschen eines nicht existierenden Mitglieds sollte eine ResponseStatusException werfen");
 
         verify(memberRepository, times(1)).findByMitgliedsnummer("10001");
         verify(memberRepository, never()).delete(any(Member.class));
@@ -102,7 +100,8 @@ class MemberServiceTest {
         Member updatedMember = memberService.updateMember("10001", member);
 
         assertNotNull(updatedMember, "Das aktualisierte Mitglied sollte nicht null sein");
-        assertEquals("10001", updatedMember.getMitgliedsnummer(), "Die Mitgliedsnummer des aktualisierten Mitglieds sollte übereinstimmen");
+        assertEquals("10001", updatedMember.getMitgliedsnummer(), "Die Mitgliedsnummer " +
+                "des aktualisierten Mitglieds sollte übereinstimmen");
         verify(memberRepository, times(1)).save(member);
     }
 
@@ -112,7 +111,8 @@ class MemberServiceTest {
     void updateMember_ShouldThrowWhenMemberDoesNotExist() {
         when(memberRepository.findByMitgliedsnummer(anyString())).thenReturn(Optional.empty());
 
-        assertThrows(RuntimeException.class, () -> memberService.updateMember("10001", member), "Das Aktualisieren eines nicht existierenden Mitglieds sollte eine RuntimeException werfen");
+        assertThrows(RuntimeException.class, () -> memberService.updateMember("10001", member),
+                "Das Aktualisieren eines nicht existierenden Mitglieds sollte eine RuntimeException werfen");
 
         verify(memberRepository, never()).save(any(Member.class));
     }
@@ -121,7 +121,8 @@ class MemberServiceTest {
     @Test
     @DisplayName("Suche Mitglieder nach Vorname")
     void searchByVorname_ShouldReturnMembersWithMatchingVorname() {
-        when(memberRepository.findByVornameContainingIgnoreCase(anyString())).thenReturn(Collections.singletonList(member));
+        when(memberRepository.findByVornameContainingIgnoreCase(anyString()))
+                .thenReturn(Collections.singletonList(member));
 
         List<Member> members = memberService.searchByVorname("Max");
 
@@ -133,7 +134,8 @@ class MemberServiceTest {
     @Test
     @DisplayName("Suche Mitglieder nach Nachname")
     void searchByNachname_ShouldReturnMembersWithMatchingNachname() {
-        when(memberRepository.findByNachnameContainingIgnoreCase(anyString())).thenReturn(Collections.singletonList(member));
+        when(memberRepository.findByNachnameContainingIgnoreCase(anyString()))
+                .thenReturn(Collections.singletonList(member));
 
         List<Member> members = memberService.searchByNachname("Mustermann");
 

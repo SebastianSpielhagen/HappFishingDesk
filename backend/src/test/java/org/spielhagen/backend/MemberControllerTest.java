@@ -1,6 +1,7 @@
 package org.spielhagen.backend;
 
 import org.junit.jupiter.api.Test;
+import org.springframework.http.HttpStatus;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
@@ -94,7 +95,7 @@ class MemberControllerTest {
         MemberService memberService = mock(MemberService.class);
         MemberController memberController = new MemberController(memberService);
 
-        assertEquals(204, memberController.deleteMember("12345").getStatusCodeValue());
+        assertEquals(HttpStatus.NO_CONTENT, memberController.deleteMember("12345").getStatusCode());
     }
 
 
