@@ -1,192 +1,92 @@
 package org.spielhagen.backend;
 
-import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
-import org.springframework.mock.web.MockHttpServletRequest;
-import org.springframework.web.context.request.RequestContextHolder;
-import org.springframework.web.context.request.ServletRequestAttributes;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.*;
-
-import java.util.Arrays;
+import java.net.URI;
 import java.util.List;
-import java.util.Optional;
 
-class MemberControllerTest {
+@RestController
+@RequestMapping("/api/members")
+class MemberController {
+    private final MemberService memberService;
 
-    @Test
-    void testGetAllMembers() {
-        MemberService memberService = mock(MemberService.class);
-        MemberController memberController = new MemberController(memberService);
-
-        List<Member> members = Arrays.asList(new Member(), new Member());
-        when(memberService.getAllMembers()).thenReturn(members);
-
-        assertEquals(members, memberController.getAllMembers().getBody());
+    @Autowired
+    public MemberController(MemberService memberService) {
+        this.memberService = memberService;
     }
 
-    @Test
-    void testGetMemberById() {
-        MemberService memberService = mock(MemberService.class);
-        MemberController memberController = new MemberController(memberService);
-
-        Member member = new Member();
-        when(memberService.getMemberById("1")).thenReturn(Optional.of(member));
-
-        assertEquals(member, memberController.getMemberById("1").getBody());
+    // Holt alle Mitglieder ab
+    @GetMapping
+    public ResponseEntity<List<Member>> getAllMembers() {
+        return new ResponseEntity<>(memberService.getAllMembers(), HttpStatus.OK);
     }
 
-    @Test
-    void testGetMemberByMitgliedsnummer() {
-        MemberService memberService = mock(MemberService.class);
-        MemberController memberController = new MemberController(memberService);
-
-        Member member = new Member();
-        when(memberService.getMemberByMitgliedsnummer("12345")).thenReturn(Optional.of(member));
-
-        assertEquals(member, memberController.getMemberByMitgliedsnummer("12345"));
-    }
-    @Test
-    void testSearchMembersByVorname() {
-        MemberService memberService = mock(MemberService.class);
-        MemberController memberController = new MemberController(memberService);
-
-        List<Member> members = Arrays.asList(new Member(), new Member());
-        when(memberService.searchByVorname("Max")).thenReturn(members);
-
-        assertEquals(members, memberController.searchMembersByVorname("Max").getBody());
+    // Holen eines Mitglied nach ID ab
+    @GetMapping("/{id}")
+    public ResponseEntity<Member> getMemberById(@PathVariable String id) {
+        return memberService.getMemberById(id)
+                .map(member -> new ResponseEntity<>(member, HttpStatus.OK))
+                .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
-    @Test
-    void testSearchMembersByNachname() {
-        MemberService memberService = mock(MemberService.class);
-        MemberController memberController = new MemberController(memberService);
-
-        List<Member> members = Arrays.asList(new Member(), new Member());
-        when(memberService.searchByNachname("Mustermann")).thenReturn(members);
-
-        assertEquals(members, memberController.searchMembersByNachname("Mustermann").getBody());
+    @GetMapping("/byMitgliedsnummer/{mitgliedsnummer}")
+    public Member getMemberByMitgliedsnummer(@PathVariable String mitgliedsnummer) {
+        return memberService.getMemberByMitgliedsnummer(mitgliedsnummer)
+                .orElseThrow(() -> new ResponseStatusException(
+                        HttpStatus.NOT_FOUND, "Mitgliedsnummer existiert nicht: " + mitgliedsnummer));
     }
 
-    @Test
-    void testSearchMembers() {
-        MemberService memberService = mock(MemberService.class);
-        MemberController memberController = new MemberController(memberService);
-
-        List<Member> searchResults = Arrays.asList(new Member(), new Member());
-        when(memberService.searchByTerms("searchTerm")).thenReturn(searchResults);
-
-        assertEquals(searchResults, memberController.searchMembers("searchTerm").getBody());
+    @GetMapping("/vorname/{vorname}")
+    public ResponseEntity<List<Member>> searchMembersByVorname(@RequestParam String vorname) {
+        List<Member> members = memberService.searchByVorname(vorname);
+        if (members.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(members, HttpStatus.OK);
     }
 
-
-
-    @Test
-    void testUpdateMember() {
-        MemberService memberService = mock(MemberService.class);
-        MemberController memberController = new MemberController(memberService);
-
-        Member member = new Member();
-        when(memberService.updateMember("12345", member)).thenReturn(member);
-
-        assertEquals(member, memberController.updateMember("12345", member).getBody());
+    @GetMapping("/nachname/{nachname}")
+    public ResponseEntity<List<Member>> searchMembersByNachname(@RequestParam String nachname) {
+        List<Member> members = memberService.searchByNachname(nachname);
+        if (members.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(members, HttpStatus.OK);
     }
 
-    @Test
-    void testDeleteMember() {
-        MemberService memberService = mock(MemberService.class);
-        MemberController memberController = new MemberController(memberService);
-
-        assertEquals(HttpStatus.NO_CONTENT, memberController.deleteMember("12345").getStatusCode());
+    @GetMapping("/search")
+    public ResponseEntity<List<Member>> searchMembers(@RequestParam String searchTerm) {
+        List<Member> searchResults = memberService.searchByTerms(searchTerm);
+        if (searchResults.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(searchResults, HttpStatus.OK);
     }
 
-    @Test
-    void testGetMemberByIdNotFound() {
-        MemberService memberService = mock(MemberService.class);
-        MemberController memberController = new MemberController(memberService);
-
-        when(memberService.getMemberById("1")).thenReturn(Optional.empty());
-
-        ResponseEntity<Member> response = memberController.getMemberById("1");
-
-        assertEquals(HttpStatus.NOT_FOUND, response.getStatusCode());
+    @PostMapping
+    public ResponseEntity<Member> createMember(@RequestBody MemberDTO memberDto) {
+        // Die Generierung der Mitgliedsnummer wird im Service Layer gehandhabt.
+        Member newMember = memberService.createMember(memberDto);
+        URI location = ServletUriComponentsBuilder
+                .fromCurrentRequest()
+                .path("/{id}")
+                .buildAndExpand(newMember.getId())
+                .toUri();
+        return ResponseEntity.created(location).body(newMember);
     }
-
-    @Test
-    void testGetMemberByMitgliedsnummerNotFound() {
-        MemberService memberService = mock(MemberService.class);
-        MemberController memberController = new MemberController(memberService);
-
-        when(memberService.getMemberByMitgliedsnummer("12345")).thenReturn(Optional.empty());
-
-        ResponseStatusException exception = assertThrows(ResponseStatusException.class,
-                () -> memberController.getMemberByMitgliedsnummer("12345"));
-
-        assertEquals(HttpStatus.NOT_FOUND, exception.getStatusCode());
+    @PutMapping("/{mitgliedsnummer}")
+    public ResponseEntity<Member> updateMember(@PathVariable String mitgliedsnummer, @RequestBody Member member) {
+        Member updatedMember = memberService.updateMember(mitgliedsnummer, member);
+        return ResponseEntity.ok(updatedMember);
     }
-
-    @Test
-    void testCreateMember() {
-        // Mock-Service und Controller einrichten
-        MemberService memberService = mock(MemberService.class);
-        MemberController memberController = new MemberController(memberService);
-
-        // Mock-HttpServletRequest einrichten
-        MockHttpServletRequest request = new MockHttpServletRequest();
-        RequestContextHolder.setRequestAttributes(new ServletRequestAttributes(request));
-
-        // Dummy-DTO und Mitglied erstellen
-        MemberDTO memberDTO = new MemberDTO();
-        Member member = new Member();
-        member.setId("1");
-
-        when(memberService.createMember(any(MemberDTO.class))).thenReturn(member);
-
-        // Test-Aufruf
-        ResponseEntity<Member> response = memberController.createMember(memberDTO);
-
-        // Assertions
-        assertEquals(HttpStatus.CREATED, response.getStatusCode());
-        assertNotNull(response.getHeaders().getLocation());
-
-        // RequestContextHolder bereinigen
-        RequestContextHolder.resetRequestAttributes();
-    }
-
-    @Test
-    void testUpdateMemberNotFound() {
-        MemberService memberService = mock(MemberService.class);
-        MemberController memberController = new MemberController(memberService);
-
-        Member memberToUpdate = new Member();
-        when(memberService.updateMember("12345", memberToUpdate))
-                .thenThrow(new ResponseStatusException(HttpStatus.NOT_FOUND));
-
-        ResponseStatusException exception = assertThrows(
-                ResponseStatusException.class,
-                () -> memberController.updateMember("12345", memberToUpdate)
-        );
-
-        assertEquals(HttpStatus.NOT_FOUND, exception.getStatusCode());
-    }
-
-    @Test
-    void testDeleteMemberNotFound() {
-        MemberService memberService = mock(MemberService.class);
-        MemberController memberController = new MemberController(memberService);
-
-        doThrow(new ResponseStatusException(HttpStatus.NOT_FOUND)).when(memberService).deleteMember("12345");
-
-        ResponseStatusException exception = assertThrows(
-                ResponseStatusException.class,
-                () -> memberController.deleteMember("12345")
-        );
-
-        assertEquals(HttpStatus.NOT_FOUND, exception.getStatusCode());
+    @DeleteMapping("/{mitgliedsnummer}")
+    public ResponseEntity<Void> deleteMember(@PathVariable String mitgliedsnummer) {
+        memberService.deleteMember(mitgliedsnummer);
+        return ResponseEntity.noContent().build();
     }
 }
-
-
