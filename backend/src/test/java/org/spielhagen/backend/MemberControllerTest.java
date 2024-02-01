@@ -1,92 +1,80 @@
 package org.spielhagen.backend;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import org.junit.jupiter.api.Test;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.web.server.ResponseStatusException;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import java.net.URI;
+import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.*;
+
+import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
-@RestController
-@RequestMapping("/api/members")
-class MemberController {
-    private final MemberService memberService;
+class MemberControllerTest {
 
-    @Autowired
-    public MemberController(MemberService memberService) {
-        this.memberService = memberService;
+    @Test
+    void testGetAllMembers() {
+        MemberService memberService = mock(MemberService.class);
+        MemberController memberController = new MemberController(memberService);
+
+        List<Member> members = Arrays.asList(new Member(), new Member());
+        when(memberService.getAllMembers()).thenReturn(members);
+
+        assertEquals(members, memberController.getAllMembers().getBody());
     }
 
-    // Holt alle Mitglieder ab
-    @GetMapping
-    public ResponseEntity<List<Member>> getAllMembers() {
-        return new ResponseEntity<>(memberService.getAllMembers(), HttpStatus.OK);
+    @Test
+    void testGetMemberById() {
+        MemberService memberService = mock(MemberService.class);
+        MemberController memberController = new MemberController(memberService);
+
+        Member member = new Member();
+        when(memberService.getMemberById("1")).thenReturn(Optional.of(member));
+
+        assertEquals(member, memberController.getMemberById("1").getBody());
     }
 
-    // Holen eines Mitglied nach ID ab
-    @GetMapping("/{id}")
-    public ResponseEntity<Member> getMemberById(@PathVariable String id) {
-        return memberService.getMemberById(id)
-                .map(member -> new ResponseEntity<>(member, HttpStatus.OK))
-                .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
+    @Test
+    void testGetMemberByMitgliedsnummer() {
+        MemberService memberService = mock(MemberService.class);
+        MemberController memberController = new MemberController(memberService);
+
+        Member member = new Member();
+        when(memberService.getMemberByMitgliedsnummer("12345")).thenReturn(Optional.of(member));
+
+        assertEquals(member, memberController.getMemberByMitgliedsnummer("12345"));
     }
 
-    @GetMapping("/byMitgliedsnummer/{mitgliedsnummer}")
-    public Member getMemberByMitgliedsnummer(@PathVariable String mitgliedsnummer) {
-        return memberService.getMemberByMitgliedsnummer(mitgliedsnummer)
-                .orElseThrow(() -> new ResponseStatusException(
-                        HttpStatus.NOT_FOUND, "Mitgliedsnummer existiert nicht: " + mitgliedsnummer));
+
+    @Test
+    void testSearchMembers() {
+        MemberService memberService = mock(MemberService.class);
+        MemberController memberController = new MemberController(memberService);
+
+        List<Member> searchResults = Arrays.asList(new Member(), new Member());
+        when(memberService.searchByTerms("searchTerm")).thenReturn(searchResults);
+
+        assertEquals(searchResults, memberController.searchMembers("searchTerm").getBody());
     }
 
-    @GetMapping("/vorname/{vorname}")
-    public ResponseEntity<List<Member>> searchMembersByVorname(@RequestParam String vorname) {
-        List<Member> members = memberService.searchByVorname(vorname);
-        if (members.isEmpty()) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-        return new ResponseEntity<>(members, HttpStatus.OK);
+
+
+    @Test
+    void testUpdateMember() {
+        MemberService memberService = mock(MemberService.class);
+        MemberController memberController = new MemberController(memberService);
+
+        Member member = new Member();
+        when(memberService.updateMember("12345", member)).thenReturn(member);
+
+        assertEquals(member, memberController.updateMember("12345", member).getBody());
     }
 
-    @GetMapping("/nachname/{nachname}")
-    public ResponseEntity<List<Member>> searchMembersByNachname(@RequestParam String nachname) {
-        List<Member> members = memberService.searchByNachname(nachname);
-        if (members.isEmpty()) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-        return new ResponseEntity<>(members, HttpStatus.OK);
-    }
+    @Test
+    void testDeleteMember() {
+        MemberService memberService = mock(MemberService.class);
+        MemberController memberController = new MemberController(memberService);
 
-    @GetMapping("/search")
-    public ResponseEntity<List<Member>> searchMembers(@RequestParam String searchTerm) {
-        List<Member> searchResults = memberService.searchByTerms(searchTerm);
-        if (searchResults.isEmpty()) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-        return new ResponseEntity<>(searchResults, HttpStatus.OK);
-    }
-
-    @PostMapping
-    public ResponseEntity<Member> createMember(@RequestBody MemberDTO memberDto) {
-        // Die Generierung der Mitgliedsnummer wird im Service Layer gehandhabt.
-        Member newMember = memberService.createMember(memberDto);
-        URI location = ServletUriComponentsBuilder
-                .fromCurrentRequest()
-                .path("/{id}")
-                .buildAndExpand(newMember.getId())
-                .toUri();
-        return ResponseEntity.created(location).body(newMember);
-    }
-    @PutMapping("/{mitgliedsnummer}")
-    public ResponseEntity<Member> updateMember(@PathVariable String mitgliedsnummer, @RequestBody Member member) {
-        Member updatedMember = memberService.updateMember(mitgliedsnummer, member);
-        return ResponseEntity.ok(updatedMember);
-    }
-    @DeleteMapping("/{mitgliedsnummer}")
-    public ResponseEntity<Void> deleteMember(@PathVariable String mitgliedsnummer) {
-        memberService.deleteMember(mitgliedsnummer);
-        return ResponseEntity.noContent().build();
+        assertEquals(HttpStatus.NO_CONTENT, memberController.deleteMember("12345").getStatusCode());
     }
 }

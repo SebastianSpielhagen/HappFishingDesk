@@ -34,9 +34,4 @@ public class Member {
     private LocalDate fischereischeinablaufdatum;
 
     public static final String SEQUENCE_NAME = "members_sequence";
-
-
-    public Member() {
-    }
-
 }

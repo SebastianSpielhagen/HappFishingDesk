@@ -28,8 +28,4 @@ public class MemberDTO {
     private String status;
     private String strasse;
     private LocalDate fischereischeinablaufdatum;
-
-    public MemberDTO() {
-
-    }
 }
