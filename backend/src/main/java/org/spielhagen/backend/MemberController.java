@@ -64,8 +64,8 @@ public class MemberController {
         return ResponseEntity.created(location).body(newMember);
     }
     @PutMapping("/{mitgliedsnummer}")
-    public ResponseEntity<Member> updateMember(@PathVariable String mitgliedsnummer, @RequestBody Member member) {
-        Member updatedMember = memberService.updateMember(mitgliedsnummer, member);
+    public ResponseEntity<Member> updateMember(@PathVariable String mitgliedsnummer, @RequestBody Member memberDto) {
+        Member updatedMember = memberService.updateMember(mitgliedsnummer, memberDto);
         return ResponseEntity.ok(updatedMember);
     }
     @DeleteMapping("/{mitgliedsnummer}")
