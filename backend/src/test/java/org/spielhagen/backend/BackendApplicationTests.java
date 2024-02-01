@@ -2,12 +2,14 @@ package org.spielhagen.backend;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.ActiveProfiles;
 
-@SpringBootTest(classes=BackendApplication.class)
-class BackendApplicationTests {
+@ActiveProfiles("test")
+@SpringBootTest
+class BackendApplicationTest {
 
     @Test
     void contextLoads() {
-    }
 
+    }
 }
