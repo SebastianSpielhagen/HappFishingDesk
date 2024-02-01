@@ -23,6 +23,9 @@ class MemberServiceTest {
     @Mock
     private MemberRepository memberRepository;
 
+    @Mock
+    private SequenceGeneratorService sequenceGeneratorService;
+
     @InjectMocks
     private MemberService memberService;
 
@@ -33,7 +36,10 @@ class MemberServiceTest {
         // Initialisieren Sie Ihre Testdaten und Mocks hier
         member = new Member();
         member.setId("1");
-        member.setMitgliedsnummer("10001");
+        member.setMitgliedsnummer("1001");
+        member.setVorname("Max");
+        member.setNachname("Mustermann");
+
         // ... Setzen Sie die weiteren Eigenschaften des Members
 
         // ... Setzen Sie die Eigenschaften des MemberDTO
@@ -100,7 +106,7 @@ class MemberServiceTest {
         Member updatedMember = memberService.updateMember("10001", member);
 
         assertNotNull(updatedMember, "Das aktualisierte Mitglied sollte nicht null sein");
-        assertEquals("10001", updatedMember.getMitgliedsnummer(), "Die Mitgliedsnummer " +
+        assertEquals("1001", updatedMember.getMitgliedsnummer(), "Die Mitgliedsnummer " +
                 "des aktualisierten Mitglieds sollte übereinstimmen");
         verify(memberRepository, times(1)).save(member);
     }
@@ -141,5 +147,49 @@ class MemberServiceTest {
 
         assertFalse(members.isEmpty(), "Die Liste sollte nicht leer sein");
         assertTrue(members.contains(member), "Die Liste sollte das gesuchte Mitglied enthalten");
+    }
+    // Test für die Suche nach Mitgliedern anhand von Suchbegriffen
+    @Test
+    @DisplayName("Suche Mitglieder nach Suchbegriffen")
+    void searchByTerms_ShouldReturnMembersWithMatchingTerms() {
+        when(memberRepository.searchByTerms(anyString())).thenReturn(Collections.singletonList(member));
+
+        List<Member> members = memberService.searchByTerms("Max Mustermann");
+
+        assertFalse(members.isEmpty(), "Die Liste sollte nicht leer sein");
+        assertTrue(members.contains(member), "Die Liste sollte das gesuchte Mitglied enthalten");
+    }
+
+    // Test für das Abrufen eines Mitglieds anhand seiner Mitgliedsnummer
+    @Test
+    @DisplayName("Mitglied nach Mitgliedsnummer abrufen")
+    void getMemberByMitgliedsnummer_ShouldReturnMemberWhenExists() {
+        when(memberRepository.findByMitgliedsnummer(anyString())).thenReturn(Optional.of(member));
+
+        Optional<Member> resultMember = memberService.getMemberByMitgliedsnummer("10001");
+
+        assertTrue(resultMember.isPresent(), "Das Mitglied sollte vorhanden sein");
+        assertEquals(member, resultMember.get(), "Das gefundene Mitglied sollte dem erwarteten Mitglied entsprechen");
+    }
+
+    // Test für das Erstellen eines neuen Mitglieds
+    @Test
+    @DisplayName("Neues Mitglied erstellen")
+    void createMember_ShouldCreateAndReturnNewMember() {
+        MemberDTO memberDto = new MemberDTO();
+        // Setzen Sie die Eigenschaften des DTOs, die zum Erstellen eines neuen Mitglieds nötig sind
+        memberDto.setVorname("Neu");
+        memberDto.setNachname("Mitglied");
+
+        when(sequenceGeneratorService.generateSequence(Member.SEQUENCE_NAME)).thenReturn("1002");
+        when(memberRepository.save(any(Member.class))).thenReturn(member);
+
+        Member newMember = memberService.createMember(memberDto);
+
+        assertNotNull(newMember, "Das erstellte Mitglied sollte nicht null sein");
+        assertEquals("1001", newMember.getMitgliedsnummer(),
+                "Die Mitgliedsnummer des neuen Mitglieds sollte übereinstimmen");
+        // Weitere Assertions, um zu überprüfen, dass die Eigenschaften korrekt aus dem DTO übernommen wurden
+        verify(memberRepository, times(1)).save(any(Member.class));
     }
 }
