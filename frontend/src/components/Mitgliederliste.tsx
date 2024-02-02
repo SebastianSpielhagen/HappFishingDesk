@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import axios from 'axios';
 import '/src/css/Mitgliederliste.css';
 import {CButton} from "@coreui/react";
+import {useNavigate} from "react-router-dom";
 
 interface Member {
     id: string;
@@ -42,6 +43,12 @@ const formatDate = (dateString: string | null): string => {
 };
 // Definieren Sie eine Hilfsfunktion zum Sortieren
 const Mitgliederliste: React.FC = () => {
+    const navigate = useNavigate(); // Verwenden Sie `useNavigate` hier direkt
+
+    // Die handleClick-Funktion nimmt einen Pfad und navigiert dorthin
+    const handleClick = (path: string) => {
+        navigate(path);
+    };
     const [members, setMembers] = useState<Member[]>([]);
     const [sortField, setSortField] = useState<keyof Member | null>(null);
     const [sortDirection, setSortDirection] = useState<'asc' | 'desc'>('asc');
@@ -49,25 +56,44 @@ const Mitgliederliste: React.FC = () => {
     // Zustandsvariable für die Sichtbarkeit der Spalten
     const [visibleColumns, setVisibleColumns] = useState<VisibleColumnsKey>({
         mitgliedsnummer: true,
-        anrede: false,
+        anrede: true,
         vorname: true,
         nachname: true,
         strasse: false,
-        plz: true,
-        stadt: true,
+        plz: false,
+        stadt: false,
         festnetz: false,
-        handy: true,
-        email: true,
-        geburtsdatum: false,
-        eintrittsdatum: false,
+        handy: false,
+        email: false,
+        geburtsdatum: true,
+        eintrittsdatum: true,
         austrittsdatum: false,
         status: true,
         bezahlt: true,
         fischereischeinnummer: false,
-        fischereischeinablaufdatum: false,
-        // Setzen Sie für jede Spalte, die Sie ein-/ausblenden wollen, einen Eintrag
-        // Initialisieren Sie alle als true, wenn alle Spalten zu Beginn sichtbar sein sollen
+        fischereischeinablaufdatum: true,
+
     });
+    const checkboxClassNames: { [key in keyof Omit<Member, 'id'>]: string } = {
+        mitgliedsnummer: "checkbox-mitgliedsnummer",
+        anrede: "checkbox-anrede",
+        vorname: "checkbox-vorname",
+        nachname: "checkbox-nachname",
+        strasse: "checkbox-strasse",
+        plz: "checkbox-plz",
+        stadt: "checkbox-stadt",
+        festnetz: "checkbox-festnetz",
+        handy: "checkbox-handy",
+        email: "checkbox-email",
+        geburtsdatum: "checkbox-geburtsdatum",
+        eintrittsdatum: "checkbox-eintrittsdatum",
+        austrittsdatum: "checkbox-austrittsdatum",
+        status: "checkbox-status",
+        bezahlt: "checkbox-bezahlt",
+        fischereischeinnummer: "checkbox-fischereischeinnummer",
+        fischereischeinablaufdatum: "checkbox-fischereischeinablaufdatum",
+    };
+
     // Funktion zum Umschalten der Sichtbarkeit einer Spalte
     const toggleColumnVisibility = (column: keyof VisibleColumnsKey) => {
         setVisibleColumns(prevColumns => ({
@@ -75,7 +101,13 @@ const Mitgliederliste: React.FC = () => {
             [column]: !prevColumns[column],
         }));
     };
-
+    // Hilfsfunktion, um die CSS-Klasse für Sortierindikatoren zu bestimmen
+    const getSortIndicatorClass = (field: keyof Member): string => {
+        if (sortField === field) {
+            return `sort-indicator ${sortDirection}`;
+        }
+        return 'sort-indicator';
+    };
     // Funktion zum Drucken der Mitgliederliste
     const printMembers = () => {
         const printWindow = window.open('', 'PRINT', 'height=650,width=900,top=100,left=150');
@@ -86,7 +118,8 @@ const Mitgliederliste: React.FC = () => {
             printWindow.document.write('<title>Druckvorschau Mitgliederliste</title>');
 
             // Fügen Sie den Link zum Druck-CSS hinzu
-            printWindow.document.write(`<link rel="stylesheet" type="text/css" href="${window.location.origin}/printStyles.css">`);
+            printWindow.document.write(`<link rel="stylesheet" type="text/css" 
+href="${window.location.origin}/printStyles.css">`);
 
             printWindow.document.write('</head><body>');
             // Einfügen der Mitgliedertabelle in das Druckfenster
@@ -198,46 +231,53 @@ const Mitgliederliste: React.FC = () => {
                     <div className="left-sidebar">
                         <div className="left-sidebar-button">
                             <div className="d-grid gap-2 col-11 mx-auto">
-                                <CButton color="primary" href="/mitgliederverwaltung">Mitgliederverwaltung</CButton>
-                                <CButton color="primary" href="/members">Alle Mitglieder als Liste</CButton>
+                                <CButton color="primary" onClick={() =>
+                                    handleClick("/mitgliederverwaltung")}>Mitgliederverwaltung</CButton>
+                                <CButton color="primary" onClick={() =>
+                                    handleClick("/members")}>Alle Mitglieder als Liste</CButton>
                             </div>
                         </div>
                     </div>
-
                     <div className="main-list">
                         <table id="members-table">
                             <thead>
                             <tr>
-                                {visibleColumns.mitgliedsnummer &&
-                                    <th className="th-mitgliedsnummer">Mi.Nr.</th>}
-                                {visibleColumns.anrede &&
-                                    <th className="th-anrede" onClick={() => requestSort('anrede')}>Anrede</th>}
-                                {visibleColumns.vorname &&
-                                    <th className="th-vorname" onClick={() => requestSort('vorname')}>Vorname</th>}
-                                {visibleColumns.nachname &&
-                                    <th className="th-nachname" onClick={() => requestSort('nachname')}>Nachname</th>}
-                                {(visibleColumns.strasse || (visibleColumns.plz && visibleColumns.stadt)) && (
-                                    <th className="th-adresse">Adresse</th>
-                                )}
-                                {visibleColumns.festnetz &&
-                                    <th className="th-festnetz" onClick={() => requestSort('festnetz')}>Festnetz</th>}
-                                {visibleColumns.handy && <th className="th-handy">Handy</th>}
-                                {visibleColumns.email &&
-                                    <th className="th-email" onClick={() => requestSort('email')}>Email</th>}
-                                {visibleColumns.geburtsdatum && <th className="th-geburtsdatum"
-                                                                    onClick={() => requestSort('geburtsdatum')}>Geburtsdatum</th>}
-                                {visibleColumns.eintrittsdatum && <th className="th-eintrittsdatum">Eintrittsdatum</th>}
-                                {visibleColumns.austrittsdatum && <th className="th-austrittsdatum">Austrittsdatum</th>}
-                                {visibleColumns.status &&
-                                    <th className="th-status" onClick={() => requestSort('status')}>Status</th>}
-                                {visibleColumns.bezahlt &&
-                                    <th className="th-bezahlt" onClick={() => requestSort('bezahlt')}>Bezahlt?</th>}
-                                {visibleColumns.fischereischeinnummer &&
-                                    <th className="th-fischereischeinnummer">FS-Nr.</th>}
-                                {visibleColumns.fischereischeinablaufdatum &&
-                                    <th className="th-fischereischeinablaufdatum">Ablaufdatum</th>}
-
-                                {/* Weitere Th */}
+                                {visibleColumns.mitgliedsnummer && (<th className="th-mitgliedsnummer" onClick={() =>
+                                    requestSort('mitgliedsnummer')}>Mi.Nr.<span className={getSortIndicatorClass(
+                         'mitgliedsnummer')}></span></th>)}
+                          {visibleColumns.anrede && (<th className="th-anrede" onClick={() =>
+                              requestSort('anrede')}>Anrede<span className={getSortIndicatorClass(
+                         'anrede')}></span></th>)}
+                          {visibleColumns.vorname && (<th className="th-vorname" onClick={() =>
+                                requestSort('vorname')}>Vorname<span className={getSortIndicatorClass(
+                           'vorname')}></span></th>)}
+                          {visibleColumns.nachname && (<th className="th-nachname" onClick={() =>
+                                requestSort('nachname')}>Nachname<span className={getSortIndicatorClass(
+                            'nachname')}></span></th>)}
+                          {visibleColumns.strasse || (visibleColumns.plz && visibleColumns.stadt) && (
+                                    <th className="th-adresse">Adresse</th>)}
+                          {visibleColumns.festnetz && <th className="th-festnetz">Festnetz</th>}
+                          {visibleColumns.handy && <th className="th-handy">Handy</th>}
+                          {visibleColumns.email && <th className="th-email">Email</th>}
+                          {visibleColumns.geburtsdatum && <th className="th-geburtsdatum" onClick={() =>
+                                requestSort('geburtsdatum')}>Geburtsdatum<span className={getSortIndicatorClass(
+                            'geburtsdatum')}></span></th>}
+                          {visibleColumns.eintrittsdatum && <th className="th-eintrittsdatum" onClick={() =>
+                          requestSort('eintrittsdatum')}>Eintrittsdatum<span className={getSortIndicatorClass(
+                            'eintrittsdatum')}></span></th>}
+                          {visibleColumns.austrittsdatum && <th className="th-austrittsdatum" onClick={() =>
+                          requestSort('austrittsdatum')}>Austrittsdatum<span className={getSortIndicatorClass(
+                            'austrittsdatum')}></span></th>}
+                          {visibleColumns.status && <th className="th-status" onClick={() =>
+                          requestSort('status')}>Status<span className={getSortIndicatorClass(
+                            'status')}></span></th>}
+                          {visibleColumns.bezahlt && <th className="th-bezahlt" onClick={() =>
+                          requestSort('bezahlt')}>Bezahlt?<span className={getSortIndicatorClass(
+                            'bezahlt')}></span></th>}
+                          {visibleColumns.fischereischeinnummer && <th className="th-fischereischeinnummer">FS-Nr.</th>}
+                          {visibleColumns.fischereischeinablaufdatum && <th className="th-fischereischeinablaufdatum"
+                                 onClick={() => requestSort('fischereischeinablaufdatum')}>Ablaufdatum<span
+                                    className={getSortIndicatorClass('fischereischeinablaufdatum')}></span></th>}
                             </tr>
                             </thead>
                             <tbody>
@@ -275,8 +315,9 @@ const Mitgliederliste: React.FC = () => {
 
 
                     <div className="right-sidebar">
-                        {(Object.keys(visibleColumns) as Array<keyof typeof visibleColumns>).map((column) => (
-                            <label key={column} className="checkbox-label">
+                        {(Object.keys(visibleColumns) as Array<keyof typeof visibleColumns>)
+                            .map((column) => (
+                            <label key={column} className={`checkbox-label ${checkboxClassNames[column]}`}>
                                 <input
                                     type="checkbox"
                                     checked={visibleColumns[column]}

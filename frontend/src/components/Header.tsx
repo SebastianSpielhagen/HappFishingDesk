@@ -6,8 +6,20 @@ import {faCog, faSignInAlt} from "@fortawesome/free-solid-svg-icons";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '/src/css/Header.css';
 import {CButton} from "@coreui/react";
+import logo from "/src/assets/header_logo_small.png";
+import {useNavigate} from "react-router-dom";
+
+
 
 const Header: React.FC = () => {
+    const navigate = useNavigate(); // Verwenden Sie `useNavigate` hier direkt
+
+    // Die handleClick-Funktion nimmt einen Pfad und navigiert dorthin
+    const handleClick = (path: string) => {
+        navigate(path);
+    };
+
+
     // Funktion zur Formatierung des Datums und der Uhrzeit
     const getFormattedDateTime = (): string => {
         return new Date().toLocaleString('de-DE', {
@@ -46,14 +58,15 @@ const Header: React.FC = () => {
         };
     }, []);
 
+
     // Stil für den DB-Status
     const dbStatusClass = dbStatus === "DISCONNECTED" ? "blink-text" : "";
 
     return (
         <div className="header-container">
             <div className="logo">
-                <a href="/"> <img src="/src/assets/header_logo_small.png"
-                                  width="130" height="130"
+                <a href="/"> <img src={logo}
+                                      width="130" height="130"
                                   alt="Sportfischerverein Witten e.V. 1932"/>
                 </a>
             </div>
@@ -62,22 +75,22 @@ const Header: React.FC = () => {
             <div className="nav">
                 <div className="row">
                     <div className="col">
-                        <CButton color="primary" href="/mitgliedermenu">Mitglieder</CButton>
+                        <CButton color="primary" onClick={() => handleClick("/mitgliedermenu")}>Mitglieder</CButton>
                     </div>
                     <div className="col">
-                        <CButton color="primary" href="/formulare">Formulare</CButton>
+                        <CButton color="primary" onClick={() => handleClick("/formulare")}>Formulare</CButton>
                     </div>
                     <div className="col">
-                        <CButton color="primary" href="/kalender">Kalender</CButton>
+                        <CButton color="primary" onClick={() => handleClick("/kalender")}>Kalender</CButton>
                     </div>
                     <div className="col">
-                        <CButton color="primary" href="/nachrichten">Nachrichten</CButton>
+                        <CButton color="primary" onClick={() => handleClick("/nachrichten")}>Nachrichten</CButton>
                     </div>
                     <div className="col">
-                        <CButton color="primary" href="/fangberichte">Fangberichte</CButton>
+                        <CButton color="primary" onClick={() => handleClick("/fangberichte")}>Fangberichte</CButton>
                     </div>
                     <div className="col">
-                        <CButton color="primary" href="/statistiken">Statistiken</CButton>
+                        <CButton color="primary" onClick={() => handleClick("/statistiken")}>Statistiken</CButton>
                     </div>
                 </div>
             </div>
@@ -89,10 +102,10 @@ const Header: React.FC = () => {
                 <div className="activeuser">Eingeloggt als: Admin</div>
                 <div className="datetime">{currentDateTime}</div>
                 <div className="buttons">
-                    <Button variant="contained" color="error" href="/login">
+                    <Button variant="contained" color="error" onClick={() => handleClick("/login")}>
                         <FontAwesomeIcon icon={faSignInAlt}/>
-                    </Button>{' '}
-                    <Button variant="contained" color="error" href="/settings">
+                    </Button>
+                    <Button variant="contained" color="error" onClick={() => handleClick("/settings")}>
                         <FontAwesomeIcon icon={faCog}/>
                     </Button>
                 </div>
@@ -102,6 +115,7 @@ const Header: React.FC = () => {
 
     );
 };
+
 
 
 export default Header;

@@ -3,6 +3,7 @@ import axios, {CancelTokenSource} from 'axios';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '/src/css/Mitgliederformular.css';
 import {CButton} from "@coreui/react";
+import {useNavigate} from "react-router-dom";
 
 type MemberFormState = {
     mitgliedsnummer: string;
@@ -44,6 +45,12 @@ type Member = {
 };
 
 const Mitgliederformular: React.FC = () => {
+    const navigate = useNavigate(); // Verwenden Sie `useNavigate` hier direkt
+
+        // Die handleClick-Funktion nimmt einen Pfad und navigiert dorthin
+        const handleClick = (path: string) => {
+            navigate(path);
+        };
     const initialMemberState: MemberFormState = {
         mitgliedsnummer: '',
         anrede: '',
@@ -294,8 +301,10 @@ const Mitgliederformular: React.FC = () => {
                 <div className="left-sidebar">
                     <div className="left-sidebar-button">
                         <div className="d-grid gap-2 col-11 mx-auto">
-                            <CButton color="primary" href="/mitgliederverwaltung">Mitgliederverwaltung</CButton>
-                            <CButton color="primary" href="/members">Alle Mitglieder als Liste</CButton>
+                            <CButton color="primary" onClick={() =>
+                                handleClick("/mitgliederverwaltung")}>Mitgliederverwaltung</CButton>
+                            <CButton color="primary" onClick={() =>
+                                handleClick("/members")}>Alle Mitglieder als Liste</CButton>
                         </div>
                     </div>
                 </div>
@@ -601,8 +610,8 @@ const Mitgliederformular: React.FC = () => {
                                 </CButton>
 
                                 <CButton className="btn btn-primary-reset btn-custom-position-reset"
-                                         href="/mitgliederverwaltung">Reset</CButton>
-
+                                         color="primary" onClick={() =>
+                                            handleClick("/mitgliederverwaltung")}>Reset</CButton>
                                 <CButton type="submit"
                                          className="btn btn-primary-anlegen btn-custom-position-anlegen"
                                          disabled={member.mitgliedsnummer.length > 0}

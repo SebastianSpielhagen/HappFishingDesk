@@ -11,7 +11,7 @@
     background-color: #ffffff;
     height: 600px;
     position: relative;
-    width: 1600px;
+    width: 1640px;
 
 }
 
@@ -37,10 +37,10 @@
 .mitgliederliste .right-sidebar-title {
     background-color: #00ac1b;
     height: 40px;
-    left: 1380px;
+    left: 1360px;
     position: absolute;
     top: 0;
-    width: 220px;
+    width: 250px;
     border-left: 1px solid black;
     border-bottom: 1px solid black;
     text-align: center;
@@ -50,6 +50,7 @@
     position: relative;
     top: 4px;
     font-size: 22px;
+
 }
 
 .mitgliederliste .main-list-title {
@@ -58,8 +59,9 @@
     left: 220px;
     position: absolute;
     top: 0;
-    width: 1160px;
+    width: 1150px;
     border-bottom: 1px solid black;
+
 }
 
 .mitgliederliste .main-list-title-text {
@@ -90,10 +92,11 @@
     display: inline-grid;
     background-color: #00ac1b;
     height: 560px;
-    left: 1380px;
-    position: absolute;
-    top: 40px;
-    width: 220px;
+    left: 1367px;
+    position: relative;
+    top: -106px;
+
+    width: 243px;
     border-left: 1px solid black;
 }
 
@@ -101,21 +104,29 @@
     display: flex;
     overflow-x: scroll;
     overflow-y: scroll;
-    max-width: 1160px;
+    max-width: 1155px;
     max-height: 560px;
     margin: auto;
     position: relative;
-    top: 60px;
+    top: 40px;
 
+}
+#members-table tbody tr:first-child {
+    display: none;
 }
 
 .print-button {
     position: absolute;
     top: 1px;
-    right: 230px;
     background-color: #00ac1b;
     color: white;
     cursor: pointer;
+    left: 1250px;
+    box-sizing: border-box;
+}
+.th-mitgliedsnummer {
+    width: auto; /* Lassen Sie die Tabelle die Breite basierend auf dem Inhalt entscheiden, bis zu einem gewissen Punkt */
+    min-width: 80px;
 }
 
 .th-anrede {
@@ -231,4 +242,202 @@
 
 #members-table tr:nth-child(odd) {
     background-color: #ffffff; /* Farbe für ungerade Zeilen */
+}
+
+.checkbox-label {
+    text-transform: capitalize;
+}
+.checkbox-mitgliedsnummer {
+    position: relative;
+    left: 3px;
+    font-size: 16px;
+    top: 5px;
+}
+.checkbox-mitgliedsnummer input[type="checkbox"] {
+    position: relative;
+    margin-right: 5px;
+    top: 1px;
+}
+.checkbox-anrede {
+    position: relative;
+    left: 3px;
+    font-size: 16px;
+}
+.checkbox-anrede input[type="checkbox"] {
+    position: relative;
+    margin-right: 5px;
+    top: 1px;
+}
+.checkbox-vorname {
+    position: relative;
+    left: 3px;
+    font-size: 16px;
+}
+.checkbox-vorname input[type="checkbox"] {
+    position: relative;
+    margin-right: 5px;
+    top: 1px;
+}
+.checkbox-nachname {
+    position: relative;
+    left: 3px;
+    font-size: 16px;
+}
+.checkbox-nachname input[type="checkbox"] {
+    position: relative;
+    margin-right: 5px;
+    top: 1px;
+}
+.checkbox-strasse {
+    position: relative;
+    left: 3px;
+    font-size: 16px;
+}
+.checkbox-strasse input[type="checkbox"] {
+    position: relative;
+    margin-right: 5px;
+    top: 1px;
+}
+.checkbox-plz {
+    position: relative;
+    left: 3px;
+    font-size: 16px;
+}
+.checkbox-plz input[type="checkbox"] {
+    position: relative;
+    margin-right: 5px;
+    top: 1px;
+}
+.checkbox-stadt {
+    position: relative;
+    left: 3px;
+    font-size: 16px;
+}
+.checkbox-stadt input[type="checkbox"] {
+    position: relative;
+    margin-right: 5px;
+    top: 1px;
+}
+.checkbox-festnetz {
+    position: relative;
+    left: 3px;
+    font-size: 16px;
+}
+.checkbox-festnetz input[type="checkbox"] {
+    position: relative;
+    margin-right: 5px;
+    top: 1px;
+}
+.checkbox-handy {
+    position: relative;
+    left: 3px;
+    font-size: 16px;
+}
+.checkbox-handy input[type="checkbox"] {
+    position: relative;
+    margin-right: 5px;
+    top: 1px;
+}
+.checkbox-email {
+    position: relative;
+    left: 3px;
+    font-size: 16px;
+}
+.checkbox-email input[type="checkbox"] {
+    position: relative;
+    margin-right: 5px;
+    top: 1px;
+}
+.checkbox-geburtsdatum {
+    position: relative;
+    left: 3px;
+    font-size: 16px;
+}
+.checkbox-geburtsdatum input[type="checkbox"] {
+    position: relative;
+    margin-right: 5px;
+    top: 1px;
+}
+.checkbox-eintrittsdatum {
+    position: relative;
+    left: 3px;
+    font-size: 16px;
+}
+.checkbox-eintrittsdatum input[type="checkbox"] {
+    position: relative;
+    margin-right: 5px;
+    top: 1px;
+}
+.checkbox-austrittsdatum {
+    position: relative;
+    left: 3px;
+    font-size: 16px;
+}
+.checkbox-austrittsdatum input[type="checkbox"] {
+    position: relative;
+    margin-right: 5px;
+    top: 1px;
+}
+.checkbox-status {
+    position: relative;
+    left: 3px;
+    font-size: 16px;
+}
+.checkbox-status input[type="checkbox"] {
+    position: relative;
+    margin-right: 5px;
+    top: 1px;
+}
+.checkbox-bezahlt {
+    position: relative;
+    left: 3px;
+    font-size: 16px;
+}
+.checkbox-bezahlt input[type="checkbox"] {
+    position: relative;
+    margin-right: 5px;
+    top: 1px;
+}
+.checkbox-fischereischeinnummer {
+    position: relative;
+    left: 3px;
+    font-size: 16px;
+}
+.checkbox-fischereischeinnummer input[type="checkbox"] {
+    position: relative;
+    margin-right: 5px;
+    top: 1px;
+}
+.checkbox-fischereischeinablaufdatum {
+    position: relative;
+    left: 3px;
+    font-size: 16px;
+}
+.checkbox-fischereischeinablaufdatum input[type="checkbox"] {
+    position: relative;
+    margin-right: 5px;
+    top: 1px;
+}
+
+.sort-indicator {
+    margin-left: 5px;
+}
+
+.sort-indicator::after {
+    content: '';
+    border: 4px solid transparent;
+    border-bottom-color: #000000; /* Farbe des Pfeils */
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: 5px;
+}
+
+.sort-indicator.asc::after {
+    border-bottom-color: transparent;
+    border-top-color: #000000; /* Farbe des Pfeils */
+}
+
+.sort-indicator.desc::after {
+    border-top-color: transparent;
+    border-bottom-color: #000000; /* Farbe des Pfeils */
 }

@@ -1,19 +1,21 @@
 .footer-container {
-    display: grid;
+    display: flex;
     grid-template-columns: auto;
-    grid-template-rows: auto;
+    grid-template-rows: 1fr;
     grid-auto-columns: auto;
     grid-auto-flow: row;
     background-color: #00ac1b;
     max-height: 20px;
     grid-area: sidetitle;
     border-top: 1px solid black;
-
+    width: 1610px;
 }
 
 .footer-text {
+    position: relative;
     text-align: right;
     font-size: 14px;
-    margin-right: 40px;
+    left: 1380px;
+    top: 15px;
 
 }
