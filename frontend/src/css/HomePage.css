@@ -9,9 +9,9 @@
 
 .homepage-container .div {
     background-color: #00ac1b;
-    height: 600px;
+    height: 830px;
     position: relative;
-    width: 1600px;
+    width: 1680px;
 
 }
 .homepage-container .homepage-img {
@@ -29,8 +29,8 @@
 }
 .homepage-container .homepage-text {
     position: absolute;
-    top: 20px;
-    left: 10%;
-    font-size: 16px;
+    top: 60px;
+    left: 40px;
+    font-size: 22px;
     color: #ffffff;
 }

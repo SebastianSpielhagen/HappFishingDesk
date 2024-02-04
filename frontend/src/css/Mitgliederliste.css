@@ -9,9 +9,9 @@
 
 .mitgliederliste .div {
     background-color: #ffffff;
-    height: 600px;
+    height: 830px;
     position: relative;
-    width: 1640px;
+    width: 1680px;
 
 }
 
@@ -33,11 +33,18 @@
     top: 4px;
     font-size: 22px;
 }
+.print-button {
+    position: relative;
+    margin-top: -1px;
+    width: 118px;
+    left: 1225px;
 
+    text-align: center;
+}
 .mitgliederliste .right-sidebar-title {
     background-color: #00ac1b;
     height: 40px;
-    left: 1360px;
+    left: 1440px;
     position: absolute;
     top: 0;
     width: 250px;
@@ -59,7 +66,7 @@
     left: 220px;
     position: absolute;
     top: 0;
-    width: 1150px;
+    width: 1220px;
     border-bottom: 1px solid black;
 
 }
@@ -69,11 +76,12 @@
     top: 4px;
     font-size: 22px;
     text-align: center;
+    right: 40px;
 }
 
 .mitgliederliste .left-sidebar {
     background-color: #00ac1b;
-    height: 560px;
+    height: 790px;
     left: 0;
     position: absolute;
     top: 40px;
@@ -91,10 +99,10 @@
 .mitgliederliste .right-sidebar {
     display: inline-grid;
     background-color: #00ac1b;
-    height: 560px;
-    left: 1367px;
-    position: relative;
-    top: -106px;
+    height: 790px;
+    left: 1440px;
+    position: absolute;
+    top: 40px;
 
     width: 243px;
     border-left: 1px solid black;
@@ -104,7 +112,7 @@
     display: flex;
     overflow-x: scroll;
     overflow-y: scroll;
-    max-width: 1155px;
+    max-width: 1220px;
     max-height: 560px;
     margin: auto;
     position: relative;
@@ -115,15 +123,7 @@
     display: none;
 }
 
-.print-button {
-    position: absolute;
-    top: 1px;
-    background-color: #00ac1b;
-    color: white;
-    cursor: pointer;
-    left: 1250px;
-    box-sizing: border-box;
-}
+
 .th-mitgliedsnummer {
     width: auto; /* Lassen Sie die Tabelle die Breite basierend auf dem Inhalt entscheiden, bis zu einem gewissen Punkt */
     min-width: 80px;
@@ -249,7 +249,7 @@
 }
 .checkbox-mitgliedsnummer {
     position: relative;
-    left: 3px;
+    left: 6px;
     font-size: 16px;
     top: 5px;
 }
@@ -260,7 +260,7 @@
 }
 .checkbox-anrede {
     position: relative;
-    left: 3px;
+    left: 6px;
     font-size: 16px;
 }
 .checkbox-anrede input[type="checkbox"] {
@@ -270,7 +270,7 @@
 }
 .checkbox-vorname {
     position: relative;
-    left: 3px;
+    left: 6px;
     font-size: 16px;
 }
 .checkbox-vorname input[type="checkbox"] {
@@ -280,7 +280,7 @@
 }
 .checkbox-nachname {
     position: relative;
-    left: 3px;
+    left: 6px;
     font-size: 16px;
 }
 .checkbox-nachname input[type="checkbox"] {
@@ -290,7 +290,7 @@
 }
 .checkbox-strasse {
     position: relative;
-    left: 3px;
+    left: 6px;
     font-size: 16px;
 }
 .checkbox-strasse input[type="checkbox"] {
@@ -300,7 +300,7 @@
 }
 .checkbox-plz {
     position: relative;
-    left: 3px;
+    left: 6px;
     font-size: 16px;
 }
 .checkbox-plz input[type="checkbox"] {
@@ -310,7 +310,7 @@
 }
 .checkbox-stadt {
     position: relative;
-    left: 3px;
+    left: 6px;
     font-size: 16px;
 }
 .checkbox-stadt input[type="checkbox"] {
@@ -320,7 +320,7 @@
 }
 .checkbox-festnetz {
     position: relative;
-    left: 3px;
+    left: 6px;
     font-size: 16px;
 }
 .checkbox-festnetz input[type="checkbox"] {
@@ -330,7 +330,7 @@
 }
 .checkbox-handy {
     position: relative;
-    left: 3px;
+    left: 6px;
     font-size: 16px;
 }
 .checkbox-handy input[type="checkbox"] {
@@ -340,7 +340,7 @@
 }
 .checkbox-email {
     position: relative;
-    left: 3px;
+    left: 6px;
     font-size: 16px;
 }
 .checkbox-email input[type="checkbox"] {
@@ -350,7 +350,7 @@
 }
 .checkbox-geburtsdatum {
     position: relative;
-    left: 3px;
+    left: 6px;
     font-size: 16px;
 }
 .checkbox-geburtsdatum input[type="checkbox"] {
@@ -360,7 +360,7 @@
 }
 .checkbox-eintrittsdatum {
     position: relative;
-    left: 3px;
+    left: 6px;
     font-size: 16px;
 }
 .checkbox-eintrittsdatum input[type="checkbox"] {
@@ -370,7 +370,7 @@
 }
 .checkbox-austrittsdatum {
     position: relative;
-    left: 3px;
+    left: 6px;
     font-size: 16px;
 }
 .checkbox-austrittsdatum input[type="checkbox"] {
@@ -380,7 +380,7 @@
 }
 .checkbox-status {
     position: relative;
-    left: 3px;
+    left: 6px;
     font-size: 16px;
 }
 .checkbox-status input[type="checkbox"] {
@@ -390,7 +390,7 @@
 }
 .checkbox-bezahlt {
     position: relative;
-    left: 3px;
+    left: 6px;
     font-size: 16px;
 }
 .checkbox-bezahlt input[type="checkbox"] {
@@ -400,7 +400,7 @@
 }
 .checkbox-fischereischeinnummer {
     position: relative;
-    left: 3px;
+    left: 6px;
     font-size: 16px;
 }
 .checkbox-fischereischeinnummer input[type="checkbox"] {
@@ -410,13 +410,19 @@
 }
 .checkbox-fischereischeinablaufdatum {
     position: relative;
-    left: 3px;
+    left: 6px;
     font-size: 16px;
 }
 .checkbox-fischereischeinablaufdatum input[type="checkbox"] {
     position: relative;
     margin-right: 5px;
     top: 1px;
+}
+
+.sort-indicator-position {
+    position: relative;
+    top: 810px;
+    left: 10px;
 }
 
 .sort-indicator {

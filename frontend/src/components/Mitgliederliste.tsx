@@ -218,12 +218,15 @@ href="${window.location.origin}/printStyles.css">`);
                         <div className="main-list-title-text">
                             - Alle Mitglieder als Liste -
                         </div>
-
-                        {
-                            sortField && <p>Sortiert nach: {sortField}, Richtung: {sortDirection}</p>
-                        }
+                        <div className="sort-indicator-position">
+                            {
+                                sortField && (
+                                    <p>Sortiert nach: {sortField.charAt(0).toUpperCase() + sortField.slice(1)},
+                                        Richtung: {sortDirection === 'asc' ? 'Aufsteigend' : 'Absteigend'}</p>
+                                )
+                            }
+                        </div>
                     </div>
-
                     <div className="print-button">
                         <CButton onClick={printMembers}>Drucken</CButton>
                     </div>
@@ -244,71 +247,80 @@ href="${window.location.origin}/printStyles.css">`);
                             <tr>
                                 {visibleColumns.mitgliedsnummer && (<th className="th-mitgliedsnummer" onClick={() =>
                                     requestSort('mitgliedsnummer')}>Mi.Nr.<span className={getSortIndicatorClass(
-                         'mitgliedsnummer')}></span></th>)}
-                          {visibleColumns.anrede && (<th className="th-anrede" onClick={() =>
-                              requestSort('anrede')}>Anrede<span className={getSortIndicatorClass(
-                         'anrede')}></span></th>)}
-                          {visibleColumns.vorname && (<th className="th-vorname" onClick={() =>
-                                requestSort('vorname')}>Vorname<span className={getSortIndicatorClass(
-                           'vorname')}></span></th>)}
-                          {visibleColumns.nachname && (<th className="th-nachname" onClick={() =>
-                                requestSort('nachname')}>Nachname<span className={getSortIndicatorClass(
-                            'nachname')}></span></th>)}
-                          {visibleColumns.strasse || (visibleColumns.plz && visibleColumns.stadt) && (
+                                    'mitgliedsnummer')}></span></th>)}
+                                {visibleColumns.anrede && (<th className="th-anrede" onClick={() =>
+                                    requestSort('anrede')}>Anrede<span className={getSortIndicatorClass(
+                                    'anrede')}></span></th>)}
+                                {visibleColumns.vorname && (<th className="th-vorname" onClick={() =>
+                                    requestSort('vorname')}>Vorname<span className={getSortIndicatorClass(
+                                    'vorname')}></span></th>)}
+                                {visibleColumns.nachname && (<th className="th-nachname" onClick={() =>
+                                    requestSort('nachname')}>Nachname<span className={getSortIndicatorClass(
+                                    'nachname')}></span></th>)}
+                                {visibleColumns.strasse && (visibleColumns.plz && visibleColumns.stadt) && (
                                     <th className="th-adresse">Adresse</th>)}
-                          {visibleColumns.festnetz && <th className="th-festnetz">Festnetz</th>}
-                          {visibleColumns.handy && <th className="th-handy">Handy</th>}
-                          {visibleColumns.email && <th className="th-email">Email</th>}
-                          {visibleColumns.geburtsdatum && <th className="th-geburtsdatum" onClick={() =>
-                                requestSort('geburtsdatum')}>Geburtsdatum<span className={getSortIndicatorClass(
-                            'geburtsdatum')}></span></th>}
-                          {visibleColumns.eintrittsdatum && <th className="th-eintrittsdatum" onClick={() =>
-                          requestSort('eintrittsdatum')}>Eintrittsdatum<span className={getSortIndicatorClass(
-                            'eintrittsdatum')}></span></th>}
-                          {visibleColumns.austrittsdatum && <th className="th-austrittsdatum" onClick={() =>
-                          requestSort('austrittsdatum')}>Austrittsdatum<span className={getSortIndicatorClass(
-                            'austrittsdatum')}></span></th>}
-                          {visibleColumns.status && <th className="th-status" onClick={() =>
-                          requestSort('status')}>Status<span className={getSortIndicatorClass(
-                            'status')}></span></th>}
-                          {visibleColumns.bezahlt && <th className="th-bezahlt" onClick={() =>
-                          requestSort('bezahlt')}>Bezahlt?<span className={getSortIndicatorClass(
-                            'bezahlt')}></span></th>}
-                          {visibleColumns.fischereischeinnummer && <th className="th-fischereischeinnummer">FS-Nr.</th>}
-                          {visibleColumns.fischereischeinablaufdatum && <th className="th-fischereischeinablaufdatum"
-                                 onClick={() => requestSort('fischereischeinablaufdatum')}>Ablaufdatum<span
-                                    className={getSortIndicatorClass('fischereischeinablaufdatum')}></span></th>}
+                                {visibleColumns.festnetz && <th className="th-festnetz">Festnetz</th>}
+                                {visibleColumns.handy && <th className="th-handy">Handy</th>}
+                                {visibleColumns.email && <th className="th-email">Email</th>}
+                                {visibleColumns.geburtsdatum && <th className="th-geburtsdatum" onClick={() =>
+                                    requestSort('geburtsdatum')}>Geburtsdatum<span className={getSortIndicatorClass(
+                                    'geburtsdatum')}></span></th>}
+                                {visibleColumns.eintrittsdatum && <th className="th-eintrittsdatum" onClick={() =>
+                                    requestSort('eintrittsdatum')}>Eintrittsdatum<span className={getSortIndicatorClass(
+                                    'eintrittsdatum')}></span></th>}
+                                {visibleColumns.austrittsdatum && <th className="th-austrittsdatum" onClick={() =>
+                                    requestSort('austrittsdatum')}>Austrittsdatum<span className={getSortIndicatorClass(
+                                    'austrittsdatum')}></span></th>}
+                                {visibleColumns.status && <th className="th-status" onClick={() =>
+                                    requestSort('status')}>Status<span className={getSortIndicatorClass(
+                                    'status')}></span></th>}
+                                {visibleColumns.bezahlt && <th className="th-bezahlt" onClick={() =>
+                                    requestSort('bezahlt')}>Bezahlt?<span className={getSortIndicatorClass(
+                                    'bezahlt')}></span></th>}
+                                {visibleColumns.fischereischeinnummer &&
+                                    <th className="th-fischereischeinnummer">FS-Nr.</th>}
+                                {visibleColumns.fischereischeinablaufdatum &&
+                                    <th className="th-fischereischeinablaufdatum"
+                                        onClick={() => requestSort('fischereischeinablaufdatum')}>Ablaufdatum<span
+                                        className={getSortIndicatorClass('fischereischeinablaufdatum')}></span></th>}
                             </tr>
                             </thead>
                             <tbody>
-                            {sortedMembers.map((member) => (
-                                <tr key={member.id}>
-                                    {visibleColumns.mitgliedsnummer && <td>{member.mitgliedsnummer}</td>}
-                                    {visibleColumns.anrede && <td>{member.anrede}</td>}
-                                    {visibleColumns.vorname && <td>{member.vorname}</td>}
-                                    {visibleColumns.nachname && <td>{member.nachname}</td>}
-                                    {(visibleColumns.strasse || (visibleColumns.plz && visibleColumns.stadt)) && (
-                                        <td className="td-adresse">
-                                            {visibleColumns.strasse ? <div>{member.strasse}</div> : null}
-                                            {visibleColumns.plz && visibleColumns.stadt ? (
-                                                <div>{member.plz} {member.stadt}</div>
-                                            ) : null}
-                                        </td>
-                                    )}
-                                    {visibleColumns.festnetz && <td>{member.festnetz}</td>}
-                                    {visibleColumns.handy && <td>{member.handy}</td>}
-                                    {visibleColumns.email && <td>{member.email}</td>}
-                                    {visibleColumns.geburtsdatum && <td>{formatDate(member.geburtsdatum)}</td>}
-                                    {visibleColumns.eintrittsdatum && <td>{formatDate(member.eintrittsdatum)}</td>}
-                                    {visibleColumns.austrittsdatum && <td>{formatDate(member.austrittsdatum)}</td>}
-                                    {visibleColumns.status && <td>{member.status}</td>}
-                                    {visibleColumns.bezahlt && <td>{member.bezahlt ? 'Ja' : 'Nein'}</td>}
-                                    {visibleColumns.fischereischeinnummer && <td>{member.fischereischeinnummer}</td>}
-                                    {visibleColumns.fischereischeinablaufdatum &&
-                                        <td>{formatDate(member.fischereischeinablaufdatum)}</td>}
-                                    {/* ... Weitere Td, die entsprechend von visibleColumns gesteuert werden ... */}
-                                </tr>
-                            ))}
+                            {sortedMembers.map((member) => {
+                                // Überprüfen Sie, ob es sich um den auszublendenden Datensatz handelt
+                                if (member.id === 'members_sequence') {
+                                    return null; // Überspringt das Rendern dieser Zeile
+                                }
+                                return (
+                                    <tr key={member.id}>
+                                        {visibleColumns.mitgliedsnummer && <td>{member.mitgliedsnummer}</td>}
+                                        {visibleColumns.anrede && <td>{member.anrede}</td>}
+                                        {visibleColumns.vorname && <td>{member.vorname}</td>}
+                                        {visibleColumns.nachname && <td>{member.nachname}</td>}
+                                        {(visibleColumns.strasse || (visibleColumns.plz && visibleColumns.stadt)) && (
+                                            <td className="td-adresse">
+                                                {visibleColumns.strasse ? <div>{member.strasse}</div> : null}
+                                                {visibleColumns.plz && visibleColumns.stadt ? (
+                                                    <div>{member.plz} {member.stadt}</div>
+                                                ) : null}
+                                            </td>
+                                        )}
+                                        {visibleColumns.festnetz && <td>{member.festnetz}</td>}
+                                        {visibleColumns.handy && <td>{member.handy}</td>}
+                                        {visibleColumns.email && <td>{member.email}</td>}
+                                        {visibleColumns.geburtsdatum && <td>{formatDate(member.geburtsdatum)}</td>}
+                                        {visibleColumns.eintrittsdatum && <td>{formatDate(member.eintrittsdatum)}</td>}
+                                        {visibleColumns.austrittsdatum && <td>{formatDate(member.austrittsdatum)}</td>}
+                                        {visibleColumns.status && <td>{member.status}</td>}
+                                        {visibleColumns.bezahlt && <td>{member.bezahlt ? 'Ja' : 'Nein'}</td>}
+                                        {visibleColumns.fischereischeinnummer &&
+                                            <td>{member.fischereischeinnummer}</td>}
+                                        {visibleColumns.fischereischeinablaufdatum &&
+                                            <td>{formatDate(member.fischereischeinablaufdatum)}</td>}
+                                        {/* ... Weitere Td, die entsprechend von visibleColumns gesteuert werden ... */}
+                                    </tr>
+                                );
+                            })}
                             </tbody>
                         </table>
                     </div>
@@ -317,15 +329,15 @@ href="${window.location.origin}/printStyles.css">`);
                     <div className="right-sidebar">
                         {(Object.keys(visibleColumns) as Array<keyof typeof visibleColumns>)
                             .map((column) => (
-                            <label key={column} className={`checkbox-label ${checkboxClassNames[column]}`}>
-                                <input
-                                    type="checkbox"
-                                    checked={visibleColumns[column]}
-                                    onChange={() => toggleColumnVisibility(column)}
-                                />
-                                {column}
-                            </label>
-                        ))}
+                                <label key={column} className={`checkbox-label ${checkboxClassNames[column]}`}>
+                                    <input
+                                        type="checkbox"
+                                        checked={visibleColumns[column]}
+                                        onChange={() => toggleColumnVisibility(column)}
+                                    />
+                                    {column}
+                                </label>
+                            ))}
                     </div>
                 </div>
             </div>

@@ -8,23 +8,9 @@
 
 .mitgliederformular .div {
     background-color: #00ac1b;
-    height: 600px;
+    height: 830px;
     position: relative;
-    width: 1600px;
-}
-
-.mitgliederformular .homepage-img3 {
-    background-color: transparent;
-    background-image: url("/src/assets/Logo_HF_Mobile.png");
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: 60%;
-    background-attachment: fixed;
-    height: 100%;
-    width: 100%;
-    top: 0;
-    left: 0;
-    opacity: 0.1;
+    width: 1680px;
 }
 
 .mitgliederformular .left-sidebar-title {
@@ -48,10 +34,10 @@
 .mitgliederformular .right-sidebar-title {
     background-color: #00ac1b;
     height: 40px;
-    left: 1380px;
+    left: 1440px;
     position: absolute;
     top: 0;
-    width: 220px;
+    width: 250px;
     border-left: 1px solid black;
     border-bottom: 1px solid black;
     text-align: center;
@@ -69,7 +55,7 @@
     left: 220px;
     position: absolute;
     top: 0;
-    width: 1160px;
+    width: 1220px;
     border-bottom: 1px solid black;
 }
 
@@ -78,11 +64,12 @@
     top: 4px;
     font-size: 22px;
     text-align: center;
+    right: 40px;
 }
 
 .mitgliederformular .left-sidebar {
     background-color: #00ac1b;
-    height: 560px;
+    height: 790px;
     left: 0;
     position: absolute;
     top: 40px;
@@ -100,11 +87,11 @@
 .mitgliederformular .right-sidebar {
     display: inline-grid;
     background-color: #00ac1b;
-    height: 560px;
-    left: 1380px;
+    height: 790px;
+    left: 1440px;
     position: absolute;
     top: 40px;
-    width: 220px;
+    width: 243px;
     border-left: 1px solid black;
 }
 
@@ -118,11 +105,11 @@
 
 .mitgliederformular .main-list {
     display: flex;
-    max-width: 1160px;
+    max-width: 1220px;
     max-height: 560px;
     margin: auto;
     position: relative;
-    top: 50px;
+    top: 40px;
 }
 
 .print-button {
@@ -140,6 +127,7 @@
     gap: 15px; /* Abstand zwischen den Elementen */
     margin-left: 30px;
     margin-bottom: 20px;
+    margin-top: 30px;
 }
 
 /* Anrede Anfang */
@@ -215,6 +203,7 @@
     gap: 15px;
     margin-left: 30px;
     margin-bottom: 20px;
+    margin-top: 50px;
 }
 
 .mitglieder-form .form-field-strasse {
@@ -290,6 +279,8 @@
     justify-content: flex-start;
     gap: 15px;
     margin-left: 30px;
+    margin-top: 50px;
+    margin-bottom: 50px;
 }
 
 /* Geburtsdatum Anfang */
@@ -388,6 +379,8 @@
     justify-content: flex-start;
     gap: 15px;
     margin-left: 30px;
+    margin-top: 50px;
+    margin-bottom: 50px;
 }
 
 /* Fischereischeinnummer Anfang */
@@ -440,6 +433,8 @@
     justify-content: flex-start;
     gap: 15px;
     margin-left: 30px;
+    margin-top: 50px;
+    margin-bottom: 50px;
 }
 
 /* Eintrittsdatum Anfang */
@@ -578,10 +573,11 @@
 hr {
     border: none; /* Entfernt Standard-Linienstil */
     height: 1px; /* Höhe der Linie */
-    width: 1160px;
+    width: 1220px;
     background-color: #0a0606; /* Graue Linie */
     margin-top: 25px; /* Abstand nach oben */
     margin-bottom: 15px; /* Abstand nach unten */
+    margin-left: -10px;
 }
 
 
@@ -888,7 +884,7 @@ hr {
 }
 .mitgliederformular .main-list .mitgliedersuche-formular {
     position: absolute;
-    top: 4px;
+    top: 240px;
 }
 
 .mitgliederformular .form-control {

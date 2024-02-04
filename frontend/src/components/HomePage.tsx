@@ -8,7 +8,7 @@ const HomePage: React.FC = () => {
             <div className="div">
                 <div className="homepage-img"></div>
                 <div className="homepage-text">
-                    <h5>Happy Fishing Desk</h5>
+                    <h2>Happy Fishing Desk</h2>
                     <p>Die Mitgliederverwaltung für Angelvereine. Erleichtern Sie die Verwaltung Ihrer Mitglieder.</p>
                     <li>Formulare für die Anmeldung und Erlaubnisscheine an einem Platz und ausgefüllt für die
                         jeweilige Person.</li>

@@ -102,10 +102,10 @@ const Header: React.FC = () => {
                 <div className="activeuser">Eingeloggt als: Admin</div>
                 <div className="datetime">{currentDateTime}</div>
                 <div className="buttons">
-                    <Button variant="contained" color="error" onClick={() => handleClick("/login")}>
+                    <Button className="button-login" variant="contained" color="error" onClick={() => handleClick("/login")}>
                         <FontAwesomeIcon icon={faSignInAlt}/>
                     </Button>
-                    <Button variant="contained" color="error" onClick={() => handleClick("/settings")}>
+                    <Button className="button-settings" variant="contained" color="error" onClick={() => handleClick("/settings")}>
                         <FontAwesomeIcon icon={faCog}/>
                     </Button>
                 </div>
